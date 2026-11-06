@@ -1,0 +1,116 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>삿포로 3박 4일 여행</title>
+<meta name="robots" content="noindex, nofollow">
+<meta name="description" content="삿포로 3박 4일 렌터카 단풍 여행 가이드">
+<meta name="theme-color" content="#EEF0EC" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#12161A" media="(prefers-color-scheme: dark)">
+<link rel="manifest" href="/manifest.webmanifest">
+<link rel="icon" type="image/svg+xml" href="/icon.svg">
+<link rel="icon" type="image/png" href="/icon-192.png">
+<link rel="apple-touch-icon" href="/icon-192.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="삿포로 여행">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Song+Myung&family=IBM+Plex+Sans+KR:wght@400;500;600;700&family=Zen+Kaku+Gothic+New:wght@500;700&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Zen+Old+Mincho:wght@700&display=swap&text=1234%E6%97%A5%E7%9B%AE%E6%94%AF%E7%AC%8F%E6%B9%96%E5%AE%9A%E5%B1%B1%E6%B8%93%E5%B0%8F%E6%A8%BD%E6%9C%AD%E5%B9%8C%E6%96%B0%E5%8D%83%E6%AD%B3%E6%97%85%E3%81%97%E3%81%8A%E3%82%8A">
+<link rel="stylesheet" href="/app.css">
+<link rel="stylesheet" href="/app2.css">
+</head>
+<body>
+<div class="app">
+
+<div id="part-home"></div>
+
+<!-- ================= 일정 ================= -->
+<section class="panel" id="plan" aria-label="일정" hidden>
+  <nav class="daypick" aria-label="날짜 선택">
+    <button type="button" class="d1" data-day="1" aria-pressed="true"><b>17 토</b><span>료칸</span></button>
+    <button type="button" class="d2" data-day="2" aria-pressed="false"><b>18 일</b><span>오타루</span></button>
+    <button type="button" class="d3" data-day="3" aria-pressed="false"><b>19 월</b><span>시내</span></button>
+    <button type="button" class="d4" data-day="4" aria-pressed="false"><b>20 화</b><span>귀국</span></button>
+  </nav>
+<div id="part-day1"></div>
+<div id="part-day2"></div>
+<div id="part-day3"></div>
+<div id="part-day4"></div>
+</section>
+
+<!-- ================= 맛집 ================= -->
+<section class="panel" id="eat" aria-label="맛집·쇼핑" hidden>
+  <div class="eatswitch" role="group" aria-label="맛집 보기"><button type="button" aria-pressed="true">동선 따라</button><button type="button" data-go="wish" aria-pressed="false">찜 목록 <span class="n">39</span></button></div>
+  <nav class="jump" aria-label="맛집 바로가기">
+    <a href="#g-airport">공항</a><a href="#g-shikotsu">시코쓰호</a><a href="#g-jozankei">조잔케이</a><a href="#g-olunch">오타루 점심</a><a href="#g-owalk">오타루 산책</a><a href="#g-susukino">스스키노</a><a href="#g-mon">월 먹을 곳</a><a href="#g-mdinner">월 저녁</a><a href="#g-parfait">파르페</a><a href="#g-tue">화 아침</a><a href="#g-shop">쇼핑</a>
+  </nav>
+  <div class="sec-head">
+    <h2>동선 따라 먹을 곳</h2>
+    <p>이름 칩을 누르면 구글맵이 열려. 갈 데가 마땅치 않으면 위 '찜 목록'에서 골라. 영업시간은 가기 전에 한 번 더 확인해 ★.</p>
+  </div>
+<div id="part-eat1"></div>
+<div id="part-eat2"></div>
+<div id="part-eat3"></div>
+<div id="part-eat4"></div>
+<div id="part-eat5"></div>
+<div id="part-eat6"></div>
+<div id="part-eat7"></div>
+<div id="part-eat8"></div>
+<div id="part-eat9"></div>
+<div id="part-eat10"></div>
+<div id="part-eat11"></div>
+</section>
+
+<!-- ================= 찜 목록 ================= -->
+<section class="panel" id="wish" aria-label="찜 목록" hidden>
+<div id="part-wish1"></div>
+<div id="part-wish2"></div>
+<div id="part-wish3"></div>
+</section>
+
+<div id="part-talk"></div>
+
+<!-- ================= 촬영 ================= -->
+<section class="panel" id="shoot" aria-label="촬영 콘티" hidden>
+<div id="part-shoot1"></div>
+<div id="part-shoot2"></div>
+<div id="part-shoot3"></div>
+<div id="part-shoot4"></div>
+<div id="part-shoot5"></div>
+<div id="part-shoot6"></div>
+</section>
+
+<div id="part-more"></div>
+<div id="part-stay"></div>
+<div id="part-todo"></div>
+<div id="part-pack"></div>
+<div id="part-car"></div>
+<div id="part-taxi"></div>
+<div id="part-money"></div>
+<div id="part-sos"></div>
+</div>
+<nav class="nav" aria-label="메인 메뉴">
+  <div class="nav-in">
+    <button type="button" data-go="home" aria-current="page"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 11 12 4l9 7"/><path d="M5 10v10h14V10"/></svg>홈</button>
+    <button type="button" data-go="plan"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="6" cy="6" r="2"/><circle cx="6" cy="18" r="2"/><path d="M6 8v8"/><path d="M11 6h9M11 18h9M11 12h6"/></svg>일정</button>
+    <button type="button" data-go="eat"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 12h18a9 9 0 0 1-18 0z"/><path d="M8 8c0-2 2-2 2-4M12 8c0-2 2-2 2-4"/></svg>맛집</button>
+    <button type="button" data-go="talk"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 5h16v11H9l-5 4z"/><path d="M9 10h6"/></svg>회화</button>
+    <button type="button" data-go="shoot"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 8h3l2-2.5h6L17 8h3v11H4z"/><circle cx="12" cy="13.3" r="3.4"/></svg>촬영</button>
+    <button type="button" data-go="more"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><circle cx="5" cy="12" r="1.4"/><circle cx="12" cy="12" r="1.4"/><circle cx="19" cy="12" r="1.4"/></svg>더보기</button>
+  </div>
+</nav>
+<script>window.SP_PARTS=[["part-home","/parts/home.html"],["part-day1","/parts/day1.html"],["part-day2","/parts/day2.html"],["part-day3","/parts/day3.html"],["part-day4","/parts/day4.html"],["part-eat1","/parts/eat1.html"],["part-eat2","/parts/eat2.html"],["part-eat3","/parts/eat3.html"],["part-eat4","/parts/eat4.html"],["part-eat5","/parts/eat5.html"],["part-eat6","/parts/eat6.html"],["part-eat7","/parts/eat7.html"],["part-eat8","/parts/eat8.html"],["part-eat9","/parts/eat9.html"],["part-eat10","/parts/eat10.html"],["part-eat11","/parts/eat11.html"],["part-wish1","/parts/wish1.html"],["part-wish2","/parts/wish2.html"],["part-wish3","/parts/wish3.html"],["part-talk","/parts/talk.html"],["part-shoot1","/parts/shoot1.html"],["part-shoot2","/parts/shoot2.html"],["part-shoot3","/parts/shoot3.html"],["part-shoot4","/parts/shoot4.html"],["part-shoot5","/parts/shoot5.html"],["part-shoot6","/parts/shoot6.html"],["part-more","/parts/more.html"],["part-stay","/parts/stay.html"],["part-todo","/parts/todo.html"],["part-pack","/parts/pack.html"],["part-car","/parts/car.html"],["part-taxi","/parts/taxi.html"],["part-money","/parts/money.html"],["part-sos","/parts/sos.html"]];</script>
+<script src="/app.js"></script>
+<script src="/pb1.js"></script>
+<script src="/pb2.js"></script>
+<script src="/pb3.js"></script>
+<script>
+(function(){var parts=window.SP_PARTS||[];function run(){window.SP_INIT();if(window.SP_PB)window.SP_PB();}
+Promise.all(parts.map(function(p){return fetch(p[1]).then(function(r){if(!r.ok)throw new Error(p[1]);return r.text();}).then(function(t){document.getElementById(p[0]).outerHTML=t;});})).then(run,run);})();
+</script>
+<script>if('serviceWorker' in navigator){addEventListener('load',function(){navigator.serviceWorker.register('/sw.js').catch(function(){});});}</script>
+</body>
+</html>

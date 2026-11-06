@@ -1,0 +1,114 @@
+<section class="panel" id="pack" aria-label="짐·기내 반입" hidden>
+  <button type="button" class="back" data-go="more"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="m15 6-6 6 6 6"/></svg>더보기</button>
+  <div class="answer">
+    <strong>기내 가방만 가도 돼. 대신 돌아올 때 이것만 조심해.</strong>
+    <ul>
+      <li><b>100ml 넘는 액체·젤·크림은 기내 반입 불가.</b> 술, 잼, 꿀, 버터, 요구르트, 화장품이 다 걸려. 면세 봉인 봉투에 든 돈키 화장품도 예외 아냐.</li>
+      <li><b>술은 출국장 면세점(보안검색 통과 후)에서 사면 들고 타도 돼.</b> 인천 직항이라 환승 문제도 없어. 한국 입국 때 술은 2L·400달러까지 별도 면세.</li>
+      <li><b>위탁 15kg이 예약에 포함돼 있으면</b> 갈 때는 기내 가방만, 올 때만 부치면 돼. 접이식 보조가방 하나 챙겨 가 ★.</li>
+      <li>파라타 기내 가방은 1개 10kg, 55×40×20cm로 안내돼 ★. 돈키·과자 쇼핑하면 금방 넘으니 공항 가기 전에 무게 확인.</li>
+    </ul>
+  </div>
+
+  <div class="sec-head">
+    <h2>기념품, 기내에 들고 탈 수 있어?</h2>
+    <p>오는 편 기준. 위탁하면 대부분 OK, 생과일·고기류는 한국 검역에서 걸려.</p>
+  </div>
+  <div class="table-wrap">
+    <table class="carry">
+      <thead><tr><th>품목</th><th>기내</th><th>메모</th></tr></thead>
+      <tbody>
+        <tr><td>과자류 (시로이코이비토, 로이스 초콜릿, 버터샌드)</td><td><span class="yes">가능</span></td><td>고체라 괜찮아.</td></tr>
+        <tr><td>르타오 치즈케이크</td><td><span class="cond">조건부</span></td><td>케이크는 OK. 젤 보냉팩은 액체로 볼 수 있어 ★.</td></tr>
+        <tr><td>시내·돈키에서 산 술 (사케·위스키·맥주)</td><td><span class="nope">불가</span></td><td>100ml 넘으면 압수. 위탁하면 OK.</td></tr>
+        <tr><td>출국장 면세점에서 산 술</td><td><span class="yes">가능</span></td><td>보안검색 뒤에서 산 거라 OK. 한국 술 면세 2L·400달러.</td></tr>
+        <tr><td>잼·꿀·버터·요구르트·푸딩</td><td><span class="nope">불가</span></td><td>젤·크림류도 액체 취급.</td></tr>
+        <tr><td>연어알·명란젓</td><td><span class="nope">불가 ★</span></td><td>액체로 보는 경우가 많고, 한국 검역도 확인 필요 ★.</td></tr>
+        <tr><td>레토르트 스프카레·라멘 액상스프</td><td><span class="cond">100ml 이하만</span></td><td>개별 100ml 이하를 1L 지퍼백 안에.</td></tr>
+        <tr><td>돈키 화장품 (스킨·로션·선크림)</td><td><span class="cond">100ml 이하만</span></td><td>면세 봉인 봉투도 예외 아님.</td></tr>
+        <tr><td>스프레이 (모기약·헤어스프레이)</td><td><span class="cond">100ml 이하만 ★</span></td><td>종류에 따라 아예 금지인 것도 있어.</td></tr>
+        <tr><td>일본 식칼·가위</td><td><span class="nope">불가</span></td><td>무조건 위탁.</td></tr>
+        <tr><td>보조배터리</td><td><span class="yes">기내만</span></td><td>위탁 금지. 국내 항공사 기내 사용 금지, 선반 보관 금지, 단자는 테이프로.</td></tr>
+        <tr><td>생과일 (멜론)·고기 가공품</td><td><span class="nope">한국 반입 X</span></td><td>기내·위탁 상관없이 한국 검역에서 걸려.</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p class="swipe">표가 넓으면 옆으로 밀어서 봐.</p>
+
+  <div class="sec-head">
+    <h2>짐 체크리스트</h2>
+    <p>낮 16~18°, 아침 6~9°. 월·화는 비.</p>
+    <div class="progress" id="pack-progress">0 / 0</div>
+    <div class="bar"><i id="pack-bar"></i></div>
+  </div>
+
+  <div>
+    <div class="cl-head"><h3>서류 · 돈</h3></div>
+    <ul class="check" data-group="pack">
+      <li><label><input type="checkbox" id="p-pass"><span><b>여권 2개</b></span></label></li>
+      <li><label><input type="checkbox" id="p-lic"><span><b>한국 운전면허증 원본 + 국제운전면허증</b><span class="s">운전할 땐 여권까지 셋 다 있어야 해. 하나라도 없으면 무면허 취급될 수 있어.</span></span></label></li>
+      <li><label><input type="checkbox" id="p-card"><span><b>운전자 명의 신용카드 + 트래블GO</b></span></label></li>
+      <li><label><input type="checkbox" id="p-cash"><span><b>현금 2~3만 엔 + 동전지갑</b><span class="s">숙박세용 2,500엔은 따로.</span></span></label></li>
+      <li><label><input type="checkbox" id="p-docs"><span><b>예약 확인 캡처</b><span class="s">렌트, 료칸, 호텔, 보험, Visit Japan Web QR. 사진첩에도.</span></span></label></li>
+    </ul>
+  </div>
+
+  <div>
+    <div class="cl-head"><h3>기내 가방</h3></div>
+    <ul class="check" data-group="pack">
+      <li><label><input type="checkbox" id="p-zip"><span><b>1L 투명 지퍼백 (1인 1개)</b><span class="s">100ml 이하 용기만. 렌즈 세척액, 스킨, 치약.</span></span></label></li>
+      <li><label><input type="checkbox" id="p-fold"><span><b>접이식 보조가방</b><span class="s">오는 편에 술·잼 사서 위탁할 때.</span></span></label></li>
+      <li><label><input type="checkbox" id="p-bat"><span><b>보조배터리 (몸에)</b><span class="s">100Wh 이하, 단자 절연, 기내 사용 금지.</span></span></label></li>
+    </ul>
+  </div>
+
+  <div>
+    <div class="cl-head"><h3>전자기기 · 차량용</h3></div>
+    <ul class="check" data-group="pack">
+      <li><label><input type="checkbox" id="p-plug"><span><b>돼지코 2개 (일본 A타입 11자)</b><span class="s">폰·노트북 충전기는 프리볼트라 그대로 돼.</span></span></label></li>
+      <li><label><input type="checkbox" id="p-mount"><span><b>차량용 폰 거치대</b><span class="s">운전 중 폰 손에 들면 단속.</span></span></label></li>
+      <li><label><input type="checkbox" id="p-charger"><span><b>차량용 충전기 + USB-C 케이블</b></span></label></li>
+      <li><label><input type="checkbox" id="p-cam"><span><b>오즈모 포켓 4 + 마운트</b><span class="s">레이크라인 단풍길, 오타루 운하 야경.</span></span></label></li>
+    </ul>
+  </div>
+
+  <div>
+    <div class="cl-head"><h3>옷</h3></div>
+    <ul class="check" data-group="pack">
+      <li><label><input type="checkbox" id="p-down"><span><b>경량패딩이나 플리스</b><span class="s">시코쓰호 해 질 녘, 아침 온천가 산책.</span></span></label></li>
+      <li><label><input type="checkbox" id="p-shell"><span><b>방수 바람막이</b></span></label></li>
+      <li><label><input type="checkbox" id="p-inner"><span><b>긴팔 이너 3장 · 니트나 맨투맨 · 긴바지 2</b><span class="s">기내 가방이라 최소로.</span></span></label></li>
+      <li><label><input type="checkbox" id="p-shoes"><span><b>편한 운동화 (방수면 최고)</b></span></label></li>
+      <li><label><input type="checkbox" id="p-umb"><span><b>접이식 우산</b><span class="s">월·화 비.</span></span></label></li>
+    </ul>
+  </div>
+
+  <div>
+    <div class="cl-head"><h3>세면 · 약 · 기타</h3></div>
+    <ul class="check" data-group="pack">
+      <li><label><input type="checkbox" id="p-lens"><span><b>렌즈 · 안경 · 선글라스</b></span></label></li>
+      <li><label><input type="checkbox" id="p-med"><span><b>상비약</b><span class="s">소화제, 진통제, 멀미약(고갯길). 일본은 일부 감기약 성분 반입을 제한해 ★.</span></span></label></li>
+      <li><label><input type="checkbox" id="p-skin"><span><b>립밤 · 핸드크림 (100ml 이하)</b></span></label></li>
+      <li><label><input type="checkbox" id="p-bag"><span><b>에코백 · 지퍼백</b><span class="s">일본은 비닐봉투 유료.</span></span></label></li>
+    </ul>
+  </div>
+  <button type="button" class="reset" data-reset="pack">체크 전부 지우기</button>
+
+  <div class="grid2">
+    <div class="note warn">
+      <h3>일본에 가져가면 안 되는 것</h3>
+      <ul>
+        <li><b>고기·고기제품 전부:</b> 육포, 소시지, 햄, 고기 든 만두·김밥까지. 진공포장이나 면세품도 예외 없어.</li>
+        <li><b>생과일·생채소:</b> 기내식에서 남은 과일도 들고 내리지 마.</li>
+      </ul>
+    </div>
+    <div class="note">
+      <h3>한국 들어올 때</h3>
+      <ul>
+        <li>면세 한도 1인 800달러. 술은 별도로 2L·400달러 (병 수 제한 없음), 담배 200개비, 향수 100ml.</li>
+        <li>넘으면 자진신고하는 게 이득이야 (세금 감면 ★).</li>
+        <li>멜론 같은 생과일, 소시지·육포 같은 육가공품은 반입 금지. 치즈·버터는 ★확인필요.</li>
+      </ul>
+    </div>
+  </div>
+</section>

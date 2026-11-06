@@ -1,0 +1,55 @@
+# Original backups — downloaded 2026-11-06 (UTC) with curl -sS -L
+# sapporo: https://sapporo-trip-ten.vercel.app/
+# gunsan:  https://gunsan-trip-green.vercel.app/  (HTTP 503, x-vercel-error: DEPLOYMENT_PAUSED)
+# sydney:  https://sydney-trip.vercel.app/        (HTTP 503, x-vercel-error: DEPLOYMENT_PAUSED)
+# Excluded crawler false positives (JS expressions, not files; 404): sapporo/a.href, sapporo/r.url
+# Not listed: sydney probes manifest.json, manifest.webmanifest, sw.js, robots.txt (all 503, site paused)
+# columns: path	bytes	sha1	status
+sapporo/app.css	27776	4a79f94f07b0b18ecf6a3ff8e2ec09c19c23afd9	OK
+sapporo/app.js	18417	5456de738b2186970efabd7827977b39f2c30dd1	OK
+sapporo/app2.css	9157	e66d498e0e0bcf4ccc5f791b657b2d46cf3d91ff	OK
+sapporo/icon-192.png	2519	7593ed664fd094c46f905e8d54a52fa929dc4c7a	OK
+sapporo/icon.svg	575	6b046e2bd40c8c304b1fda12c164dd9a421a5e28	OK
+sapporo/index.html	8129	9997fb8999feec2a261cde7e8210ec2738e59f33	OK
+sapporo/manifest.webmanifest	377	13374d78d84816abf255d1dad2188f9ad793f038	OK
+sapporo/parts/car.html	12687	74a3269cae30355ab66e38a7b6d4fb281217d826	OK
+sapporo/parts/day1.html	10821	bfd33e2127c8ddb76a59bfc8a5d2ca99374b81d7	OK
+sapporo/parts/day2.html	10302	0c184e7f06d366c7f440866ad54172c339920ffa	OK
+sapporo/parts/day3.html	10968	491eab87080f5da619fb14d214ccccd2a382c15c	OK
+sapporo/parts/day4.html	4567	2764e52e2b1da27bc0782758a3e811395eefe1c8	OK
+sapporo/parts/eat1.html	4332	9eef8ebec827fb71eef9c7479c8689cb52673318	OK
+sapporo/parts/eat10.html	2987	59234aa99bcd08677762ec9a0fed8b1de6ced679	OK
+sapporo/parts/eat11.html	3421	61f006d2cde88bd0114060eef295a5bf40800cfd	OK
+sapporo/parts/eat2.html	4051	6c90a193c686c87ecfe3954077f8019ff46aac4b	OK
+sapporo/parts/eat3.html	6265	c1ad06cb7d3e172b24594dcc2edf29cfc10e2b09	OK
+sapporo/parts/eat4.html	5324	a73fb3ae89f07d5dc4a054cf2c17f59cf2693a8c	OK
+sapporo/parts/eat5.html	1838	5db29bfba4e42e77e85b426c804b2d1f7aeeb383	OK
+sapporo/parts/eat6.html	3107	0f908887c73fc7e9491b436f9c8ab79ae16d984e	OK
+sapporo/parts/eat7.html	3185	614363ea815067296b02d9f2d09dd2cc9e9b6b34	OK
+sapporo/parts/eat8.html	2752	23d2027abc5a366b05efad4fad7d684ebcfb39e7	OK
+sapporo/parts/eat9.html	4610	b7b46b2713e0ef21d630e6fef8c0689e53e37c12	OK
+sapporo/parts/home.html	10084	16366d7217de29b2f0cd1c4001c0914cb9707212	OK
+sapporo/parts/money.html	4676	8ac844cee3b0c5ae4521b846390746f82a264308	OK
+sapporo/parts/more.html	4328	0e7a73029c1c966cd979479b6e3269fd710d5f20	OK
+sapporo/parts/pack.html	8918	d255e4249face0a51ce6fe48742673de56bbeb75	OK
+sapporo/parts/shoot1.html	9340	47b081d5e12803e5c57bd87240a49328dfb6f60c	OK
+sapporo/parts/shoot2.html	11448	8504efe5fd7d29593b73ac2594dc84b1b45bc4d3	OK
+sapporo/parts/shoot3.html	11520	caaf5e90a6ea9d5e9e8a8b90e237d7fe82f5adba	OK
+sapporo/parts/shoot4.html	7543	2a50b27a1d71f73b1759389bdd33f0bd83d26d32	OK
+sapporo/parts/shoot5.html	7308	bcdf434e0cd33fd2fba468613e9627d37775442a	OK
+sapporo/parts/shoot6.html	6039	8ec3b88f96a4be79285d8dc1a2511ba1760d4a76	OK
+sapporo/parts/sos.html	8559	56b1fa756f2590ba3d68c07dd7e212e51939a2d7	OK
+sapporo/parts/stay.html	4233	a7213a1aeafff5f4e592b158624730fc14c15982	OK
+sapporo/parts/talk.html	2771	484b6e47864b39450136dc16c7601c24603aec14	OK
+sapporo/parts/taxi.html	5805	476a03b903476e9d222dc9bd6b2ce929c00bd34a	OK
+sapporo/parts/todo.html	5441	054b198172ea7d72a3de75172b65d4a2aac4f25e	OK
+sapporo/parts/wish1.html	11109	9586854aa1b32c239246009af6983edb27174ac0	OK
+sapporo/parts/wish2.html	7506	142b97b5d348b22e9e5a30474bf5a9486d8e76c8	OK
+sapporo/parts/wish3.html	14822	e3c9d71bcd9237d51d0167c8fcda250bfd89c0e7	OK
+sapporo/pb1.js	26077	12c25cbeaba2fdfb21723fdc715193c7644a982e	OK
+sapporo/pb2.js	28668	ee9c363af97169cb2fc81ba2f21cd076618185fb	OK
+sapporo/pb3.js	9459	9885751aa123621a8495f2c3f07aec763ef9e227	OK
+sapporo/sw.js	1888	0b92fc5b0247bad780da63e73eaf36095ed0c81d	OK
+sapporo/vercel.json	0		MISSING(404)
+gunsan/index.html	0		MISSING(503)
+sydney/index.html	0		MISSING(503)

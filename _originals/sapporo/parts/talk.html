@@ -1,0 +1,48 @@
+<!-- ================= 회화 ================= -->
+<section class="panel" id="talk" aria-label="회화북" hidden>
+<div class="pb-wrap">
+  <header class="pb-sign">
+    <div class="pb-sign-in">
+      <div class="pb-sign-k">旅の日本語 · レンタカー編</div>
+      <h1>일본 렌트여행 회화북</h1>
+      <div class="pb-sign-facts">
+        <span class="pb-fact">경찰 <b>110</b></span>
+        <span class="pb-fact">구급·화재 <b>119</b></span>
+        <span class="pb-fact">JAF 긴급출동 <b>#8139</b></span>
+        <span class="pb-fact">왼쪽 주행 <b>左側通行</b></span>
+      </div>
+      <p class="pb-legend"><span>발음의 ‘-’는 길게</span> · <span>〇〇 자리에 단어 넣기</span> · <span>문장 누르면 크게 보여주기</span> · <span>▶ 누르면 일본어 음성</span></p>
+    </div>
+  </header>
+
+  <div class="pb-bar" id="pb-bar">
+    <div class="pb-bar-row">
+      <label class="pb-search" for="pb-q">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+        <input id="pb-q" type="search" placeholder="맥주, 화장실, 주차, 満タン…" autocomplete="off" enterkeyhint="search" aria-label="표현 검색">
+        <button class="pb-clear" id="pb-qclear" type="button" aria-label="검색어 지우기" hidden>✕</button>
+      </label>
+      <button class="pb-speed" id="pb-speed" type="button" aria-pressed="false">음성 보통</button>
+    </div>
+    <nav class="pb-chips" id="pb-chips" aria-label="카테고리"></nav>
+  </div>
+  <p class="pb-count" id="pb-count"></p>
+  <main id="pb-list"></main>
+  <p class="pb-empty" id="pb-empty" hidden></p>
+  <p class="pb-foot">일본 경찰·구급은 110·119, 렌터카 사고는 작은 접촉이라도 경찰 신고 후 렌터카 회사에 연락해야 보험 처리가 됩니다. 음성은 기기에 일본어 음성이 깔려 있어야 나와요.</p>
+</div>
+
+<div class="pb-show" id="pb-show" role="dialog" aria-modal="true" aria-labelledby="pb-show-jp" hidden>
+  <p class="pb-show-hint">この画面をご覧ください · 이 화면을 보여주세요</p>
+  <div class="pb-show-main">
+    <p class="pb-show-jp" id="pb-show-jp" lang="ja"></p>
+    <p class="pb-show-pr" id="pb-show-pr"></p>
+    <p class="pb-show-ko" id="pb-show-ko"></p>
+    <p class="pb-tip" id="pb-show-tip" hidden></p>
+  </div>
+  <div class="pb-show-acts">
+    <button class="pb-btn pb-go" id="pb-show-spk" type="button"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5.5v13l10.5-6.5z"/></svg>듣기</button>
+    <button class="pb-btn" id="pb-show-close" type="button">닫기</button>
+  </div>
+</div>
+</section>
