@@ -73,7 +73,7 @@
     var badge = '';
     if (kind === 'now') badge = '<span class="badge live">여행 중 · ' + (diff(td, t.start) + 1) + '일차</span>';
     else if (kind === 'next') { var d = diff(t.start, td); badge = '<span class="badge">' + (d === 0 ? 'D-DAY' : 'D-' + d) + '</span>'; }
-    var who = (t.companions || []).length ? (t.companions.join(', ') + '랑') : '';
+    var who = (t.companions || []).length ? ('<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true" style="width:13px;height:13px;vertical-align:-2px;margin-right:3px"><circle cx="9" cy="8" r="3.2"/><path d="M3.5 19a5.5 5.5 0 0 1 11 0"/><circle cx="17" cy="9" r="2.4"/><path d="M15.5 19a4.5 4.5 0 0 1 5-4.3"/></svg>' + t.companions.map(esc).join(', ')) : '';
     return '<a class="tcard" href="/' + esc(t.slug) + '">' +
       '<div class="cover" style="--g1:' + esc(cols[0]) + ';--g2:' + esc(cols[1] || cols[0]) + '">' +
       (c.image ? '<img src="/trips/' + esc(t.slug) + '/' + esc(c.image) + '" alt="" loading="lazy">' : '') +
