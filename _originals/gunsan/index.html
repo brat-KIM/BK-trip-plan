@@ -1,0 +1,560 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#F1F3F2" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#0E1416" media="(prefers-color-scheme: dark)">
+<meta name="description" content="10/8~9 군산 1박 2일 동선, 주차, 맛집 대안">
+<meta property="og:title" content="군산 1박 2일">
+<meta property="og:description" content="원도심 골목에서 장자도 노을까지 · 10/8~10/9">
+<style>
+html{-webkit-text-size-adjust:100%}
+:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+body{margin:0}
+img{max-width:100%}
+[hidden]{display:none!important}
+</style>
+<title>군산 1박 2일</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Hahmlet:wght@600;700&family=IBM+Plex+Sans+KR:wght@400;500;600&family=IBM+Plex+Mono:wght@500;600&display=swap">
+<style>
+/* Layout: mobile-first single column. Dusk-over-islands hero, segmented day switcher, timeline of cards (pin rail on the left, time inside the card), floating "다음 목적지" card at the bottom. */
+:root{
+  --bg:#F1F3F2; --surface:#FFFFFF; --surface-2:#F6F8F7; --fg:#15232A; --muted:#66767A; --line:#E1E6E4;
+  --accent:#D9822B; --accent-soft:#FBEEDF; --accent-ink:#9C5512;
+  --sea:#2E7472; --sea-soft:#E1EFEE; --warn:#B9442E;
+  --shadow:0 1px 2px rgba(21,35,42,.05),0 6px 20px rgba(21,35,42,.06);
+  --sky1:#B9D4D4; --sky2:#F3D2B0; --sun:#EE8A4A; --isle:#3F5E64; --isle2:#5F7C80; --seaH:#335C66; --hero-ink:#122329;
+  --display:"Hahmlet","Nanum Myeongjo",Georgia,serif;
+  --body:"IBM Plex Sans KR","Apple SD Gothic Neo","Malgun Gothic",system-ui,sans-serif;
+  --mono:"IBM Plex Mono",ui-monospace,Menlo,monospace;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#0E1416; --surface:#172124; --surface-2:#1C282B; --fg:#E7EDEB; --muted:#93A3A6; --line:#26343A;
+  --accent:#EE9A4E; --accent-soft:#2D2318; --accent-ink:#F2B57B;
+  --sea:#6CB9B4; --sea-soft:#163130; --warn:#EE8C76;
+  --shadow:0 1px 2px rgba(0,0,0,.3),0 8px 24px rgba(0,0,0,.25);
+  --sky1:#142A30; --sky2:#6A4535; --sun:#F0954F; --isle:#0A1517; --isle2:#13252A; --seaH:#0F242A; --hero-ink:#F4EEE8; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#0E1416; --surface:#172124; --surface-2:#1C282B; --fg:#E7EDEB; --muted:#93A3A6; --line:#26343A;
+  --accent:#EE9A4E; --accent-soft:#2D2318; --accent-ink:#F2B57B;
+  --sea:#6CB9B4; --sea-soft:#163130; --warn:#EE8C76;
+  --shadow:0 1px 2px rgba(0,0,0,.3),0 8px 24px rgba(0,0,0,.25);
+  --sky1:#142A30; --sky2:#6A4535; --sun:#F0954F; --isle:#0A1517; --isle2:#13252A; --seaH:#0F242A; --hero-ink:#F4EEE8; color-scheme:dark}
+
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--fg);font:15px/1.55 var(--body);-webkit-tap-highlight-color:transparent;-webkit-font-smoothing:antialiased}
+.wrap{max-width:620px;margin:0 auto;padding-inline:16px;padding-block:14px 128px}
+button{font:inherit;color:inherit;cursor:pointer}
+:focus-visible{outline:2px solid var(--accent);outline-offset:2px;border-radius:8px}
+
+/* hero */
+.hero{position:relative;border-radius:24px;overflow:hidden;background:linear-gradient(180deg,var(--sky1) 0%,var(--sky2) 78%);min-height:200px;box-shadow:var(--shadow)}
+.hero-art{position:absolute;left:0;right:0;bottom:0;width:100%;height:110px;display:block}
+.hero-art .sun{fill:var(--sun)}
+.hero-art .isle{fill:var(--isle)}
+.hero-art .isle2{fill:var(--isle2)}
+.hero-art .seaH{fill:var(--seaH)}
+.hero-art .glint{stroke:var(--sun);stroke-width:2;stroke-linecap:round;opacity:.7}
+.hero-txt{position:relative;padding:20px 22px 0;color:var(--hero-ink)}
+.eyebrow{font:600 12px/1 var(--mono);letter-spacing:.06em;margin:0 0 10px;opacity:.75}
+.hero h1{font:700 34px/1.1 var(--display);margin:0;letter-spacing:-.02em;text-wrap:balance}
+.hero-sub{margin:8px 0 0;font-size:14px;opacity:.8}
+
+/* segmented tabs */
+.seg-wrap{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;margin:14px -16px 0;padding:10px 16px;background:color-mix(in srgb,var(--bg) 92%,transparent);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px)}
+.seg{display:grid;grid-template-columns:repeat(4,1fr);gap:4px;padding:4px;background:var(--surface);border:1px solid var(--line);border-radius:14px;box-shadow:var(--shadow)}
+.seg-btn{border:0;background:transparent;border-radius:10px;padding:9px 4px 8px;font-weight:600;font-size:14px;line-height:1.15;color:var(--muted);display:flex;flex-direction:column;align-items:center;gap:2px;transition:background .2s,color .2s}
+.seg-btn small{font:500 10.5px var(--mono);opacity:.8}
+.seg-btn[aria-selected="true"]{background:var(--fg);color:var(--bg)}
+
+/* day header */
+.dayhead{display:flex;align-items:center;justify-content:space-between;gap:12px;margin:18px 2px 4px}
+.dayhead h2{font:700 24px/1.15 var(--display);margin:0}
+.facts{display:flex;gap:6px;flex-wrap:wrap;margin-top:6px}
+.fact{font:500 11.5px/1 var(--mono);padding:5px 8px;border-radius:999px;background:var(--surface);border:1px solid var(--line);color:var(--muted);font-variant-numeric:tabular-nums}
+.fact b{font-weight:600;color:var(--fg)}
+.ring{flex:0 0 auto;width:54px;height:54px;border-radius:50%;display:grid;place-items:center;font:600 13px var(--mono);color:var(--fg);
+  background:radial-gradient(closest-side,var(--bg) 78%,transparent 80% 100%),conic-gradient(var(--sea) calc(var(--p)*1%),var(--line) 0)}
+.lede{color:var(--muted);font-size:14px;margin:10px 2px 18px;max-width:60ch}
+
+/* timeline */
+.tl{position:relative;padding-left:26px}
+.tl::before{content:"";position:absolute;left:7px;top:22px;bottom:22px;width:2px;border-radius:2px;background:var(--line)}
+.stop{position:relative;margin-bottom:12px}
+.pin{position:absolute;left:-26px;top:20px;width:16px;height:16px;border-radius:50%;background:var(--bg);border:2px solid var(--line);display:grid;place-items:center}
+.stop.key .pin{border-color:var(--accent);background:var(--accent)}
+.stop.key .pin::after{content:"";width:6px;height:6px;border-radius:50%;background:var(--surface)}
+.stop.done .pin{border-color:var(--sea);background:var(--sea)}
+.stop.done .pin::after{display:none}
+
+.card{background:var(--surface);border:1px solid var(--line);border-radius:18px;box-shadow:var(--shadow);overflow:hidden;transition:opacity .2s}
+.stop.done .card{opacity:.62;box-shadow:none}
+.c-main{padding:14px 14px 12px}
+.c-top{display:flex;align-items:center;gap:8px;margin-bottom:4px}
+.c-time{font:600 13px/1 var(--mono);color:var(--muted);font-variant-numeric:tabular-nums}
+.stop.key .c-time{color:var(--accent-ink)}
+.tag{font:600 10.5px/1 var(--body);padding:4px 7px;border-radius:999px;background:var(--accent-soft);color:var(--accent-ink);letter-spacing:.02em}
+.chk{margin-left:auto;flex:0 0 auto;width:30px;height:30px;border-radius:50%;border:1.5px solid var(--line);background:var(--surface);display:grid;place-items:center;color:transparent;transition:background .2s,border-color .2s}
+.chk svg{width:15px;height:15px}
+.stop.done .chk,.ci.done .chk{background:var(--sea);border-color:var(--sea);color:var(--surface)}
+.c-head{display:block;width:100%;text-align:left;border:0;background:none;padding:0}
+.ttl{display:block;font-weight:600;font-size:17px;line-height:1.35;letter-spacing:-.01em}
+.meta{display:block;font-size:13.5px;color:var(--muted);margin-top:3px}
+.stop.done .ttl{text-decoration:line-through;text-decoration-thickness:1.5px;text-decoration-color:var(--muted)}
+.c-act{display:flex;align-items:center;gap:6px;margin-top:12px;flex-wrap:wrap}
+.more{margin-left:auto;border:0;background:none;padding:6px 2px 6px 8px;font-size:13px;font-weight:600;color:var(--muted);display:inline-flex;align-items:center;gap:3px}
+.more .chev{width:16px;height:16px;transition:transform .2s}
+.stop.open .more .chev{transform:rotate(180deg)}
+
+.btn{border:1px solid var(--line);background:var(--surface);border-radius:999px;padding:8px 13px;font-size:13px;font-weight:600;display:inline-flex;align-items:center;gap:6px;text-decoration:none;color:var(--fg);white-space:nowrap;line-height:1}
+.btn svg{width:14px;height:14px;flex:0 0 auto}
+.btn.copy{background:var(--fg);border-color:var(--fg);color:var(--bg)}
+.btn.tmap{background:var(--sea-soft);border-color:transparent;color:var(--sea)}
+.btn.tmap svg{width:12px;height:12px}
+.btn.sm{padding:7px 11px;font-size:12.5px}
+.btn:active{transform:scale(.97)}
+
+.detail{background:var(--surface-2);border-top:1px solid var(--line);padding:14px;display:grid;gap:16px}
+.lbl{font:600 11px/1 var(--body);letter-spacing:.1em;color:var(--muted);margin-bottom:8px}
+.place{display:flex;align-items:center;gap:10px;padding:10px 0;border-top:1px solid var(--line)}
+.lbl + .place{border-top:0;padding-top:0}
+.place .pt{flex:1;min-width:0}
+.place .pn{font-weight:600;font-size:14.5px;line-height:1.35}
+.place .pq{font-size:12.5px;color:var(--muted);margin-top:2px;overflow-wrap:anywhere}
+.place .btns{display:flex;gap:6px;flex:0 0 auto}
+.rank{display:inline-block;font:600 10.5px/1 var(--body);padding:4px 7px;border-radius:999px;background:var(--sea-soft);color:var(--sea);margin-right:6px;vertical-align:2px}
+.rank.r-alt{background:transparent;box-shadow:inset 0 0 0 1px var(--line);color:var(--muted)}
+.notes{margin:0;padding:0;list-style:none;display:grid;gap:6px;font-size:14px}
+.notes li{position:relative;padding-left:14px}
+.notes li::before{content:"";position:absolute;left:2px;top:.62em;width:5px;height:5px;border-radius:50%;background:var(--accent)}
+.alt{background:var(--accent-soft);border-radius:12px;padding:11px 13px;font-size:13.5px;line-height:1.6}
+.alt b{color:var(--accent-ink)}
+.warn{color:var(--warn);font-weight:600}
+
+/* plan & check tabs */
+.sec-title{font:700 22px/1.2 var(--display);margin:22px 2px 6px}
+.mini{font-size:13px;color:var(--muted)}
+.sec-lede{font-size:13.5px;color:var(--muted);margin:0 2px 12px}
+details.fold{background:var(--surface);border:1px solid var(--line);border-radius:18px;margin-bottom:10px;box-shadow:var(--shadow);overflow:hidden}
+details.fold>summary{list-style:none;padding:15px 16px;font-weight:600;display:flex;align-items:center;gap:10px}
+details.fold>summary::-webkit-details-marker{display:none}
+details.fold>summary .sum-t{flex:1;min-width:0}
+details.fold>summary .s{font:500 12px var(--mono);color:var(--muted)}
+details.fold>summary .chev{width:18px;height:18px;color:var(--muted);transition:transform .2s}
+details.fold[open]>summary .chev{transform:rotate(180deg)}
+details.fold .in{padding:0 16px 14px}
+.trow{padding:11px 0;border-top:1px solid var(--line);font-size:14px;color:var(--muted)}
+.trow:first-child{border-top:0;padding-top:2px}
+.trow b{display:block;font-weight:600;color:var(--fg);margin-bottom:2px}
+.ci{display:flex;align-items:center;gap:12px;padding:11px 0;border-top:1px solid var(--line)}
+.ci:first-child{border-top:0;padding-top:2px}
+.ci .chk{margin-left:0}
+.ci .tx{flex:1;min-width:0;font-size:14.5px}
+.ci.done .tx{color:var(--muted);text-decoration:line-through}
+.reset{margin-top:16px;display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+footer{margin:28px 2px 0;font-size:12px;color:var(--muted);line-height:1.6}
+
+/* floating next card */
+.next{position:fixed;left:0;right:0;bottom:0;z-index:6;padding:0 12px calc(12px + env(safe-area-inset-bottom,0px));pointer-events:none}
+.next-card{pointer-events:auto;max-width:596px;margin:0 auto;display:flex;align-items:center;gap:10px;padding:10px 10px 10px 16px;background:var(--surface);border:1px solid var(--line);border-radius:20px;box-shadow:0 10px 30px rgba(0,0,0,.14)}
+.next .nt{flex:1;min-width:0}
+.next .nl{font:600 11px/1.2 var(--mono);color:var(--accent-ink);letter-spacing:.02em}
+.next .nn{font-weight:600;font-size:15px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;margin-top:2px}
+.next .btn.copy,.next .btn.tmap{padding:11px 14px;font-size:14px}
+
+.toast{position:fixed;left:50%;bottom:calc(92px + env(safe-area-inset-bottom,0px));transform:translate(-50%,16px);opacity:0;background:var(--fg);color:var(--bg);padding:11px 16px;border-radius:14px;font-size:13.5px;z-index:9;transition:.22s;max-width:calc(100% - 32px);text-align:center;pointer-events:none;box-shadow:0 8px 24px rgba(0,0,0,.18)}
+.toast.on{opacity:1;transform:translate(-50%,0)}
+@media (min-width:560px){.hero h1{font-size:40px}.hero{min-height:220px}}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+</head>
+<body>
+
+
+<div class="wrap">
+  <header class="hero">
+    <div class="hero-txt">
+      <p class="eyebrow">2026. 10. 8 THU – 10. 9 FRI</p>
+      <h1>군산 1박 2일</h1>
+      <p class="hero-sub">원도심 골목에서 장자도 노을까지</p>
+    </div>
+    <svg class="hero-art" viewBox="0 0 400 110" preserveAspectRatio="xMidYMax slice" aria-hidden="true">
+      <circle class="sun" cx="292" cy="62" r="26"/>
+      <path class="isle2" d="M150 64 C170 54 186 50 204 56 C214 52 226 52 236 64 Z"/>
+      <path class="isle" d="M0 64 C22 50 44 42 70 48 C88 40 108 42 124 64 Z"/>
+      <path class="isle" d="M318 64 C330 56 342 54 356 58 C368 52 386 54 400 60 L400 64 Z"/>
+      <rect class="seaH" x="0" y="63" width="400" height="47"/>
+      <line class="glint" x1="272" y1="73" x2="312" y2="73"/>
+      <line class="glint" x1="278" y1="81" x2="306" y2="81"/>
+      <line class="glint" x1="284" y1="89" x2="300" y2="89"/>
+      <line class="glint" x1="288" y1="97" x2="296" y2="97"/>
+    </svg>
+  </header>
+
+  <div class="seg-wrap">
+    <nav class="seg" role="tablist" id="tabs">
+      <button class="seg-btn" role="tab" data-tab="thu" type="button">목요일<small id="pc-thu">10/8</small></button>
+      <button class="seg-btn" role="tab" data-tab="fri" type="button">금요일<small id="pc-fri">10/9</small></button>
+      <button class="seg-btn" role="tab" data-tab="plan" type="button">대안<small>주차</small></button>
+      <button class="seg-btn" role="tab" data-tab="check" type="button">출발 전<small>체크</small></button>
+    </nav>
+  </div>
+
+  <section id="view-thu" data-view="thu"></section>
+  <section id="view-fri" data-view="fri" hidden></section>
+  <section id="view-plan" data-view="plan" hidden></section>
+  <section id="view-check" data-view="check" hidden></section>
+
+  <footer>체크 표시는 각자 폰에 따로 저장돼. 영업시간·휴무는 다이닝코드·ktriptips 등 2차 정보 기준이라 연휴엔 다를 수 있어. T맵 버튼을 누르면 T맵 앱이 바로 열려. 혹시 몰라 주소도 같이 복사해 둬.</footer>
+</div>
+
+<div class="next" id="next" hidden>
+  <div class="next-card">
+    <div class="nt"><div class="nl" id="nextLbl">다음 목적지</div><div class="nn" id="nextName"></div></div>
+    <a class="btn tmap" id="nextTmap" href="#" data-tmap="">T맵</a>
+    <button class="btn copy" id="nextCopy" type="button"></button>
+  </div>
+</div>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<script>
+const ICON = {
+  check:'<svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8.5l3.2 3L13 4.5"/></svg>',
+  chev:'<svg class="chev" viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4.5 7l4.5 4.5L13.5 7"/></svg>',
+  nav:'<svg viewBox="0 0 16 16" fill="currentColor"><path d="M14.2 1.8 1.9 6.9c-.6.2-.5 1.1.1 1.2l5 1 1 5c.1.6 1 .7 1.2.1l5.1-12.3c.2-.4-.2-.8-.6-.6z"/></svg>',
+  copy:'<svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="5" y="5" width="8.5" height="8.5" rx="1.8"/><path d="M10.5 5V3.8A1.3 1.3 0 0 0 9.2 2.5H3.8A1.3 1.3 0 0 0 2.5 3.8v5.4a1.3 1.3 0 0 0 1.3 1.3H5"/></svg>'
+};
+const G = '전북 군산시 ', I = '전북 군산시 옥도면 ';
+
+/* ---------- data (형 최종 정리 docx 기준) ---------- */
+const DAYS = {
+ thu:{ title:'목요일 10/8', lede:'짐은 차에 둔 채로 다니다가 마지막에 체크인. 해물화짬뽕 라스트오더 16:30이라 늦어도 16:20 도착.', stops:[
+  {id:'t1',t:'13:00',title:'강남 출발',meta:'내비 목적지: 해물화짬뽕',addr:{n:'해물화짬뽕',q:G+'구시장로 63'}},
+  {id:'t2',t:'15:50',key:1,title:'해물화짬뽕 점저',meta:'화짬뽕 12,000원 · 라스트오더 16:30',
+   addr:{n:'해물화짬뽕',q:G+'구시장로 63'},
+   park:[{r:'1순위',n:'가게 앞 1~2대'},{r:'대안',n:'군산공설시장 주차장 (무료)',q:G+'신금길 18'},{r:'대안',n:'신영시장 공영주차장 (무료)',q:'군산 신영시장 공영주차장'}],
+   notes:['10:30~17:00, 월 휴무','주문 후 20~30분 걸렸다는 후기','시장 주차장은 걸어서 바로 옆'],
+   alt:'<b>16:20 넘어 도착</b>하면 라스트오더 못 맞춰. 점저는 원도심 한일옥으로, 금요일 아침은 빵으로. <b>대기가 길면</b> 포장해서 차에서 먹거나 금요일 짬뽕축제로 대신.'},
+  {id:'t3',t:'16:50',key:1,title:'경암동 철길마을',meta:'40분 · 이마트에서 술·물 사기',
+   addr:{n:'경암동 철길마을',q:G+'경촌4길 14'},
+   park:[{r:'1순위',n:'이마트 군산점 야외 주차장',q:'이마트 군산점'},{r:'대안',n:'경암동 공영주차장 (명칭 확인 필요)',q:'경암동 공영주차장'}],
+   notes:['상점은 10시~18·19시. 밤엔 조명이 거의 없어서 해 지기 전에','쫀드기·달고나, 교복 대여 7,000원','이마트에서 술·물 사서 고객 주차로 만들기. 무료 시간은 입구 안내판 확인'],
+   alt:'<b>너무 붐비면</b> 20분만 보고 리투스로. 이마트는 술 살 때만 들르기.'},
+  {id:'t4',t:'17:40',key:1,title:'리투스',meta:'창가 잡고 18:07 노을',
+   addr:{n:'리투스',q:G+'해망로 118'},
+   park:[{r:'1순위',n:'리투스 자체 주차장 (무료, 매우 넓음)'}],
+   notes:['10:00~22:00, 3층 노키즈','간조 20:36이라 바다보다 갯벌이 드러나는 노을'],
+   alt:'<b>창가 만석</b>이면 기다리지 말고 내항 쪽에서 노을만 보고 원도심으로.'},
+  {id:'t5',t:'18:40',title:'원도심 이동·주차',meta:'약 5분 · 여기서부터 끝까지 도보',
+   park:[{r:'1순위',n:'이성당 맞은편 무료 민영주차장',q:G+'중앙로 177'},{r:'1순위',n:'구시청광장 주차장',q:G+'중앙로1가 17-1'},{r:'대안',n:'영화동 공영주차장',q:'군산 영화동 공영주차장'},{r:'대안',n:'초원사진관 옆 영화의거리 주차',q:G+'구영6길 60'},{r:'대안',n:'군산과자조합 자체 주차 (매장 이용 중만)',q:G+'구영5길 68'}],
+   notes:['구시청광장 쪽은 무료라는 정보와 공영·민영이 섞여 있다는 정보가 갈려. 현장 안내판 확인','근대역사박물관 주차장은 18시까지라 저녁엔 비추']},
+  {id:'t6',t:'18:50',key:1,title:'순돌이곱창 포장 접수',meta:'20:15~20:30 수령으로 부탁',
+   addr:{n:'순돌이곱창',q:G+'우체통거리2길 43-9'},tel:'063-445-5395',
+   notes:['홀이 차면 "포장은 1시간 뒤 예약만 가능"이었다는 후기. 일찍 걸어두는 게 핵심','막창·곱창 포장은 10분 안팎, 갈비는 1시간 넘게. 막창은 일찍 품절','전화는 안 받을 수 있어서 직접 가서 접수'],
+   alts:[
+    {n:'만득이곱창 (같은 골목)',q:G+'우체통거리2길 43-16',d:'매일 15:00~23:00 · 곱창 13,000 · 막창 14,000 · 포장 가능, 회전 빠른 편'},
+    {n:'평화족발 (공설시장 1층)',q:G+'신금길 18',d:'07:00~20:00 · 왕족발 25,000 · 20시에 닫으니 19:30 전에 결정 · 063-446-2804'},
+    {n:'한일옥 한우무우국 포장',q:G+'구영3길 63',d:'21:30까지 · 다음 날 아침과 메뉴가 겹쳐서 최후 수단'}],
+   alt:'두 곱창집에서 합쳐 1시간 넘게 기다리는 상황은 피하기.'},
+  {id:'t7',t:'19:05',title:'군산과자조합',meta:'계란찜과자 · 1층 테이크아웃',
+   addr:{n:'군산과자조합',q:G+'구영5길 68'},
+   notes:['마감이 20시일 수도 있어서 이성당보다 먼저','25,000원 이상이면 틴케이스 포장']},
+  {id:'t8',t:'19:30',key:1,title:'이성당',meta:'단팥빵·야채빵 + 금요일 아침 빵',
+   addr:{n:'이성당 본점',q:G+'중앙로 177'},
+   notes:['21:30까지','10/9 휴무 표시라 오늘 사기'],
+   alt:'<b>단팥빵 줄이 30분 이상</b>이면 줄 없는 일반 빵만 사고 과자조합으로 보충.'},
+  {id:'t9',t:'19:55',title:'초원사진관 → 근대거리 밤 산책',meta:'21:30까지 관람',
+   addr:{n:'초원사진관',q:G+'구영2길 12-1'}},
+  {id:'t10',t:'20:20',key:1,title:'순돌이 포장 수령',meta:'막창·곱창 2인분 · 받자마자 출발',
+   addr:{n:'순돌이곱창',q:G+'우체통거리2길 43-9'}},
+  {id:'t11',t:'20:45',title:'호텔 체크인 → 야식·휴식',meta:'원도심에서 11~15분',
+   addr:{n:'군산 스테이 관광호텔',q:'전북 군산시 성산면 철새로 56'},tel:'063-451-0055',
+   park:[{r:'1순위',n:'호텔 야외 주차장 (무료, 객실당 1대)'},{r:'대안',n:'오르막 위 주차장'}],
+   notes:['밤엔 객실동 앞이 찰 수 있으니 짐 먼저 내리기','22시 넘으면 프런트에 미리 연락']}
+ ]},
+ fri:{ title:'금요일 10/9', lede:'오전엔 말랭이마을 무료 주차장 하나에 세우고 전부 걸어서. 차는 짬뽕축제 갈 때 한 번, 섬 갈 때 한 번만.', stops:[
+  {id:'f1',t:'08:00',title:'체크아웃 + 한일옥 테이블링 원격 줄서기',meta:'짐은 차에'},
+  {id:'f2',t:'08:20',title:'말랭이마을 공영주차장',meta:'오전 내내 여기 (무료, 넓음)',
+   addr:{n:'말랭이마을 공영주차장',q:'말랭이마을 공영주차장'},
+   park:[{r:'1순위',n:'말랭이마을 공영주차장',q:'말랭이마을 공영주차장'},{r:'대안',n:'위쪽 김수미 생가 쪽 주차장'},{r:'대안',n:'한일옥 앞 (좁음)',q:G+'구영3길 63'}]},
+  {id:'f3',t:'08:30',key:1,title:'한일옥 아침',meta:'한우무우국 11,000원 · 도보 약 10분',
+   addr:{n:'한일옥',q:G+'구영3길 63'},
+   notes:['10/9 07:00 오픈 표시','2층 대기실'],
+   alts:[{n:'일흥옥 콩나물국밥',q:G+'구영7길 25',d:'05:00~15:00, 수 휴무'}],
+   alt:'<b>대기 30분 이상</b>이면 일흥옥이나 어제 산 빵으로.'},
+  {id:'f4',t:'09:20',title:'동국사',meta:'국내 유일의 일본식 사찰 · 무료',
+   addr:{n:'동국사',q:G+'동국사길 16'},notes:['08:00 개방','자체 주차 안 됨, 도보 약 10분']},
+  {id:'f5',t:'10:00',title:'신흥동 일본식가옥',meta:'정원·외관 20분 · 무료',
+   addr:{n:'신흥동 일본식가옥',q:G+'구영1길 17'},notes:['10:00 개방, 내부는 비개방']},
+  {id:'f6',t:'10:25',title:'말랭이마을',meta:'가옥 바로 뒤',
+   notes:['추억전시관 등 10:00~17:00','계단·경사 많음']},
+  {id:'f7',t:'10:50',title:'박물관 쪽 이동·주차',meta:'약 5분 · 축제 날이라 일찍',
+   addr:{n:'근대역사박물관 주차장',q:G+'해망로 240'},
+   park:[{r:'1순위',n:'근대역사박물관 주차장 (무료)',q:G+'해망로 240'},{r:'대안',n:'진포해양테마공원 주차장',q:G+'내항2길 32'},{r:'대안',n:'내항 무료주차장 (도보 5분)',q:'군산 내항 무료주차장'},{r:'대안',n:'백년광장·장미동 공영',q:'군산 장미동 공영주차장'}],
+   notes:['백년광장은 행사장이라 목적지로 찍지 말기','2026년 교통통제 공지는 못 찾음'],
+   alt:'<b>다 차면</b> 축제는 건너뛰고 섬으로.'},
+  {id:'f8',t:'11:00',title:'카페나 구경',meta:'미즈커피 또는 진포해양테마공원',
+   alts:[{n:'미즈커피',q:G+'해망로 232',d:'1930년대 사옥, 2층 다다미석'},{n:'진포해양테마공원',q:G+'내항2길 32',d:'야외 군함·전투기, 무료'}]},
+  {id:'f9',t:'12:00',key:1,title:'짬뽕축제 맛보기',meta:'반 그릇 1~2개만',
+   addr:{n:'백년광장 (짬뽕축제)',q:G+'장미동 13-1'},
+   notes:['12:00~22:00','반 그릇 짬뽕 6,000원, 짜장·만두 4,000원'],
+   alt:'<b>줄이 길면</b> 구경만 하고 만두 같은 사이드 1개. 섬 출발을 13:00 넘기지 않기.'},
+  {id:'f10',t:'12:45',title:'섬으로 출발',meta:'장자도까지 연휴 기준 60~80분 · 1~2곳만 들르기',
+   stopsOnWay:[
+    {n:'새만금방조제 해넘이휴게소',q:'새만금 해넘이휴게소',d:'바다 가르는 직선도로, 탑 오픈 구간. 10분 사진 정차'},
+    {n:'돌고래쉼터',q:'새만금 돌고래쉼터',d:'해넘이휴게소 대신'},
+    {n:'신시도 새만금33센터',q:'새만금33센터',d:'33m 준공 조형물·조망대. 대각산은 패스'},
+    {n:'무녀2구마을버스',q:I+'무녀도동길 117',d:'노란 버스 카페 사진 5분. 옆 공영주차장 무료. 쥐똥섬은 만조라 못 건넘'},
+    {n:'선유도 명사십리',q:'선유도 공영주차장',d:'공영주차장 1시간 무료. 오후에 스카이워크 건너 걸어와도 됨'}]},
+  {id:'f11',t:'14:15',key:1,title:'장자도 도착·주차',meta:'여기서부터 저녁까지 차 안 움직임',
+   addr:{n:'장자도 공영주차장',q:'장자도 공영주차장'},
+   park:[{r:'1순위',n:'장자도 공영주차장',q:'장자도 공영주차장'},{r:'대안',n:'장자바다정원카페 전용 60대 (3시간 무료)',q:I+'장자도1길 48'},{r:'대안',n:'선유도 공영주차장 → 스카이워크로 걸어오기',q:'선유도 공영주차장'}],
+   notes:['1시간 무료, 1일 최대 10,000원 (12,000원이라는 출처도 있음)','호떡 1만원 이상 1시간, 라파르 영수증 2시간 무료'],
+   alt:'<span class="warn">장자도2길 쪽은 바다 향해 후진 주차하는데 난간·스토퍼가 없어.</span> 2025년 4월 추락 사고가 있었으니 후진할 때 꼭 조심.'},
+  {id:'f12',t:'14:20',key:1,title:'장자도호떡마을 1호점',meta:'감태 장자도호떡 4,000원',
+   addr:{n:'장자도호떡마을 1호점',q:I+'장자도1길 75-1'},
+   notes:['1만원 이상 사면 주차 1시간 무료','대기 20분 넘으면 옆집']},
+  {id:'f13',t:'14:50',title:'장자교 스카이워크',meta:'268m 보행교 · 30m 유리 바닥',
+   notes:['건너서 선유도 쪽 산책해도 됨']},
+  {id:'f14',t:'15:30',key:1,title:'카페 라파르',meta:'영수증으로 주차 2시간 무료',
+   addr:{n:'카페 라파르',q:I+'장자도2길 31'},
+   notes:['마감이 18:30과 21:00으로 엇갈려서 낮에'],
+   alts:[{n:'장자바다정원카페 루프탑',q:I+'장자도1길 48',d:'만석·닫았을 때 · 주말 09:00~20:00'}]},
+  {id:'f15',t:'16:45',title:'자유 시간',meta:'대장봉 또는 해안 산책',
+   notes:['대장봉 142m, 왕복 60~90분, 17:30엔 하산','비·강풍이면 대장봉 빼고 실내에서 바다']},
+  {id:'f16',t:'18:06',key:1,title:'노을',meta:'장자교 스카이워크 위',notes:['해 지면 금방 어두워짐']},
+  {id:'f17',t:'18:20',key:1,title:'저녁',meta:'1순위 장자도원 · 운전자 금주',
+   dinner:[
+    {n:'장자도원 (1순위)',q:I+'장자도1길 18',d:'생선구이백반 20,000 (적당) / 회정식 45,000·55,000 · 10:30~21:00, 수 휴무 · 무료, 차 그대로'},
+    {n:'선유도밤바다',q:I+'선유도3길 33-4',d:'키조개삼합 (든든) · 주말 ~21:00, 라스트오더 20:00, 화 휴무 · 공휴일 기준 확인 필요 · 무료'},
+    {n:'남도밥상',q:'선유도 남도밥상',d:'박대구이정식 16,000 (가벼움) · 영업시간 확인 필요 · 영수증 2시간 무료'},
+    {n:'물고기자리 (비응항)',q:G+'비응남로 5',d:'탕적식 스페셜 (든든) · 11:00~22:00, 라스트오더 21:30, 연중무휴 · 무료'},
+    {n:'새만금횟집 (비응항)',q:G+'비응안7길 13',d:'회정식 45,000~ (무거움) · 라스트오더 20:30 · 자체 대형 · 063-464-1001'}],
+   alt:'노을 보고 바로 먹고 싶으면 장자도원, 섬을 먼저 빠져나가고 싶으면 물고기자리. <b>섬 출차 정체</b>면 장자도원에서 먹고 늦게 나오기.'},
+  {id:'f18',t:'19:45',title:'서울 출발',meta:'강남 23:00 전후'}
+ ]}
+};
+
+const STUCK = [
+ ['목요일 16:20 넘어 도착','해물화짬뽕 대신 원도심 한일옥으로 점저, 금요일 아침은 빵'],
+ ['해물화짬뽕 대기가 길다','포장해서 차에서, 또는 금요일 짬뽕축제로 대신'],
+ ['철길마을이 너무 붐빔','20분만 보고 리투스로'],
+ ['리투스 창가 만석','기다리지 말고 내항 쪽에서 노을만'],
+ ['순돌이 포장 불가·품절','만득이곱창 → 평화족발(19:30 전) → 한일옥 무우국 포장'],
+ ['이성당 단팥빵 줄 30분 이상','일반 빵만 사고 과자조합으로 보충'],
+ ['한일옥 아침 대기 30분 이상','일흥옥 콩나물국밥 또는 어제 산 빵'],
+ ['박물관 주차장 만차','진포해양테마공원 → 내항 무료주차장. 다 차면 축제 건너뛰고 섬으로'],
+ ['짬뽕축제 줄이 길다','구경만 하고 사이드 1개. 13:00 넘기지 않기'],
+ ['장자도 공영주차장 만차','장자바다정원카페 전용주차장 (60대, 3시간 무료)'],
+ ['라파르 만석·닫음','장자바다정원카페 루프탑'],
+ ['비·강풍','대장봉 빼고 탑 닫고 드라이브만, 카페 실내에서 바다'],
+ ['섬 출차 정체','노을 직후 바로 나오거나 장자도원에서 먹고 늦게']
+];
+
+const CALLS = [
+ ['c1','해물화짬뽕 10/8 영업, 라스트오더','063-446-0650'],
+ ['c2','순돌이곱창 10/8 영업, 포장 접수 방식','063-445-5395'],
+ ['c3','군산과자조합 마감 시간','063-446-1939'],
+ ['c4','이성당 10/8 영업','063-445-2772'],
+ ['c5','한일옥 10/9 07:00 오픈, 테이블링','0507-1470-5502'],
+ ['c6','카페 라파르 공휴일 마감','0507-1423-8800'],
+ ['c7','장자도호떡마을 1호점 마감','0507-1335-3627'],
+ ['c8','금요일 저녁 고른 곳 영업·라스트오더',''],
+ ['c9','호텔: 21시 체크인, 신관 오션뷰 요청','063-451-0055']
+];
+const PACK = [
+ ['p1','신분증·카드·현금 조금 (시장·호떡·주차정산)'],['p2','폰 충전기·보조배터리·차량용 충전기'],
+ ['p3','칫솔·치약·면도기 (호텔에 없음)'],['p4','바람막이 (섬 노을·탑 오픈)'],
+ ['p5','걷기 편한 운동화'],['p6','선글라스·선크림·모자'],
+ ['p7','물티슈·비닐봉투 (곱창 야식)'],['p8','오즈모 포켓 + 메모리카드'],['p9','장바구니 (빵·과자·호떡 포장)']
+];
+
+
+DAYS.thu.name='목요일'; DAYS.thu.facts=[['일몰','18:07'],['간조','20:36']];
+DAYS.fri.name='금요일'; DAYS.fri.facts=[['만조','14:14'],['일몰','18:06']];
+
+/* ---------- state ---------- */
+const KEY='gunsan-1008-v1';
+let S={done:{},tab:null,open:{}};
+try{const raw=localStorage.getItem(KEY); if(raw) S=Object.assign(S,JSON.parse(raw));}catch(e){}
+function save(){try{localStorage.setItem(KEY,JSON.stringify(S));}catch(e){}}
+
+const esc=s=>String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const IS_ANDROID=/Android/i.test(navigator.userAgent);
+const TMAP_STORE='https://play.google.com/store/apps/details?id=com.skt.tmap.ku';
+/* 갤럭시(안드로이드 크롬)는 intent 링크로 T맵 앱을 직접 깨우고, 앱이 없으면 플레이스토어로 */
+const tmap=q=> IS_ANDROID
+  ? 'intent://search?name='+encodeURIComponent(q)+'#Intent;scheme=tmap;package=com.skt.tmap.ku;action=android.intent.action.VIEW;category=android.intent.category.BROWSABLE;S.browser_fallback_url='+encodeURIComponent(TMAP_STORE)+';end'
+  : 'tmap://search?name='+encodeURIComponent(q);
+const copyBtn=(q,name,label,cls)=>`<button class="btn copy${cls?' '+cls:''}" type="button" data-copy="${esc(q)}" data-name="${esc(name)}">${ICON.copy}${label}</button>`;
+const tmapBtn=(q,name,cls)=>`<a class="btn tmap${cls?' '+cls:''}" href="${esc(tmap(q))}" data-tmap="${esc(q)}" aria-label="${esc(name)} 주소 복사하고 T맵 열기">${ICON.nav}T맵</a>`;
+
+function placeHTML(p,rankLabel){
+  const rank = rankLabel ? `<span class="rank${rankLabel==='대안'?' r-alt':''}">${esc(rankLabel)}</span>` : '';
+  const btns = p.q ? `<div class="btns">${tmapBtn(p.q,p.n,'sm')}${copyBtn(p.q,p.n,'복사','sm')}</div>` : '';
+  const sub = p.d ? p.d : (p.q && p.q!==p.n ? p.q : '');
+  return `<div class="place"><div class="pt"><div class="pn">${rank}${esc(p.n)}</div>${sub?`<div class="pq">${esc(sub)}</div>`:''}</div>${btns}</div>`;
+}
+const block=(label,inner)=>`<div><div class="lbl">${label}</div>${inner}</div>`;
+
+function detailHTML(s){
+  let d='';
+  if(s.park) d+=block('주차',s.park.map(p=>placeHTML(p,p.r)).join(''));
+  if(s.stopsOnWay) d+=block('가는 길에 들를 곳 · 1~2곳만',s.stopsOnWay.map(p=>placeHTML(p)).join(''));
+  if(s.dinner) d+=block('저녁 후보 · 주차 편한 곳',s.dinner.map(p=>placeHTML(p)).join(''));
+  if(s.notes) d+=block('메모',`<ul class="notes">${s.notes.map(n=>`<li>${esc(n)}</li>`).join('')}</ul>`);
+  if(s.tel) d+=block('전화',`<div class="place"><div class="pt"><div class="pn">${esc(s.tel)}</div></div><div class="btns">${copyBtn(s.tel,'전화번호','복사','sm')}</div></div>`);
+  if(s.alts) d+=block(s.id==='t6'?'안 되면 여기로':'대안',s.alts.map(p=>placeHTML(p)).join(''));
+  if(s.alt) d+=`<div class="alt">${s.alt}</div>`;
+  return d;
+}
+
+function stopHTML(s){
+  const done=!!S.done[s.id], open=!!S.open[s.id];
+  const d=detailHTML(s), has=!!d;
+  const acts=[];
+  if(s.addr){ acts.push(copyBtn(s.addr.q,s.addr.n,'주소 복사')); acts.push(tmapBtn(s.addr.q,s.addr.n)); }
+  if(has) acts.push(`<button class="more" type="button" aria-expanded="${open}">${open?'접기':'자세히'}${ICON.chev}</button>`);
+  return `<div class="stop${s.key?' key':''}${done?' done':''}${open?' open':''}" data-id="${s.id}">
+    <span class="pin" aria-hidden="true"></span>
+    <div class="card">
+      <div class="c-main">
+        <div class="c-top"><span class="c-time">${s.t}</span>${s.key?'<span class="tag">핵심</span>':''}
+          <button class="chk" type="button" aria-pressed="${done}" aria-label="${esc(s.title)} 완료 표시">${ICON.check}</button></div>
+        <button class="c-head" type="button" ${has?'':'tabindex="-1"'}><span class="ttl">${esc(s.title)}</span>${s.meta?`<span class="meta">${esc(s.meta)}</span>`:''}</button>
+        ${acts.length?`<div class="c-act">${acts.join('')}</div>`:''}
+      </div>
+      ${has?`<div class="detail"${open?'':' hidden'}>${d}</div>`:''}
+    </div></div>`;
+}
+
+function renderDay(k){
+  const D=DAYS[k], el=document.getElementById('view-'+k);
+  const n=D.stops.length, c=D.stops.filter(s=>S.done[s.id]).length;
+  el.innerHTML=`<div class="dayhead"><div><h2>${D.name}</h2>
+      <div class="facts">${D.facts.map(([a,b])=>`<span class="fact">${a} <b>${b}</b></span>`).join('')}</div></div>
+      <div class="ring" style="--p:${Math.round(c/n*100)}" aria-label="${c}/${n} 완료">${c}/${n}</div></div>
+    <p class="lede">${esc(D.lede)}</p>
+    <div class="tl">${D.stops.map(stopHTML).join('')}</div>`;
+}
+
+function renderPlan(){
+  const el=document.getElementById('view-plan');
+  const rows=[];
+  for(const k of ['thu','fri']) for(const s of DAYS[k].stops) if(s.park) rows.push({when:(k==='thu'?'목 ':'금 ')+s.t,title:s.title,park:s.park});
+  el.innerHTML=`<h2 class="sec-title">막힐 때</h2>
+   <p class="sec-lede">현장에서 일정이 꼬이면 여기서 바로 바꾸기.</p>
+   <details class="fold" open><summary><span class="sum-t">상황별로 바꿀 것</span><span class="s">${STUCK.length}</span>${ICON.chev}</summary><div class="in">
+    ${STUCK.map(([a,b])=>`<div class="trow"><b>${esc(a)}</b>${esc(b)}</div>`).join('')}</div></details>
+   <h2 class="sec-title">주차 총정리</h2>
+   <p class="sec-lede">구간마다 한 곳에 세우고 걷기. 섬은 입구 요금표대로 내고 영수증은 챙기기.</p>
+   ${rows.map(r=>`<details class="fold"><summary><span class="sum-t">${esc(r.title)}</span><span class="s">${esc(r.when)}</span>${ICON.chev}</summary><div class="in">${r.park.map(p=>placeHTML(p,p.r)).join('')}</div></details>`).join('')}`;
+}
+
+function checkItem(id,txt,tel){
+  const done=!!S.done[id];
+  return `<div class="ci${done?' done':''}" data-ci="${id}"><button class="chk" type="button" aria-pressed="${done}" aria-label="${esc(txt)} 완료">${ICON.check}</button>
+   <div class="tx">${esc(txt)}${tel?`<div class="mini">${esc(tel)}</div>`:''}</div>
+   ${tel?copyBtn(tel,'전화번호','복사','sm'):''}</div>`;
+}
+function renderCheck(){
+  const el=document.getElementById('view-check');
+  const cc=CALLS.filter(c=>S.done[c[0]]).length, pc=PACK.filter(p=>S.done[p[0]]).length;
+  el.innerHTML=`<h2 class="sec-title">출발 전 체크</h2>
+   <p class="sec-lede">연휴라 영업시간이 바뀔 수 있어. 전화로 한 번씩 확인.</p>
+   <details class="fold" open><summary><span class="sum-t">전화 확인</span><span class="s">${cc}/${CALLS.length}</span>${ICON.chev}</summary><div class="in">
+    ${CALLS.map(c=>checkItem(c[0],c[1],c[2])).join('')}</div></details>
+   <details class="fold"><summary><span class="sum-t">챙길 것</span><span class="s">${pc}/${PACK.length}</span>${ICON.chev}</summary><div class="in">
+    ${PACK.map(p=>checkItem(p[0],p[1])).join('')}</div></details>
+   <div class="reset" id="resetBox"><button class="btn" type="button" id="resetBtn">체크 전부 지우기</button></div>`;
+}
+
+function renderNext(){
+  const bar=document.getElementById('next'), k=S.tab;
+  if(k!=='thu' && k!=='fri'){bar.hidden=true;return;}
+  const s=DAYS[k].stops.find(x=>!S.done[x.id] && x.addr);
+  if(!s){bar.hidden=true;return;}
+  bar.hidden=false;
+  document.getElementById('nextLbl').textContent='다음 목적지 · '+s.t;
+  document.getElementById('nextName').textContent=s.addr.n;
+  const cp=document.getElementById('nextCopy');
+  cp.innerHTML=ICON.copy+'주소 복사'; cp.dataset.copy=s.addr.q; cp.dataset.name=s.addr.n;
+  const nt=document.getElementById('nextTmap'); nt.href=tmap(s.addr.q); nt.dataset.tmap=s.addr.q; nt.innerHTML=ICON.nav+'T맵';
+}
+
+function renderAll(){renderDay('thu');renderDay('fri');renderPlan();renderCheck();renderNext();}
+
+function setTab(k){
+  S.tab=k; save();
+  document.querySelectorAll('.seg-btn').forEach(b=>b.setAttribute('aria-selected',String(b.dataset.tab===k)));
+  document.querySelectorAll('[data-view]').forEach(v=>v.hidden=v.dataset.view!==k);
+  renderNext();
+}
+
+/* ---------- copy ---------- */
+let tt;
+function toast(msg){const t=document.getElementById('toast');t.textContent=msg;t.classList.add('on');clearTimeout(tt);tt=setTimeout(()=>t.classList.remove('on'),1800);}
+function fallbackCopy(text){
+  const ta=document.createElement('textarea');ta.value=text;ta.setAttribute('readonly','');ta.style.position='fixed';ta.style.opacity='0';
+  document.body.appendChild(ta);ta.select();ta.setSelectionRange(0,text.length);
+  let ok=false;try{ok=document.execCommand('copy');}catch(e){}
+  ta.remove();return ok;
+}
+function doCopy(text,okMsg){
+  const ok=()=>toast(okMsg||('복사됨 · '+text));
+  const fail=()=>toast('복사가 막혔어. 길게 눌러 복사: '+text);
+  if(navigator.clipboard && navigator.clipboard.writeText){
+    navigator.clipboard.writeText(text).then(ok).catch(()=>{fallbackCopy(text)?ok():fail()});
+  } else { fallbackCopy(text)?ok():fail(); }
+}
+
+function silentCopy(text){
+  try{ if(navigator.clipboard && navigator.clipboard.writeText){ navigator.clipboard.writeText(text).catch(()=>fallbackCopy(text)); } else { fallbackCopy(text); } }catch(e){}
+}
+function toggleOpen(stop){
+  const id=stop.dataset.id; S.open[id]=!S.open[id]; if(!S.open[id]) delete S.open[id]; save();
+  const open=!!S.open[id];
+  stop.classList.toggle('open',open);
+  const det=stop.querySelector('.detail'); if(det) det.hidden=!open;
+  const m=stop.querySelector('.more'); if(m){m.setAttribute('aria-expanded',String(open)); m.firstChild.textContent=open?'접기':'자세히';}
+}
+
+/* ---------- events ---------- */
+document.addEventListener('click',e=>{
+  const tm=e.target.closest('[data-tmap]');
+  if(tm){ /* 기본 이동(T맵 열기)은 막지 않고, 같은 탭에서 주소를 먼저 복사해 둠 */
+    silentCopy(tm.dataset.tmap); toast('T맵 여는 중'); return; }
+  const cp=e.target.closest('[data-copy]');
+  if(cp){e.preventDefault();doCopy(cp.dataset.copy);return;}
+  const tab=e.target.closest('.seg-btn');
+  if(tab){setTab(tab.dataset.tab);window.scrollTo({top:0,behavior:'smooth'});return;}
+  const stop=e.target.closest('.stop');
+  if(stop && e.target.closest('.chk')){
+    const id=stop.dataset.id; S.done[id]=!S.done[id]; if(!S.done[id]) delete S.done[id]; save();
+    renderDay(id[0]==='t'?'thu':'fri'); renderNext(); return;
+  }
+  if(stop && (e.target.closest('.more') || e.target.closest('.c-head'))){
+    if(stop.querySelector('.detail')) toggleOpen(stop); return;
+  }
+  const ci=e.target.closest('.ci');
+  if(ci && e.target.closest('.chk')){const id=ci.dataset.ci; S.done[id]=!S.done[id]; if(!S.done[id]) delete S.done[id]; save(); renderCheck(); return;}
+  if(e.target.id==='resetBtn'){
+    document.getElementById('resetBox').innerHTML='<span class="mini">모든 체크를 지울까?</span><button class="btn copy" type="button" id="resetYes">지우기</button><button class="btn" type="button" id="resetNo">취소</button>';return;
+  }
+  if(e.target.id==='resetYes'){S.done={};save();renderAll();toast('체크를 모두 지웠어');return;}
+  if(e.target.id==='resetNo'){renderCheck();return;}
+});
+
+/* ---------- boot ---------- */
+(function(){
+  let t=S.tab;
+  if(!t){ const d=new Date(); t=(d.getFullYear()===2026 && d.getMonth()===9 && d.getDate()===9)?'fri':'thu'; }
+  renderAll(); setTab(t);
+})();
+</script>
+
+</body>
+</html>

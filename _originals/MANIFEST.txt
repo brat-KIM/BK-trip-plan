@@ -1,9 +1,9 @@
 # Original backups — downloaded 2026-11-06 (UTC) with curl -sS -L
 # sapporo: https://sapporo-trip-ten.vercel.app/
-# gunsan:  https://gunsan-trip-green.vercel.app/  (HTTP 503, x-vercel-error: DEPLOYMENT_PAUSED)
-# sydney:  https://sydney-trip.vercel.app/        (HTTP 503, x-vercel-error: DEPLOYMENT_PAUSED)
+# gunsan:  https://gunsan-trip-green.vercel.app/  (re-fetched after deployment was temporarily unpaused)
+# sydney:  https://sydney-trip.vercel.app/        (re-fetched after deployment was temporarily unpaused; no expected sha1 known)
 # Excluded crawler false positives (JS expressions, not files; 404): sapporo/a.href, sapporo/r.url
-# Not listed: sydney probes manifest.json, manifest.webmanifest, sw.js, robots.txt (all 503, site paused)
+# sydney probes not present (404): manifest.webmanifest, manifest.json, sw.js, robots.txt
 # columns: path	bytes	sha1	status
 sapporo/app.css	27776	4a79f94f07b0b18ecf6a3ff8e2ec09c19c23afd9	OK
 sapporo/app.js	18417	5456de738b2186970efabd7827977b39f2c30dd1	OK
@@ -51,5 +51,5 @@ sapporo/pb2.js	28668	ee9c363af97169cb2fc81ba2f21cd076618185fb	OK
 sapporo/pb3.js	9459	9885751aa123621a8495f2c3f07aec763ef9e227	OK
 sapporo/sw.js	1888	0b92fc5b0247bad780da63e73eaf36095ed0c81d	OK
 sapporo/vercel.json	0		MISSING(404)
-gunsan/index.html	0		MISSING(503)
-sydney/index.html	0		MISSING(503)
+gunsan/index.html	41614	2cf679d26ba4395dbfc95205a6a938cc59fdc5a9	OK
+sydney/index.html	30679	1e95368ecd6917bd52e072193ccf7ada502a9404	OK
