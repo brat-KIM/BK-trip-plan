@@ -297,24 +297,24 @@ td.hl{background:color-mix(in srgb,#2F9B5A 16%,transparent);color:var(--mint)}
    ===================================================================== */
 body.hub{background:var(--paper);color:var(--ink)}
 body.hub #sky{height:560px}
-.hub-wrap{position:relative;z-index:1;gap:18px;padding-top:calc(18px + env(safe-area-inset-top,0px))}
+.hub-wrap{position:relative;z-index:1;gap:12px;padding-top:calc(12px + env(safe-area-inset-top,0px))}
 .hub-head{color:#fff}
 .brand{color:#fff}
 .brand b{font-family:var(--font-display);font-size:22px;color:#fff}
 .brand small{color:rgba(255,255,255,.82)}
-.brand img{border-radius:10px;box-shadow:none}
+.brand img{border-radius:11px;box-shadow:0 0 0 2px rgba(255,255,255,.75),0 4px 12px rgba(10,20,60,.25)}
 .theme-btn{background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.32);color:#fff;-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px)}
-.hub-art{margin:-4px -8px -10px;pointer-events:none}
-.hub-art svg{display:block;width:100%;height:auto;max-height:230px}
+.hub-art{margin:-2px -8px -6px;pointer-events:none}
+.hub-art svg{display:block;width:100%;height:auto;max-height:190px}
 @media (prefers-reduced-motion:no-preference){
   .hub-art .float-p,.hub-art .float-b,.hub-art .float-s{transform-box:fill-box;animation:bk-bob 4.2s ease-in-out infinite}
   .hub-art .float-b{animation-duration:5.6s;animation-delay:-1.4s}
   .hub-art .float-s{animation-duration:3.6s;animation-delay:-.8s}
 }
 @keyframes bk-bob{0%,100%{transform:translateY(0)}50%{transform:translateY(-5px)}}
-.hub-hello{color:#fff;margin-top:0}
-.hub-hello h1{font-family:var(--font-display);font-size:clamp(28px,8.4vw,36px);color:#fff;line-height:1.15;text-shadow:0 2px 14px rgba(0,0,0,.25)}
-.hub-hello p{color:rgba(255,255,255,.9);font-weight:300;text-shadow:0 1px 8px rgba(0,0,0,.3)}
+.hub-hello{color:#fff;margin-top:0;gap:2px}
+.hub-hello h1{font-family:var(--font-display);font-size:clamp(24px,7.2vw,32px);color:#fff;line-height:1.15;text-shadow:0 2px 14px rgba(0,0,0,.25)}
+.hub-hello p{font-size:13.5px;color:rgba(255,255,255,.9);font-weight:300;text-shadow:0 1px 8px rgba(0,0,0,.3)}
 .hub-sec>h2{color:var(--muted);letter-spacing:0;font-size:13px}
 .hub-sec.on-sky>h2{color:rgba(255,255,255,.85)}
 .hub-sec.on-sky>h2::after{background:rgba(255,255,255,.25)}
@@ -342,7 +342,7 @@ body.hub #sky{height:560px}
 .mini .body{padding:9px 12px 12px;display:flex;flex-direction:column;gap:1px}
 .mini .body b{font-size:14px}
 .mini .body span{font-size:11.5px;color:var(--muted)}
-.empty-card{border-radius:28px;background:rgba(20,18,26,.36);border:1px dashed rgba(255,255,255,.45);color:rgba(255,255,255,.9);-webkit-backdrop-filter:blur(18px);backdrop-filter:blur(18px)}
+.empty-card{padding:14px 18px;gap:4px;border-radius:24px;background:rgba(20,18,26,.36);border:1px dashed rgba(255,255,255,.45);color:rgba(255,255,255,.9);-webkit-backdrop-filter:blur(18px);backdrop-filter:blur(18px)}
 .empty-card b{color:#fff}
 .hub-foot{color:var(--muted)}
 @media (min-width:560px){.minis{grid-template-columns:repeat(3,minmax(0,1fr))}}
