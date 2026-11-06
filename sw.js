@@ -1,7 +1,7 @@
 /* BK Trip 서비스워커 (하나로 통합)
    - 앱 껍데기는 미리 저장, 여행 데이터·사진은 한 번 열면 저장 → 해외에서 데이터 끊겨도 보임
    - 온라인이면 항상 최신(네트워크 먼저, 4초 넘게 걸리면 저장본) */
-const VERSION = 'bk-trip-v2';
+const VERSION = 'bk-trip-v3';
 const SHELL = ['/', '/app/index.html', '/app/app.js', '/app/theme.js', '/app/app.css', '/app/base.css', '/app/skin.css', '/trips.json', '/manifest.webmanifest', '/assets/icon.svg', '/assets/icon-192.png'];
 const IMG = /\.(png|jpe?g|webp|gif|svg|avif)$/i;
 

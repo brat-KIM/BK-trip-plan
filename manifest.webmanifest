@@ -1,7 +1,7 @@
 {
- "name": "BK Trip",
- "short_name": "BK Trip",
- "description": "BK의 여행 모음 — 일정, 맛집, 회화, 체크리스트",
+ "name": "여행 기록",
+ "short_name": "여행 기록",
+ "description": "우리 여행 기록 — 일정, 맛집, 회화, 체크리스트",
  "id": "/",
  "start_url": "/",
  "scope": "/",

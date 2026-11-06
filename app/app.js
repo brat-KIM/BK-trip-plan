@@ -314,7 +314,7 @@
     var flights = arr(h.flights);
     var g = (T.theme && T.theme.glyph) || '';
     return '<header class="hero">' +
-      '<div class="hero-bar"><a class="hub-link" href="/">' + IC.back + 'BK Trip</a><div class="dday" id="dday"><b>-</b><span></span></div></div>' +
+      '<div class="hero-bar"><a class="hub-link" href="/">' + IC.back + '여행 기록</a><div class="dday" id="dday"><b>-</b><span></span></div></div>' +
       (g ? '<span class="hero-glyph" aria-hidden="true" style="--gsize:' + glyphSize(g, 84) + 'px">' + esc(g) + '</span>' : '') +
       '<h1>' + (h.title || T.title) + '</h1>' + '<p class="when">' + (h.when || T.subtitle || autoWhen()) + '</p>' +
       (flights.length ? '<div class="flights">' + flights.map(function (f) { return '<div class="flight"><span class="k">' + f.k + '</span><span class="v">' + f.v + '</span>' + (f.s ? '<span class="s">' + f.s + '</span>' : '') + '</div>'; }).join('') + '</div>' : '') +
@@ -581,7 +581,7 @@
     });
     var theme = '<div class="setting"><span>화면 모드</span><div class="seg3" role="group" aria-label="화면 모드">' +
       [['auto', '자동'], ['light', '라이트'], ['dark', '다크']].map(function (o) { return '<button type="button" data-theme-set="' + o[0] + '">' + o[1] + '</button>'; }).join('') + '</div></div>';
-    var hub = '<a class="btn hub-btn" href="/">BK Trip 전체 여행 목록</a>';
+    var hub = '<a class="btn hub-btn" href="/">전체 여행 기록 보기</a>';
     return panel('more', head.title || '더보기', (tiles ? '<div class="tiles">' + tiles + '</div>' : '') + blocks(T.more && T.more.blocks) + theme + hub +
       (T.footer ? '<p class="cap">' + T.footer + '</p>' : ''), true, { sub: head.text || T.title });
   }
@@ -985,8 +985,8 @@
     });
   }
   function fail(msg) {
-    document.title = '여행을 못 찾았어 · BK Trip';
-    ROOT.innerHTML = '<div class="notfound"><h1>여행을 못 찾았어</h1><p>' + msg + '</p><a class="btn primary" href="/">BK Trip 홈으로</a></div>';
+    document.title = '여행을 못 찾았어 · 여행 기록';
+    ROOT.innerHTML = '<div class="notfound"><h1>여행을 못 찾았어</h1><p>' + msg + '</p><a class="btn primary" href="/">여행 기록 홈으로</a></div>';
     NAV.hidden = true;
   }
   function start(data) {
@@ -1002,7 +1002,7 @@
       if (top) $$('meta[name="theme-color"]').forEach(function (m) { m.setAttribute('content', top); });
     }
     UI = LS.get('ui', {});
-    document.title = T.title + ' · BK Trip';
+    document.title = T.title + ' · 여행 기록';
     var mt = document.querySelector('meta[name="description"]'); if (mt) mt.setAttribute('content', stripTags(T.summary || T.subtitle || T.title));
     if (T.local && T.local.lang) document.documentElement.setAttribute('data-local', T.local.lang);
 
