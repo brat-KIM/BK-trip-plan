@@ -1,0 +1,8 @@
+{
+  "redirects": [
+    { "source": "/((?!sw\\.js$).*)", "destination": "https://bk-trip-plan.vercel.app/sapporo", "permanent": false }
+  ],
+  "headers": [
+    { "source": "/(.*)", "headers": [{ "key": "X-Robots-Tag", "value": "noindex, nofollow" }, { "key": "Cache-Control", "value": "no-cache" }] }
+  ]
+}

@@ -62,8 +62,10 @@ bk-shoot-pd 스킬이 만든 촬영 콘티 카드는 HTML 한 장짜리 페이�
 
 ```bash
 node scripts/serve.mjs 4173 &          # 로컬 서버 (vercel.json 리라이트 흉내)
+node scripts/check.cjs                 # 갤럭시 폭 360px로 허브 + 모든 여행의 모든 탭 열기 → "no errors" 나와야 함
+SHOTS=1 OUT=/tmp/shots node scripts/check.cjs osaka   # 특정 여행만 + 스크린샷
 ```
-Playwright(클라우드 세션엔 기본 설치)로 갤럭시 폭 360px에서 허브 + 해당 여행의 모든 탭을 열어보고 콘솔 에러 0, 가로 스크롤 0, 깨진 앵커·이미지 0 확인.
+check.cjs가 보는 것: 콘솔 에러, 깨진 앵커(#id)·`data-go` 대상·이미지, 가로 넘침, 중복 id. Playwright는 클라우드 세션에 기본 설치돼 있음.
 이식 대조가 필요하면 `node scripts/migrate/compare.cjs` → `scripts/migrate/report.md`.
 
 ## 배포
