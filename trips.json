@@ -1,0 +1,58 @@
+{
+ "trips": [
+  {
+   "slug": "sapporo",
+   "title": "삿포로 3박 4일",
+   "region": "일본 홋카이도",
+   "start": "2026-10-17",
+   "end": "2026-10-20",
+   "companions": [
+    "여친"
+   ],
+   "cover": {
+    "colors": [
+     "#B83A2B",
+     "#21607A"
+    ],
+    "glyph": "札幌"
+   },
+   "summary": "렌터카로 도는 홋카이도 단풍 여행 · 시코쓰호, 조잔케이 료칸, 오타루, 삿포로"
+  },
+  {
+   "slug": "gunsan",
+   "title": "군산 1박 2일",
+   "region": "전북 군산",
+   "start": "2026-10-08",
+   "end": "2026-10-09",
+   "companions": [
+    "여친"
+   ],
+   "cover": {
+    "colors": [
+     "#C2562F",
+     "#1F5E73"
+    ],
+    "glyph": "군산"
+   },
+   "summary": "원도심 골목에서 장자도 노을까지"
+  },
+  {
+   "slug": "sydney",
+   "title": "시드니 6일",
+   "region": "호주 시드니",
+   "start": "2026-04-23",
+   "end": "2026-04-28",
+   "companions": [
+    "여친"
+   ],
+   "cover": {
+    "colors": [
+     "#2563EB",
+     "#D97706"
+    ],
+    "glyph": "SYD"
+   },
+   "summary": "하버브리지 드라이브, 본다이, 그랜드 퍼시픽 드라이브 → Scribbly Farm 글램핑"
+  }
+ ]
+}

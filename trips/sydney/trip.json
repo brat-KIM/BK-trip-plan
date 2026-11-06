@@ -1,0 +1,676 @@
+{
+ "schema": 1,
+ "slug": "sydney",
+ "title": "시드니 6일",
+ "subtitle": "4/23(목) ~ 4/28(화) · Polestar 2 EV · 6일 5박",
+ "summary": "하버브리지 드라이브, 본다이, 그랜드 퍼시픽 드라이브 → Scribbly Farm 글램핑",
+ "region": "호주 시드니",
+ "country": "AU",
+ "start": "2026-04-23",
+ "end": "2026-04-28",
+ "tz": "+10:00",
+ "companions": [
+  "여친"
+ ],
+ "currency": {
+  "code": "AUD",
+  "unit": "호주달러",
+  "krw": 920
+ },
+ "cover": {
+  "colors": [
+   "#2563EB",
+   "#D97706"
+  ],
+  "glyph": "SYD"
+ },
+ "footer": "최종 업데이트: 2026.4.13 · 좋은 여행 되세요! 🇦🇺",
+ "sections": {
+  "home": {
+   "hero": {
+    "title": "시드니 여행 일정표",
+    "when": "2026 APRIL · 4/23(목) ~ 4/28(화) · Polestar 2 EV · 6일 5박"
+   },
+   "blocks": [
+    {
+     "type": "now"
+    },
+    {
+     "type": "stamps"
+    },
+    {
+     "type": "callout",
+     "title": "최종 검토 사항",
+     "html": "<div class=\"note mini error\"><p>🔴 DFS 면세점은 짐보관 서비스 없음 → Bounce 앱(A$8/일)이나 LuggageHero 사용</p></div><div class=\"note mini warn\"><p>🟡 4/26 Gerringong → Mittagong 약 1시간 소요 — 시간 여유 두기</p></div><div class=\"note mini warn\"><p>🟡 4/27 오후 관광 전부는 시간 부족 → 2~3개만 선택</p></div><div class=\"note mini info\"><p>🔵 4/24(금) Woolworths에서 4/26 BBQ 고기 미리 구매 고려</p></div><div class=\"note mini info\"><p>🔵 Polestar 2는 ABRP 내장 — 네비 경로에 충전소 자동 추천</p></div><div class=\"note mini info\"><p>🔵 Scribbly Farm 자체에서 웜뱃·캥거루 관찰 가능</p></div>"
+    },
+    {
+     "type": "ranked",
+     "title": "💕 커플 하이라이트 TOP 5",
+     "items": [
+      "Opera Bar 오페라하우스 야경 + 한잔",
+      "Bondi → Bronte Coastal Walk",
+      "Sea Cliff Bridge 드라이브",
+      "Scribbly Farm 데크 BBQ + 별보기",
+      "야생 웜뱃·캥거루 관찰"
+     ]
+    },
+    {
+     "type": "head",
+     "title": "🏷️ ANZAC Day (4/25) 영업 현황"
+    },
+    {
+     "type": "note",
+     "tone": "info",
+     "text": "❌ 종일 휴무: Coles, Woolworths, Kmart, Big W, Westfield, 주류매장(병 가게)<br>✅ 정상 영업: 카페, 레스토랑, 펍, 편의점, 주유소<br>✅ Carriageworks Market 정상 운영 확인<br>⚠️ 4/27(월) 대체 공휴일: 대형마트 시간 단축 가능"
+    }
+   ]
+  },
+  "plan": {
+   "days": [
+    {
+     "date": "2026-04-23",
+     "label": "도착",
+     "title": "시드니 도착 &amp; 첫날 탐험",
+     "color": "#2563eb",
+     "stamp": {
+      "top": "DAY 1",
+      "place": "도착"
+     },
+     "alerts": [
+      {
+       "tone": "warn",
+       "text": "🟡 DFS 면세점은 짐보관소가 아님 → Bounce 앱으로 근처 보관소 예약 필수"
+      },
+      {
+       "tone": "info",
+       "text": "🔵 공항역 요금 절약: 버스로 Mascot역 이동 후 T8 탑승"
+      }
+     ],
+     "items": [
+      {
+       "time": "10:00",
+       "title": "공항 도착 → 짐 보관",
+       "dur": "2h",
+       "icon": "✈️",
+       "note": "입국심사 → 버스(400번)로 Mascot역<br>→ T8 Museum역 하차<br>→ Bounce 앱으로 짐 보관"
+      },
+      {
+       "time": "12:00",
+       "title": "점심 + QVB 구경",
+       "dur": "2.5h",
+       "icon": "🍽️",
+       "badge": "식사",
+       "badgeTone": "food",
+       "note": "The Grounds of the City (George St)<br>→ QVB (Queen Victoria Building) 내부 구경"
+      },
+      {
+       "time": "15:00",
+       "title": "호텔 체크인 + 렌트",
+       "dur": "1h",
+       "icon": "🏨",
+       "note": "Boulevard Hotel 체크인<br>Hertz Downtown에서 Polestar 2 픽업<br>⚡ 충전상태·케이블·RFID 확인"
+      },
+      {
+       "time": "16:00",
+       "title": "하버브리지 → 발모랄비치",
+       "dur": "1.5h",
+       "icon": "🚗",
+       "note": "하버브리지 경유 드라이브<br>발모랄비치 산책 &amp; 사진<br>🅿️ 주변 무료 노상주차 (시간제한 확인)"
+      },
+      {
+       "time": "18:30",
+       "title": "시내 산책 + 오페라하우스",
+       "dur": "1h",
+       "icon": "📸",
+       "note": "오페라하우스 외관 감상<br>하버 일몰 사진 촬영"
+      },
+      {
+       "time": "19:30",
+       "title": "저녁 + 바",
+       "dur": "3h",
+       "icon": "🥩",
+       "badge": "식사",
+       "badgeTone": "food",
+       "note": "허리케인그릴 써큘러키점 (예약완료 ✅)<br>→ Opera Bar / The Squire's Landing"
+      },
+      {
+       "time": "23:00",
+       "title": "숙소 복귀",
+       "icon": "🌙"
+      }
+     ]
+    },
+    {
+     "date": "2026-04-24",
+     "label": "동물원",
+     "title": "동물원 &amp; 차이나타운 야시장",
+     "color": "#059669",
+     "stamp": {
+      "top": "DAY 2",
+      "place": "동물원"
+     },
+     "alerts": [
+      {
+       "tone": "info",
+       "text": "🔵 Featherdale 개장 8am — 7시 출발하면 8시 도착"
+      },
+      {
+       "tone": "warn",
+       "text": "🟡 4/25 ANZAC Day 대비: 오늘 Woolworths에서 내일/모레 필요한 식재료 구매!"
+      },
+      {
+       "tone": "info",
+       "text": "🔵 차이나타운 야시장은 금요일만 운영 5pm~10pm ✅"
+      }
+     ],
+     "items": [
+      {
+       "time": "07:00",
+       "title": "기상 → 페더데일 출발",
+       "dur": "1h",
+       "icon": "🚗",
+       "note": "CBD에서 서쪽 차로 40분<br>주차: 무료 주차장 있음"
+      },
+      {
+       "time": "08:00",
+       "title": "페더데일 동물원",
+       "dur": "2h",
+       "icon": "🐨",
+       "note": "코알라 사진 (Personal Koala Experience)<br>캥거루 먹이주기, 워킹 체험<br>입장: 성인 A$49 / 4월 키즈 무료"
+      },
+      {
+       "time": "10:00",
+       "title": "숙소 복귀",
+       "dur": "1.5h",
+       "icon": "🏨",
+       "note": "차로 40분 + 휴식"
+      },
+      {
+       "time": "12:30",
+       "title": "점심 식사",
+       "dur": "1h",
+       "icon": "🍽️",
+       "badge": "식사",
+       "badgeTone": "food",
+       "note": "CBD 주변 자유 선택<br>추천: Mamak (말레이시아), Mr. Wong (광동식)"
+      },
+      {
+       "time": "14:00",
+       "title": "시내 구경",
+       "dur": "2h",
+       "icon": "🛍️",
+       "note": "옵션 A: Public BBQ (Centennial Park 등)<br>옵션 B: Stüssy Sydney (Crown St, Surry Hills)<br>→ 쇼핑 &amp; 산책"
+      },
+      {
+       "time": "16:00",
+       "title": "Observatory Hill + The Rocks",
+       "dur": "1.5h",
+       "icon": "🌉",
+       "note": "Observatory Hill: 하버브리지 최고 뷰포인트<br>The Rocks: 역사적 골목 산책"
+      },
+      {
+       "time": "17:30",
+       "title": "차이나타운 야시장",
+       "dur": "1.5h",
+       "icon": "🏮",
+       "badge": "식사",
+       "badgeTone": "food",
+       "note": "위치: Hay &amp; Harbour St (Paddy's Market LR 정류장)<br>40+ 노점: 만두, 꼬치, 로띠, 타코야키<br>💡 호텔에 차 두고 대중교통 추천<br>1인 A$20~30이면 충분"
+      }
+     ]
+    },
+    {
+     "date": "2026-04-25",
+     "label": "ANZAC",
+     "title": "ANZAC Day — 마켓·대학·본다이",
+     "color": "#dc2626",
+     "stamp": {
+      "top": "DAY 3",
+      "place": "ANZAC"
+     },
+     "alerts": [
+      {
+       "tone": "error",
+       "text": "🔴 ANZAC Day: 대형 마트(Coles, Woolworths, Kmart) 종일 휴무!"
+      },
+      {
+       "tone": "info",
+       "text": "🔵 카페·레스토랑·마켓은 정상 영업"
+      },
+      {
+       "tone": "info",
+       "text": "🔵 Carriageworks Farmers Market: ANZAC Day 정상 운영 확인 ✅"
+      },
+      {
+       "tone": "warn",
+       "text": "🟡 시드니 CBD 도로 통제 (Dawn Service &amp; March) — Martin Place 주변 피하기"
+      }
+     ],
+     "items": [
+      {
+       "time": "09:00",
+       "title": "Carriageworks Farmers Market",
+       "dur": "1h",
+       "icon": "🥬",
+       "badge": "식사",
+       "badgeTone": "food",
+       "note": "운영: 8am~1pm (245 Wilson St, Eveleigh)<br>Redfern역 도보 8분<br>🅿️ 자체 주차장 있음 (일찍 가면 자리 O)<br>⚡ 근처 EV 충전기 (PlugShare 확인)<br>아침: Bar Pho / AP Bakery"
+      },
+      {
+       "time": "10:00",
+       "title": "시드니 대학교",
+       "dur": "2h",
+       "icon": "🏛️",
+       "note": "The Quadrangle: 해리포터풍 고딕 건축<br>무료 입장, 커플 사진 스팟 📸"
+      },
+      {
+       "time": "12:00",
+       "title": "서리 힐스 점심 + 카페",
+       "dur": "2h",
+       "icon": "☕",
+       "badge": "식사",
+       "badgeTone": "food",
+       "note": "Bourke Street Bakery (파이·타르트 유명)<br>Reuben Hills (라틴풍 브런치 + 스페셜티 커피)<br>Single O / Paramount Coffee Project"
+      },
+      {
+       "time": "14:30",
+       "title": "본다이 비치",
+       "dur": "3h",
+       "icon": "🏖️",
+       "note": "Bondi → Bronte Coastal Walk (30분, 절경) 💕<br>🅿️ Park'nPay 앱으로 주차 결제<br>카페: Gertrude &amp; Alice (서점+카페)"
+      },
+      {
+       "time": "17:30",
+       "title": "달링하버",
+       "dur": "2h",
+       "icon": "🌃",
+       "badge": "식사",
+       "badgeTone": "food",
+       "note": "달링하버 산책 &amp; 야경<br>간단하게 술 한잔<br>추천: The Malaya, Gelato Messina (디저트)"
+      }
+     ]
+    },
+    {
+     "date": "2026-04-26",
+     "label": "드라이브",
+     "title": "그랜드 퍼시픽 드라이브 → Scribbly Farm",
+     "color": "#7c3aed",
+     "stamp": {
+      "top": "DAY 4",
+      "place": "드라이브"
+     },
+     "alerts": [
+      {
+       "tone": "warn",
+       "text": "🟡 출발 전 EV 풀충전 필수! (남부 해안 ~200km+ 주행)"
+      },
+      {
+       "tone": "info",
+       "text": "🔵 Sea Cliff Bridge: 양쪽 끝 지정 주차장 이용"
+      },
+      {
+       "tone": "warn",
+       "text": "🟡 Scribbly Farm: Wi-Fi·핸드폰 신호 없음 → 오프라인 지도 다운로드!"
+      },
+      {
+       "tone": "info",
+       "text": "🔵 Scribbly Farm 주변 야생 웜뱃·캥거루 관찰 가능 (해질녘 최고)"
+      }
+     ],
+     "items": [
+      {
+       "time": "08:30",
+       "title": "아침 식사 + 체크아웃",
+       "dur": "1.5h",
+       "icon": "🥐",
+       "badge": "식사",
+       "badgeTone": "food",
+       "note": "호텔 주변 브런치<br>추천: Bills, Café Giulia"
+      },
+      {
+       "time": "10:00",
+       "title": "Bald Hill → Sea Cliff Bridge",
+       "dur": "1h",
+       "icon": "🌊",
+       "note": "Bald Hill Lookout: 해안 파노라마 뷰<br>Sea Cliff Bridge: 절벽 위 다리, 포토스팟 📸<br>🅿️ 양쪽 끝 주차장"
+      },
+      {
+       "time": "11:00",
+       "title": "Nan Tien Temple",
+       "dur": "1h",
+       "icon": "🏯",
+       "note": "남반구 최대 불교 사원<br>무료 입장, 채식 레스토랑 있음"
+      },
+      {
+       "time": "12:00",
+       "title": "점심 식사 + 카페",
+       "dur": "1.5h",
+       "icon": "🍽️",
+       "badge": "식사",
+       "badgeTone": "food",
+       "note": "Kiama 방면 이동 중 식사<br>Diggies Kiama (비치뷰)<br>Miss Arda (모던 중동식)<br>Penny Whistlers (오션뷰 카페)"
+      },
+      {
+       "time": "14:00",
+       "title": "Kiama Blowhole + Gerringong",
+       "dur": "1.5h",
+       "icon": "💨",
+       "note": "Kiama Blowhole: 자연 분수<br>🅿️ Blowhole Point 무료 주차<br>Gerringong: Werri Beach 사진"
+      },
+      {
+       "time": "15:30",
+       "title": "Woolworths Mittagong",
+       "dur": "1h",
+       "icon": "🛒",
+       "note": "BBQ 고기, 소시지, 빵, 샐러드, 와인, 아침 재료<br>⚠️ Gerringong → Mittagong 약 1시간 소요"
+      },
+      {
+       "time": "17:00",
+       "title": "Scribbly Farm 체크인 + 저녁",
+       "icon": "⛺",
+       "badge": "식사",
+       "badgeTone": "food",
+       "note": "도착 시간 사전 연락 필수<br>돔 데크에서 BBQ 디너 🥩 + 와인 🍷<br>별 관찰 ⭐ (제로 광해 지역)<br>🦘 해질녘 주변 웜뱃·캥거루 관찰"
+      }
+     ]
+    },
+    {
+     "date": "2026-04-27",
+     "label": "하이랜즈",
+     "title": "Southern Highlands → 시드니 복귀",
+     "color": "#d97706",
+     "stamp": {
+      "top": "DAY 5",
+      "place": "하이랜즈"
+     },
+     "alerts": [
+      {
+       "tone": "warn",
+       "text": "🟡 대체 공휴일 — 대형마트 시간 단축 가능, 주류매장은 보통 영업"
+      },
+      {
+       "tone": "info",
+       "text": "🔵 복귀 전 EV 충전 필수 (Mittagong/Bowral DC 급속충전)"
+      },
+      {
+       "tone": "info",
+       "text": "🔵 Dirty Janes: 공휴일도 10am~5pm 정상 영업 ✅"
+      }
+     ],
+     "items": [
+      {
+       "time": "09:00",
+       "title": "아침 + 부시워킹",
+       "dur": "1h",
+       "icon": "🌿",
+       "note": "돔에서 아침 식사 (전날 구매한 재료)<br>숙소 주변 산책, 농장 동물 구경<br>알파카, 말 등"
+      },
+      {
+       "time": "10:00",
+       "title": "체크아웃 → Bowral 경유",
+       "dur": "2h",
+       "icon": "☕",
+       "badge": "식사",
+       "badgeTone": "food",
+       "note": "Coffee Culture (Mittagong): 로컬 카페<br>Dirty Janes (Bowral): 빈티지 앤틱 마켓<br>⚡ Mittagong/Bowral EV 충전 (PlugShare)"
+      },
+      {
+       "time": "12:00",
+       "title": "시드니 복귀 + 차량 반납",
+       "dur": "2h",
+       "icon": "🚗",
+       "note": "Bowral → Sydney 약 1.5시간<br>Hertz 차량 반납 (충전 상태 확인)<br>DiDi로 샹그리라 이동"
+      },
+      {
+       "time": "14:00",
+       "title": "샹그리라 체크인 + 휴식",
+       "dur": "1h",
+       "icon": "🏨",
+       "note": "The Rocks / Circular Quay 위치<br>고층 룸: 오페라하우스 &amp; 하버브리지 뷰"
+      },
+      {
+       "time": "15:00",
+       "title": "시드니 마지막 오후 (택 2~3)",
+       "dur": "4h",
+       "icon": "🚶",
+       "note": "① The Rocks 산책 &amp; 갤러리<br>② Barangaroo Reserve 워터프론트<br>③ 페리 타고 Luna Park (야경 포토스팟)<br>④ 오페라하우스 주변 산책<br>⚠️ 전부 다 하기엔 시간 부족 → 2~3개만!"
+      },
+      {
+       "time": "19:00",
+       "title": "호텔방에서 저녁 + 와인",
+       "icon": "🍷",
+       "badge": "식사",
+       "badgeTone": "food",
+       "note": "BWS (George St): 와인/맥주 구매<br>Woolworths Metro (George St): 간식<br>또는 Uber Eats / 룸서비스<br>💡 오후에 일찍 주류 구매 추천 (공휴일)"
+      }
+     ]
+    },
+    {
+     "date": "2026-04-28",
+     "label": "귀국",
+     "title": "귀국",
+     "color": "#64748b",
+     "stamp": {
+      "top": "DAY 6",
+      "place": "귀국"
+     },
+     "alerts": [],
+     "items": [
+      {
+       "time": "09:00",
+       "title": "체크아웃 → 공항",
+       "icon": "✈️",
+       "note": "써큘러키역 → Central 환승 → T8 Airport역<br>약 30분 소요, 컨택리스 카드 탭<br>출발 2~3시간 전 도착 권장<br>공항 면세점 쇼핑 가능"
+      }
+     ]
+    }
+   ]
+  },
+  "todo": {
+   "title": "준비물·할 일",
+   "navLabel": "준비",
+   "desc": "필수 앱 · 체크리스트",
+   "head": {
+    "title": "체크리스트",
+    "text": "체크하면 이 폰에 저장돼."
+   },
+   "groups": [
+    {
+     "title": "출발 전 확인",
+     "items": [
+      {
+       "id": "c0",
+       "text": "HERTZ 톨패스(E-Tag) 포함 여부 확인"
+      },
+      {
+       "id": "c1",
+       "text": "Polestar 2 충전케이블·RFID 확인"
+      },
+      {
+       "id": "c2",
+       "text": "허리케인 그릴 예약 재확인"
+      },
+      {
+       "id": "c3",
+       "text": "Scribbly Farm 도착 시간 사전 연락"
+      },
+      {
+       "id": "c4",
+       "text": "오프라인 지도 다운로드 (Scribbly Farm Wi-Fi 없음)"
+      },
+      {
+       "id": "c5",
+       "text": "해외카드 결제 수수료 확인 (1~2%)"
+      },
+      {
+       "id": "c6",
+       "text": "여행자보험 + 렌트카보험 확인"
+      },
+      {
+       "id": "c7",
+       "text": "비상현금 A$50~100 준비"
+      },
+      {
+       "id": "c8",
+       "text": "4/24(금) 마트에서 4/26 BBQ 식재료 구매"
+      }
+     ]
+    }
+   ],
+   "blocks": [
+    {
+     "type": "head",
+     "title": "필수 앱 (출발 전 설치)"
+    },
+    {
+     "type": "chips",
+     "groups": [
+      {
+       "label": "⚡ EV 충전",
+       "items": [
+        "PlugShare",
+        "Chargefox",
+        "ABRP"
+       ]
+      },
+      {
+       "label": "🅿️ 주차",
+       "items": [
+        "Wilson Parking",
+        "Park'nPay"
+       ]
+      },
+      {
+       "label": "🧳 짐보관",
+       "items": [
+        "Bounce"
+       ]
+      },
+      {
+       "label": "🚗 이동",
+       "items": [
+        "Google Maps",
+        "DiDi",
+        "Uber"
+       ]
+      },
+      {
+       "label": "🍔 음식",
+       "items": [
+        "Uber Eats"
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  "move": {
+   "title": "렌트·EV·주차",
+   "desc": "Polestar 2 충전 체크포인트 · 주차 앱",
+   "blocks": [
+    {
+     "type": "head",
+     "title": "🔌 EV 충전 체크포인트"
+    },
+    {
+     "type": "rows",
+     "items": [
+      {
+       "k": "4/23 렌트",
+       "v": "HERTZ에서 풀충전 인수 확인"
+      },
+      {
+       "k": "4/25 아침",
+       "v": "Carriageworks/시드니대 주변 충전"
+      },
+      {
+       "k": "4/26 출발 전",
+       "v": "남부 드라이브 대비 풀충전 필수!"
+      },
+      {
+       "k": "4/26 오후",
+       "v": "Nowra 또는 Mittagong Chargefox"
+      },
+      {
+       "k": "4/27 복귀 전",
+       "v": "Mittagong DC 급속충전"
+      }
+     ]
+    },
+    {
+     "type": "head",
+     "title": "🅿️ 주차 참고"
+    },
+    {
+     "type": "note",
+     "tone": "warn",
+     "text": "시드니 CBD: Wilson Parking 앱 사전결제 추천<br>노상주차: Park'nPay 앱 (NSW 정부 공식)<br>남부 소도시 (Kiama 등): 무료 노상주차 많음, 표지판 확인<br>Sea Cliff Bridge: 양쪽 끝 지정 주차장 이용<br>⚠️ No Stopping/No Parking 구역 벌금 높음"
+    }
+   ]
+  },
+  "money": {
+   "title": "돈·카드",
+   "navLabel": "돈",
+   "desc": "카드결제 안내 · 가계부",
+   "ledger": {
+    "categories": [
+     "식비",
+     "교통·충전",
+     "주차",
+     "숙소",
+     "쇼핑",
+     "관광",
+     "기타"
+    ]
+   },
+   "blocks": [
+    {
+     "type": "head",
+     "title": "💳 카드결제 안내"
+    },
+    {
+     "type": "note",
+     "tone": "ok",
+     "text": "호주는 세계 6위 캐시리스 국가. Visa/Mastercard·Apple Pay·Google Pay 거의 모든 곳 사용 가능. 컨택리스(탭) 결제 표준. 비상현금 A$50~100이면 충분. 대중교통도 컨택리스 카드 탭 가능 (Opal 카드 불필요)."
+    }
+   ]
+  },
+  "sos": {
+   "title": "비상 연락처",
+   "desc": "000 · 한국 대사관",
+   "top": [
+    {
+     "type": "head",
+     "title": "🆘 비상 연락처"
+    }
+   ],
+   "contacts": [
+    {
+     "who": "호주 비상번호",
+     "what": "경찰 / 소방 / 구급",
+     "tel": "000"
+    },
+    {
+     "who": "한국 대사관",
+     "what": "주호주 대한민국 대사관 (캔버라)",
+     "tel": "+61-2-6270-4100"
+    }
+   ],
+   "blocks": [
+    {
+     "type": "note",
+     "tone": "ok",
+     "text": "호주 비상번호: <b>000</b> (경찰/소방/구급)<br>한국 대사관: +61-2-6270-4100",
+     "title": "원문 메모"
+    }
+   ]
+  }
+ },
+ "nav": [
+  "home",
+  "plan",
+  "todo",
+  "money",
+  "more"
+ ]
+}
