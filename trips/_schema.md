@@ -17,7 +17,7 @@
 | `schema` | `1` | 형식 버전. 그대로 둔다 |
 | `slug` | `"sapporo"` | 주소 `/sapporo`. 영어 소문자·숫자·하이픈 |
 | `title` | `"삿포로 3박 4일"` | 카드·탭 제목 |
-| `subtitle` | `"10월 17일 토요일부터…"` | 홈 제목 아래 한 줄 |
+| `subtitle` | `"10월 17일 토요일부터…"` | 홈 제목 아래 한 줄. 비우면 날짜·지역으로 자동 생성 |
 | `summary` | `"렌터카 단풍 여행 · …"` | 허브 카드 한줄 소개 |
 | `region` | `"일본 홋카이도"` | 허브 카드 커버에 표시 |
 | `country` | `"JP"` / `"KR"` / `"AU"` | `KR`이면 지도=네이버, 길찾기=T맵 버튼. 그 외는 구글맵 |
@@ -27,14 +27,48 @@
 | `local` | `{"lang":"ja","voice":"ja-JP","label":"일본어"}` | 현지어. 회화 음성·`{ja, ko}` 필드에 씀 |
 | `currency` | `{"code":"JPY","unit":"엔","krw":9.4}` | 가계부 통화. `krw`=1단위가 몇 원인지(대충, 직접 고쳐서 씀) |
 | `telNavi` | `true` | 일본 렌트카처럼 내비에 전화번호를 찍는 여행이면 장소 칩에 "내비 번호" 배지 |
-| `cover` | `{"colors":["#B83A2B","#21607A"],"glyph":"札幌","image":"img/cover.jpg"}` | 허브 카드 커버. 사진이 있으면 사진, 없으면 그라데이션+글자 |
-| `nav` | `["home","plan","eat","talk","shoot","more"]` | 하단 탭 순서(선택). 없으면 자동 |
+| `theme` | 아래 "테마" 참고 | **디자인 D: 그 나라 하늘색 + 평면 포스터 그림 + 커버 큰 글자.** 여행 화면 위쪽 하늘·허브 포스터 카드가 이걸로 그려짐 |
+| `cover` | `{"colors":["#B83A2B","#21607A"],"glyph":"札幌"}` | 옛 커버 정보(예비용). 지금 화면은 `theme`을 씀 |
+| `nav` | `["home","plan","eat","talk","shoot"]` | 하단 탭(선택, 최대 5개). **없으면 표준 탭이 자동**. "더보기(⋯)"는 항상 따로 붙음 |
 | `footer` | `"…"` | 더보기 맨 아래 작은 글씨 |
 | `more` | `{"head":{"title":"더보기","text":"…"}}` | 더보기 화면 머리말(선택) |
 | `sections` | `{…}` | 아래 2번 |
 | `extra` | `[{…}]` | 템플릿에 안 맞는 고유 페이지. 아래 4번 |
 
-trips.json(허브 목록)에도 `slug, title, region, start, end, companions, cover, summary`가 같은 값으로 들어간다. **둘 다 고쳐야 허브 카드가 바뀐다.**
+trips.json(허브 목록)에도 `slug, title, region, start, end, companions, cover, theme, summary`가 같은 값으로 들어간다. **둘 다 고쳐야 허브 카드가 바뀐다.**
+
+### 테마 `theme` (나라 느낌 내는 곳)
+
+```json
+"theme": {
+  "preset": "mountains",
+  "sky": ["#1B1020", "#4A1A2C", "#A63A2E", "#E58A55", "#3E5B5E"],
+  "sun": "#FF8A5B", "hill1": "#6B3242", "hill2": "#2C2F3A", "water": "#2F6E8A",
+  "accent": "#FF6B4A", "accent2": "#E8B032", "ink": "#1B2A49",
+  "glyph": "札幌", "glyphFont": "dela",
+  "poster": { "paper": "#F3E7D3", "sun": "#D7381F", "hill1": "#5C7A5A", "hill2": "#2E4A3A", "water": "#2F6E8A" }
+}
+```
+| 필드 | 설명 |
+|---|---|
+| `preset` | 그림 종류: `mountains`(산·호수) · `coast`(바다·섬, `"rails": true`면 철길 추가) · `harbour`(항구·다리·빛줄기) · `city`(야경 빌딩) |
+| `sky` | 하늘 그라데이션 색 (위 → 아래, 3~5개). 그 나라 하늘·노을 느낌 |
+| `sun`, `hill1`, `hill2`, `water` | 그림 색 (해 · 앞산/섬 · 뒷산 · 물) |
+| `accent` | 스티커(D-day)·강조 색. `accent2`는 철길·보조 강조 |
+| `ink` | 진한 남색 계열(그림자·버튼 글자). 없으면 `#1B2A49` |
+| `glyph` | 커버 큰 글자 (`"札幌"`, `"군산"`, `"SYDNEY"`) — 현지어·영문 대문자가 제일 예쁨 |
+| `glyphFont` | 큰 글자 서체: `dela`(굵은 일본풍) · `blackhan`(굵은 한글) · `limelight`(아르데코 영문) · `mincho`(붓글씨풍 한자) |
+| `poster` | 허브 포스터 카드 색 (`paper`=종이 바탕, 나머지는 그림 색). 종이가 밝으면 글자가 자동으로 남색 |
+
+빠진 값은 기본값(삿포로 노을)으로 채운다. 예시 모음은 `scripts/themes.json`(삿포로·군산·시드니 + 도쿄 야경·제주 옥빛).
+`new-trip.mjs`가 나라별로 골라 넣어 줌: JP=노을 산(sunset), KR=바다(coast), TW·HK·SG·US=야경(night), TH·VN·NZ=옥빛 산(jade), AU=항구(harbour), GB·FR=새벽(dawn). `--theme night` 처럼 직접 고를 수도 있다.
+
+### 하단 탭 (표준)
+
+- 해외: **홈 · 일정 · 맛집 · 회화 · 촬영** + ⋯(더보기)
+- 국내(회화 없음): **홈 · 일정 · 맛집 · 체크 · 촬영** + ⋯ (체크 = `todo`)
+- 비어 있는 섹션은 빠지고, 나머지(숙소·이동·짐·돈·대안·비상·추가 페이지)는 전부 ⋯ 안 타일로 감
+- 바꾸고 싶으면 `nav`에 최대 5개 직접 지정 (군산·시드니는 옛 사이트 탭 그대로 지정돼 있음)
 
 ### 현지어 표기 `{ "ja": "原文", "ko": "읽는법/뜻" }`
 

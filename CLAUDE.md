@@ -14,7 +14,9 @@
 /trips/<slug>/trip.json 여행별 데이터 전부  ← 평소엔 여기만 고치면 됨
 /trips/<slug>/img/      여행별 사진 (선택)
 /trips/_schema.md       trip.json 필드 설명서 (꼭 읽기)
-/app/                   공통 렌더러: index.html, app.js(그리는 코드), base.css(삿포로 디자인 톤), app.css(추가 컴포넌트)
+/app/                   공통 렌더러: index.html, app.js(그리는 코드), theme.js(하늘·포스터 그림), base.css(삿포로 원본 톤),
+                        app.css(추가 컴포넌트), skin.css(디자인 D 스킨 — 맨 마지막에 덮어씀. 디자인 손볼 땐 여기)
+/scripts/themes.json    여행별 테마 예시 (나라 느낌 색·그림)
 /sw.js                  서비스워커 1개 (오프라인: 한 번 연 여행은 데이터 끊겨도 보임)
 /manifest.webmanifest   PWA "BK Trip", 아이콘은 /assets/
 /vercel.json            /<slug> → /app/index.html 연결, 전 페이지 noindex 헤더
@@ -39,13 +41,14 @@
 ## trip.json 채우는 법
 
 - **필드 설명은 `trips/_schema.md`가 정답.** 헷갈리면 `trips/sapporo/trip.json`(제일 풍부한 예시), `trips/gunsan/trip.json`(국내·T맵·완료체크 예시)을 본다.
-- 빈 섹션은 화면에 안 나온다. 채운 섹션만 탭이 생김. 하단 탭은 홈·일정·맛집·회화·촬영 + 나머지는 "더보기"로 자동 배치(`nav`로 직접 지정 가능).
+- 빈 섹션은 화면에 안 나온다. 채운 섹션만 탭이 생김. 하단 탭 표준: 해외 **홈·일정·맛집·회화·촬영**, 국내 **홈·일정·맛집·체크·촬영** + 오른쪽 동그란 ⋯(더보기)에 나머지 타일. 새 여행엔 `nav`를 쓰지 말고 표준을 쓴다(군산·시드니만 옛 탭 그대로 지정돼 있음 — 형이 "일단 그대로"라고 함).
 - 일정 `items[].time`을 `"HH:MM"`으로 쓰면 홈의 "지금·다음 일정" 카드가 현지 시각(`tz`) 기준으로 자동으로 따라간다.
 - 일본어 등 현지어는 항상 `{ "ja": "原文", "ko": "읽는법/뜻" }`. 회화 문장은 `{ "mean": "뜻", "ja": "原文", "ko": "읽는법" }`.
 - 지도는 링크만: 장소에 `map.google`/`map.naver` URL 또는 `q`(검색어·주소). **유료 지도/날씨/환율 API 절대 금지.**
 - 국내(`country: "KR"`)는 장소 `q`에 주소를 넣으면 T맵 버튼 + 주소 복사 자동.
 - 체크리스트 `id`는 여행 안에서 고유하게(저장 키가 됨). 이미 쓰던 id를 바꾸면 형 폰에 저장된 체크가 풀린다.
 - 확인 못 한 영업시간·가격은 지어내지 말고 `★`(확인필요) 표시. 출처는 `foot` 블록에.
+- **나라 느낌은 `theme`으로 낸다** (디자인 D = 그 나라 하늘 그라데이션 + 평면 포스터 그림 + 커버 큰 글자). `new-trip.mjs`가 나라별 기본 테마를 넣어 주니, 그 나라 하늘·노을·바다 색과 현지어 `glyph`(예: 大阪, 濟州, BANGKOK)만 다듬으면 된다. 필드는 `_schema.md` "테마", 예시는 `scripts/themes.json`. trip.json과 trips.json 두 곳 다 같은 값.
 - 템플릿에 안 맞는 고유 내용은 `html` 블록이나 `extra` 페이지로. 그래도 디자인 톤(base.css 클래스: `note`, `answer`, `card`, `grid2`, `sec-head` …)을 맞춘다.
 - `trips.json`의 제목·날짜·커버는 trip.json과 같은 값으로 같이 고친다(허브 카드가 이걸 봄).
 
@@ -72,7 +75,7 @@ check.cjs가 보는 것: 콘솔 에러, 깨진 앵커(#id)·`data-go` 대상·�
 
 - GitHub `brat-KIM/BK-trip-plan`이 Vercel 프로젝트 `bk-trip-plan`에 Git 연동돼 있다. **프로덕션 브랜치(main)에 푸시하면 자동 배포**, 다른 브랜치는 미리보기 배포(Vercel 로그인 필요할 수 있음).
 - 세션 규칙상 작업 브랜치가 따로 주어지면 거기에 푸시하고, main 반영은 형한테 물어보거나 PR로.
-- 앱 껍데기(`/app/*`, `index.html`, `sw.js`) 구조를 크게 바꾸면 `sw.js`의 `VERSION`을 올린다(`bk-trip-v2` …). trip.json만 바꾸는 건 안 올려도 됨(네트워크 우선이라 바로 반영).
+- 앱 껍데기(`/app/*`, `index.html`, `sw.js`) 구조를 크게 바꾸면 `sw.js`의 `VERSION`을 올린다(지금 `bk-trip-v2` → 다음 `bk-trip-v3`). 새 파일을 추가했으면 `sw.js`의 `SHELL` 목록에도 넣는다. trip.json만 바꾸는 건 안 올려도 됨(네트워크 우선이라 바로 반영).
 - 지켜야 할 것: 전 페이지 noindex 유지(meta + `X-Robots-Tag` + robots.txt), 비밀번호/PIN 없음, 유료 기능·유료 API 금지, `_originals/` 수정 금지.
 
 ## 옛 주소

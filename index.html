@@ -6,8 +6,7 @@
 <title>BK Trip</title>
 <meta name="robots" content="noindex, nofollow">
 <meta name="description" content="BK의 여행 모음">
-<meta name="theme-color" content="#EEF0EC" media="(prefers-color-scheme: light)">
-<meta name="theme-color" content="#12161A" media="(prefers-color-scheme: dark)">
+<meta name="theme-color" content="#1B1020">
 <link rel="manifest" href="/manifest.webmanifest">
 <link rel="icon" type="image/svg+xml" href="/assets/icon.svg">
 <link rel="icon" type="image/png" sizes="192x192" href="/assets/icon-192.png">
@@ -17,40 +16,46 @@
 <meta name="apple-mobile-web-app-title" content="BK Trip">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Song+Myung&family=IBM+Plex+Sans+KR:wght@400;500;600;700&family=Zen+Old+Mincho:wght@700&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=Dela+Gothic+One&family=Limelight&family=Noto+Sans+KR:wght@300;400;500;700;900&family=Zen+Old+Mincho:wght@700&display=swap">
 <link rel="stylesheet" href="/app/base.css">
 <link rel="stylesheet" href="/app/app.css">
+<link rel="stylesheet" href="/app/skin.css">
 </head>
 <body class="hub">
+<div id="sky" aria-hidden="true"></div>
 <main class="hub-wrap">
   <header class="hub-head">
-    <a class="brand" href="/"><img src="/assets/icon.svg" alt="" width="40" height="40"><span><b>BK Trip</b><small>우리 여행 모음</small></span></a>
+    <a class="brand" href="/"><img src="/assets/icon.svg" alt="" width="36" height="36"><span><b>BK Trip</b><small>우리 여행 모음</small></span></a>
     <button class="theme-btn" id="theme" type="button" aria-label="화면 모드 바꾸기"></button>
   </header>
   <section class="hub-hello" id="hello"><h1>여행 불러오는 중…</h1></section>
-  <section class="hub-sec" id="sec-now" hidden><h2>지금 여행 중</h2><div class="cards" id="list-now"></div></section>
-  <section class="hub-sec" id="sec-next"><h2>다가오는 여행 <span class="cnt" id="cnt-next"></span></h2><div class="cards" id="list-next"></div></section>
-  <section class="hub-sec" id="sec-past" hidden><h2>지난 여행 <span class="cnt" id="cnt-past"></span></h2><div class="cards past" id="list-past"></div></section>
-  <p class="hub-foot">한 번 열어본 여행은 인터넷이 끊겨도 보여.</p>
+  <section class="hub-sec on-sky" id="sec-feature"><div id="feature"></div></section>
+  <section class="hub-sec" id="sec-next" hidden><h2>그다음 여행 <span class="cnt" id="cnt-next"></span></h2><div class="minis" id="list-next"></div></section>
+  <section class="hub-sec" id="sec-past" hidden><h2>다녀온 여행 <span class="cnt" id="cnt-past"></span></h2><div class="minis" id="list-past"></div></section>
+  <p class="hub-foot">한 번 연 여행은 비행기 모드에서도 열려.</p>
 </main>
+<script src="/app/theme.js"></script>
 <script>
 (function () {
   'use strict';
+  var TH = window.BKTheme;
   var WD = ['일', '월', '화', '수', '목', '금', '토'];
   function esc(s) { return String(s == null ? '' : s).replace(/[&<>"']/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]; }); }
   function today() { var d = new Date(); return d.getFullYear() + '-' + ('0' + (d.getMonth() + 1)).slice(-2) + '-' + ('0' + d.getDate()).slice(-2); }
   function diff(a, b) { return Math.round((Date.parse(a + 'T00:00:00Z') - Date.parse(b + 'T00:00:00Z')) / 86400000); }
   function p(d) { var m = /^(\d{4})-(\d{2})-(\d{2})/.exec(d); var dt = new Date(Date.UTC(+m[1], +m[2] - 1, +m[3])); return { y: +m[1], m: +m[2], d: +m[3], wd: WD[dt.getUTCDay()] }; }
   function range(t, short) {
-    var a = p(t.start), b = p(t.end || t.start);
-    if (short) return a.y + '.' + a.m + '.' + a.d + (t.end && t.end !== t.start ? '–' + (b.m !== a.m || b.y !== a.y ? b.m + '.' : '') + b.d : '');
-    var s = a.y + '.' + a.m + '.' + a.d + ' (' + a.wd + ')';
-    if (t.end && t.end !== t.start) s += ' – ' + (b.y !== a.y ? b.y + '.' : '') + (b.m !== a.m || b.y !== a.y ? b.m + '.' : '') + b.d + ' (' + b.wd + ')';
-    return s;
+    var a = p(t.start), b = p(t.end || t.start), one = !t.end || t.end === t.start;
+    if (short) return a.y + '.' + a.m + '.' + a.d + (one ? '' : '–' + (b.m !== a.m || b.y !== a.y ? b.m + '.' : '') + b.d);
+    return a.m + '월 ' + a.d + '일 ' + a.wd + (one ? '' : ' – ' + (b.m !== a.m ? b.m + '월 ' : '') + b.d + '일 ' + b.wd);
   }
   function nights(t) { var n = diff(t.end || t.start, t.start); return n <= 0 ? '당일치기' : n + '박 ' + (n + 1) + '일'; }
+  function themeOf(t) { var th = t.theme || {}; if (!th.glyph && t.cover && t.cover.glyph) th = Object.assign({ glyph: t.cover.glyph }, th); return th; }
+  function gsize(g, max, width) { var n = Array.from(String(g)).length, latin = /^[ -~]+$/.test(g); return Math.max(18, Math.min(max, Math.floor(width / (n * (latin ? 0.8 : 1.06))))); }
+  function vars(th) { var v = TH.vars(th), s = ''; for (var k in v) s += k + ':' + v[k].replace(/"/g, "'") + ';'; return s; }
+  function who(t) { return (t.companions || []).length ? t.companions.join(', ') : ''; }
 
-  /* 테마 */
+  /* 화면 모드 */
   var THEMES = ['auto', 'light', 'dark'];
   var ICON = {
     auto: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="8"/><path d="M12 4a8 8 0 0 1 0 16z" fill="currentColor"/></svg>',
@@ -68,19 +73,22 @@
   paint(getT());
   btn.addEventListener('click', function () { var t = THEMES[(THEMES.indexOf(getT()) + 1) % 3]; setT(t); paint(t); });
 
-  function card(t, kind, td) {
-    var c = t.cover || {}, cols = c.colors || ['#B83A2B', '#21607A'];
-    var badge = '';
-    if (kind === 'now') badge = '<span class="badge live">여행 중 · ' + (diff(td, t.start) + 1) + '일차</span>';
-    else if (kind === 'next') { var d = diff(t.start, td); badge = '<span class="badge">' + (d === 0 ? 'D-DAY' : 'D-' + d) + '</span>'; }
-    var who = (t.companions || []).length ? ('<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true" style="width:13px;height:13px;vertical-align:-2px;margin-right:3px"><circle cx="9" cy="8" r="3.2"/><path d="M3.5 19a5.5 5.5 0 0 1 11 0"/><circle cx="17" cy="9" r="2.4"/><path d="M15.5 19a4.5 4.5 0 0 1 5-4.3"/></svg>' + t.companions.map(esc).join(', ')) : '';
-    return '<a class="tcard" href="/' + esc(t.slug) + '">' +
-      '<div class="cover" style="--g1:' + esc(cols[0]) + ';--g2:' + esc(cols[1] || cols[0]) + '">' +
-      (c.image ? '<img src="/trips/' + esc(t.slug) + '/' + esc(c.image) + '" alt="" loading="lazy">' : '') +
-      (c.glyph && !c.image ? '<span class="glyph" aria-hidden="true">' + esc(c.glyph) + '</span>' : '') +
-      badge + (t.region ? '<span class="region">' + esc(t.region) + '</span>' : '') + '</div>' +
-      '<div class="meta2"><h3>' + esc(t.title) + '</h3>' + (t.summary ? '<p class="sum">' + esc(t.summary) + '</p>' : '') +
-      '<div class="facts2"><span>' + range(t, kind === 'past') + '</span><span>' + nights(t) + '</span>' + (who ? '<span>' + esc(who) + '</span>' : '') + '</div></div></a>';
+  /* 큰 포스터 카드: 진행 중이거나 바로 다음 여행 */
+  function feature(t, kind, td) {
+    var th = themeOf(t), g = th.glyph || '';
+    var stk = kind === 'now' ? '<b>' + (diff(td, t.start) + 1) + '일차</b><span>여행 중</span>' : (diff(t.start, td) === 0 ? '<b>D-DAY</b><span>오늘 출발</span>' : '<b>D-' + diff(t.start, td) + '</b><span>출발까지</span>');
+    return '<a class="pcard" href="/' + esc(t.slug) + '" style="' + vars(th) + '">' +
+      '<div class="poster">' + TH.art(th, 'poster') + (g ? '<span class="pg" aria-hidden="true" style="--gsize:' + gsize(g, 66, 300) + 'px">' + esc(g) + '</span>' : '') + '<span class="stk">' + stk + '</span></div>' +
+      '<div class="body"><h3>' + esc(t.title) + '</h3>' + (t.summary ? '<p class="sum">' + esc(t.summary) + '</p>' : '') +
+      '<div class="chips"><span>' + range(t) + '</span><span>' + nights(t) + '</span>' + (who(t) ? '<span>' + esc(who(t)) + '</span>' : '') + '</div>' +
+      '<span class="go">' + (kind === 'now' ? '지금 일정 보기' : '여행 열기') + '</span></div></a>';
+  }
+  /* 작은 포스터 카드 */
+  function mini(t, td, next) {
+    var th = themeOf(t), g = th.glyph || '';
+    return '<a class="mini" href="/' + esc(t.slug) + '" style="' + vars(th) + '">' +
+      '<div class="poster">' + TH.art(th, 'poster') + (g ? '<span class="pg" aria-hidden="true" style="--gsize:' + gsize(g, 28, next ? 92 : 130) + 'px">' + esc(g) + '</span>' : '') + (next ? '<span class="stk">D-' + diff(t.start, td) + '</span>' : '') + '</div>' +
+      '<div class="body"><b>' + esc(t.title) + '</b><span>' + range(t, true) + ' · ' + nights(t) + '</span></div></a>';
   }
 
   function render(list) {
@@ -92,18 +100,32 @@
     });
     next.sort(function (a, b) { return a.start < b.start ? -1 : 1; });
     past.sort(function (a, b) { return a.start > b.start ? -1 : 1; });
-    document.getElementById('sec-now').hidden = !now.length;
-    document.getElementById('list-now').innerHTML = now.map(function (t) { return card(t, 'now', td); }).join('');
-    document.getElementById('cnt-next').textContent = next.length || '';
-    document.getElementById('list-next').innerHTML = next.length ? next.map(function (t) { return card(t, 'next', td); }).join('') :
-      '<div class="empty-card"><b>아직 잡힌 여행이 없어</b><span>클로드한테 “새 여행 추가해줘: 제목, 날짜”라고 하면 이 자리에 카드가 생겨.</span></div>';
+    var feat = now[0] || next[0] || null, kind = now[0] ? 'now' : 'next';
+    // 하늘: 대표 여행의 하늘, 없으면 BK 기본 밤하늘
+    var skyTheme = feat ? themeOf(feat) : { preset: 'mountains', sky: ['#0E1430', '#22264F', '#3E3466', '#6B4A6E', '#22304A'], sun: '#F3E7D3', hill1: '#2A2E52', hill2: '#1A1E36', water: '#22304A', accent: '#FF6B4A' };
+    TH.apply(document.documentElement, skyTheme);
+    document.getElementById('sky').innerHTML = TH.art(skyTheme, 'sky');
+    var mt = document.querySelector('meta[name="theme-color"]'); if (mt) mt.setAttribute('content', TH.merge(skyTheme).sky[0]);
+
+    var h = document.getElementById('hello');
+    if (now[0]) h.innerHTML = '<h1>지금 ' + esc(now[0].title) + ' 여행 중</h1><p>오늘은 ' + (diff(td, now[0].start) + 1) + '일차 · 카드 누르면 지금 일정이 바로 떠</p>';
+    else if (next[0]) h.innerHTML = '<h1>다음 여행은 ' + esc(next[0].title) + '</h1><p>' + range(next[0]) + ' 출발 · ' + nights(next[0]) + (who(next[0]) ? ' · ' + esc(who(next[0])) : '') + '</p>';
+    else h.innerHTML = '<h1>다음 여행은 어디로 갈까</h1><p>다녀온 여행 ' + past.length + '개가 아래에 모여 있어</p>';
+
+    document.getElementById('feature').innerHTML = feat ? feature(feat, kind, td) :
+      '<div class="empty-card"><b>아직 잡힌 여행이 없어</b><span>클로드한테 “새 여행 추가해줘: 제목, 날짜, 지역”이라고 하면 여기에 포스터가 생겨.</span></div>';
+    var rest = now.slice(1).concat(next.slice(feat && kind === 'next' ? 1 : 0));
+    document.getElementById('sec-next').hidden = !rest.length;
+    document.getElementById('cnt-next').textContent = rest.length || '';
+    document.getElementById('list-next').innerHTML = rest.map(function (t) { return mini(t, td, diff(t.start, td) > 0); }).join('');
+    // 하늘 높이 = 대표 카드 아래까지 (그 아래 목록은 종이 바탕 위에)
+    requestAnimationFrame(function () {
+      var f = document.getElementById('sec-feature').getBoundingClientRect();
+      document.getElementById('sky').style.height = Math.round(f.top + window.scrollY + Math.min(f.height, 220) + 60) + 'px';
+    });
     document.getElementById('sec-past').hidden = !past.length;
     document.getElementById('cnt-past').textContent = past.length || '';
-    document.getElementById('list-past').innerHTML = past.map(function (t) { return card(t, 'past', td); }).join('');
-    var h = document.getElementById('hello');
-    if (now.length) h.innerHTML = '<h1>지금 ' + esc(now[0].title) + ' 여행 중</h1><p>오늘은 ' + (diff(td, now[0].start) + 1) + '일차. 카드 눌러서 지금 일정 바로 봐.</p>';
-    else if (next.length) { var d = diff(next[0].start, td); h.innerHTML = '<h1>' + esc(next[0].title) + '까지 ' + (d === 0 ? '오늘 출발!' : 'D-' + d) + '</h1><p>' + range(next[0]) + ' · ' + nights(next[0]) + '</p>'; }
-    else h.innerHTML = '<h1>다음 여행은 어디로 갈까</h1><p>지난 여행 ' + past.length + '개가 여기 모여 있어.</p>';
+    document.getElementById('list-past').innerHTML = past.map(function (t) { return mini(t, td, false); }).join('');
   }
 
   fetch('/trips.json').then(function (r) { if (!r.ok) throw new Error(r.status); return r.json(); }).then(function (d) { render(d.trips || []); }, function () {

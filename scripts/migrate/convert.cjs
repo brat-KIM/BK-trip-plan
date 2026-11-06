@@ -9,6 +9,7 @@ const { chromium } = require('playwright');
 
 const ROOT = path.resolve(__dirname, '../..');
 const ORIG = path.join(ROOT, '_originals');
+const THEMES = require('../themes.json');
 const LIB = fs.readFileSync(path.join(__dirname, 'dom-lib.js'), 'utf8');
 const read = (p) => fs.readFileSync(path.join(ORIG, p), 'utf8');
 const write = (slug, data) => {
@@ -167,6 +168,7 @@ async function sapporo() {
     currency: { code: 'JPY', unit: '엔', krw: 9.4 },
     telNavi: true,
     cover: { colors: ['#B83A2B', '#21607A'], glyph: '札幌' },
+    theme: THEMES.sapporo,
     sections: {
       home: { hero: { title: r.title, when: r.when, flights: r.flights }, blocks: r.home },
       plan: { days: r.days },
@@ -243,6 +245,7 @@ async function gunsan() {
     tz: '+09:00',
     companions: ['여친'],
     cover: { colors: ['#C2562F', '#1F5E73'], glyph: '군산' },
+    theme: THEMES.gunsan,
     footer: esc(footer),
     sections: {
       home: {
@@ -335,6 +338,7 @@ async function sydney() {
     companions: ['여친'],
     currency: { code: 'AUD', unit: '호주달러', krw: 920 },
     cover: { colors: ['#2563EB', '#D97706'], glyph: 'SYD' },
+    theme: THEMES.sydney,
     footer: r.footer,
     sections: {
       home: {

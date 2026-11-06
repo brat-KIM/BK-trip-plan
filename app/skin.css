@@ -1,0 +1,346 @@
+/* =====================================================================
+   BK Trip 스킨 D — "그 나라 하늘 위 유리 + 포스터 한 장"
+   base.css(뼈대) → app.css(확장) → skin.css(이 파일: 겉모습) 순서로 얹음.
+   여행별 색은 theme.js 가 <html> 에 --sky, --accent, --glyph-font … 로 넣어줌.
+   ===================================================================== */
+
+/* ---------- 토큰: 라이트 ---------- */
+:root{
+  --font-display:"Black Han Sans","Noto Sans KR",sans-serif;
+  --font-body:"Noto Sans KR","Apple SD Gothic Neo","Malgun Gothic",system-ui,sans-serif;
+  --font-ja:"Zen Kaku Gothic New","Hiragino Sans","Noto Sans JP","Yu Gothic",sans-serif;
+  --cream:#F3E7D3;--navy:#1B2A49;
+  --accent:#FF6B4A;--accent2:#E8B032;--deep:#1B2A49;--glyph-font:"Black Han Sans",sans-serif;
+  --sky:linear-gradient(176deg,#1B1020 0%,#4A1A2C 25%,#A63A2E 50%,#E58A55 75%,#3E5B5E 100%);
+  --paper:#ECEAE5;--surface:rgba(255,255,255,.76);--solid:#FFFFFF;--ink:#17223A;--muted:#55617A;--line:rgba(27,42,73,.12);--chip:rgba(27,42,73,.07);
+  --cta:#1B2A49;--cta-ink:#F3E7D3;
+  --hot:color-mix(in srgb,var(--accent) 78%,#000);--hot-soft:color-mix(in srgb,var(--accent) 15%,transparent);
+  --mint:#1C6E47;
+  --navbg:rgba(255,255,255,.74);--navline:rgba(27,42,73,.12);--navink:#1B2A49;
+  --r-lg:24px;--r-md:18px;--r-sm:12px;--nav-h:72px;
+}
+/* ---------- 토큰: 다크 ---------- */
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --paper:#13161C;--surface:rgba(255,255,255,.07);--solid:#1D2129;--ink:#F2EFEA;--muted:rgba(242,239,234,.66);--line:rgba(255,255,255,.14);--chip:rgba(255,255,255,.09);
+  --cta:#F3E7D3;--cta-ink:#1B2A49;
+  --hot:color-mix(in srgb,var(--accent) 70%,#fff);--hot-soft:color-mix(in srgb,var(--accent) 20%,transparent);
+  --mint:#7FD6A6;
+  --navbg:rgba(24,22,30,.62);--navline:rgba(255,255,255,.28);--navink:#FFFFFF;
+}}
+:root[data-theme="dark"]{
+  --paper:#13161C;--surface:rgba(255,255,255,.07);--solid:#1D2129;--ink:#F2EFEA;--muted:rgba(242,239,234,.66);--line:rgba(255,255,255,.14);--chip:rgba(255,255,255,.09);
+  --cta:#F3E7D3;--cta-ink:#1B2A49;
+  --hot:color-mix(in srgb,var(--accent) 70%,#fff);--hot-soft:color-mix(in srgb,var(--accent) 20%,transparent);
+  --mint:#7FD6A6;
+  --navbg:rgba(24,22,30,.62);--navline:rgba(255,255,255,.28);--navink:#FFFFFF;
+}
+
+body{background:var(--paper);font-family:var(--font-body);font-size:15px}
+h1,h2{font-family:var(--font-display);font-weight:400;letter-spacing:0}
+a{color:var(--hot)}
+a:focus-visible,button:focus-visible,input:focus-visible,summary:focus-visible,select:focus-visible{outline:2.5px solid var(--accent);outline-offset:2px}
+
+/* ---------- 하늘 (화면 맨 위 그림) ---------- */
+#sky{position:absolute;left:0;right:0;top:0;height:var(--sky-h,224px);background:var(--sky);overflow:hidden;pointer-events:none}
+#sky .art{position:absolute;left:0;right:0;bottom:34px;width:100%;height:220px;display:block}
+#sky::after{content:"";position:absolute;left:0;right:0;bottom:0;height:96px;background:linear-gradient(180deg,color-mix(in srgb,var(--paper) 0%,transparent),var(--paper))}
+body[data-panel="home"]{--sky-h:480px}
+body.trip .app{position:relative;padding-bottom:calc(112px + env(safe-area-inset-bottom,0px))}
+section.panel{gap:16px;padding-top:6px}
+
+/* 하늘 위 유리 알약 (뒤로가기, 허브 링크 등) */
+.skypill,.hub-link,.ptitle .back{display:inline-flex;align-items:center;gap:4px;min-height:34px;padding:0 12px 0 8px;margin:0;border-radius:999px;font-size:12.5px;font-weight:500;letter-spacing:0;color:#fff;text-decoration:none;background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.32);-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);cursor:pointer;justify-self:start}
+.hub-link svg,.ptitle .back svg{width:14px;height:14px}
+
+/* ---------- 탭 머리 (홈 말고 모든 화면) ---------- */
+.ptitle{position:relative;min-height:166px;display:flex;justify-content:space-between;align-items:flex-end;gap:12px;color:#fff;padding-bottom:4px}
+.ptitle .pt-l{display:flex;flex-direction:column;align-items:flex-start;gap:2px;min-width:0}
+.ptitle .back{position:absolute;left:0;top:8px}
+.pt-sub{font-size:12.5px;font-weight:500;opacity:.9;text-shadow:0 1px 8px rgba(0,0,0,.25)}
+.pt-h{font-family:var(--font-display);font-weight:400;font-size:36px;line-height:1.08;color:#fff;margin:0;text-shadow:0 2px 12px rgba(0,0,0,.25)}
+.pt-glyph{flex:none;font-family:var(--glyph-font);font-size:28px;line-height:1;color:var(--cream);text-shadow:2px 2px 0 var(--deep);white-space:nowrap;margin-bottom:6px}
+
+/* ---------- 홈 히어로 ---------- */
+.hero{min-height:360px;display:flex;flex-direction:column;gap:0;padding-block:6px 0;color:#fff}
+.hero-bar{display:flex;justify-content:space-between;align-items:flex-start;gap:12px}
+.hero-glyph{font-family:var(--glyph-font);font-size:var(--gsize,80px);line-height:1;color:var(--cream);text-shadow:4px 4px 0 var(--deep);margin-top:18px;white-space:nowrap}
+.hero h1{font-family:var(--font-display);font-weight:400;font-size:clamp(23px,7vw,28px);line-height:1.2;color:#fff;margin-top:10px;text-shadow:0 2px 12px rgba(0,0,0,.25)}
+.hero .when{margin:4px 0 0;color:rgba(255,255,255,.9);font-weight:300;font-size:13.5px;text-shadow:0 1px 8px rgba(0,0,0,.3)}
+.dday{flex:none;width:66px;height:66px;min-width:0;padding:0;border-radius:50%;background:var(--accent);color:var(--deep);transform:rotate(9deg);box-shadow:3px 3px 0 var(--deep);display:flex;flex-direction:column;align-items:center;justify-content:center;line-height:1.1;margin-top:4px}
+.dday b{font-family:var(--font-display);font-weight:400;font-size:19px}
+.dday span{font-size:9.5px;font-weight:700;opacity:1}
+.hero .flights{display:flex;flex-wrap:wrap;gap:6px;margin-top:14px}
+.hero .flight{display:flex;flex-direction:column;gap:0;padding:7px 12px;border-radius:16px;color:#fff;background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.3);-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px)}
+.hero .flight .k,.hero .flight .s{font-size:10.5px;color:rgba(255,255,255,.85)}
+.hero .flight .v{font-size:13.5px;font-weight:700}
+.hero-art-wrap{display:none}
+
+/* ---------- 공통 카드 ---------- */
+.answer,.note,.card,.mapcard,.stay-card,.contact,.check,.steps li,.prep,.ledger,.fold,.planb,.kv,.chipgroup,.ranked li,.quick a,.quick button,.table-wrap,.menu,.setting,.pageframe iframe{background:var(--surface);border:1px solid var(--line);border-radius:var(--r-lg)}
+.card{border-radius:var(--r-lg);padding:14px 16px}
+.card .when{color:var(--hot);font-weight:700;font-size:12px}
+.card .hrs{display:inline-block;justify-self:start;font-size:11.5px;font-weight:600;color:var(--ink);background:var(--chip);padding:2px 9px;border-radius:999px}
+.card .memo{color:var(--muted)}
+.answer{padding:16px 18px}
+.answer>strong{font-size:16px}
+.answer li::marker{color:var(--accent)}
+.answer.lake,.answer.pick{border-left:1px solid var(--line);box-shadow:inset 4px 0 0 var(--c,var(--accent))}
+.note.warn,.note.ok,.note.info,.note.error{border-color:transparent}
+.note.warn{background:color-mix(in srgb,#E8A23A 18%,transparent)}
+.note.ok{background:color-mix(in srgb,#2F9B5A 16%,transparent)}
+.note.info{background:color-mix(in srgb,#3A86C8 16%,transparent)}
+.note.error{background:var(--hot-soft)}
+.note.warn h3{color:color-mix(in srgb,#C77A0A 85%,var(--ink))}
+.note.ok h3{color:var(--mint)}
+.sec-head h2{font-size:24px;line-height:1.2}
+.sec-head p,.cap{color:var(--muted)}
+.table-wrap{overflow-x:auto;padding:0}
+th{background:var(--chip)}
+th,td{border-bottom-color:var(--line)}
+tr.total td{background:var(--chip)}
+td.hl{background:color-mix(in srgb,#2F9B5A 16%,transparent);color:var(--mint)}
+
+/* 버튼 */
+.btn{min-height:44px;border-radius:999px;background:var(--chip);border:1px solid var(--line);color:var(--ink);font-weight:700;font-size:13.5px}
+.btn.primary,.btn.sm{background:var(--cta);border-color:var(--cta);color:var(--cta-ink)}
+.act{min-height:36px;background:var(--chip);border-color:var(--line);font-size:12.5px}
+.act.tmap{background:var(--cta);border-color:var(--cta);color:var(--cta-ink)}
+.copy,.reset{background:var(--chip);border-color:var(--line);color:var(--ink)}
+.pl .tel em,.btn em.navi{background:var(--accent);color:var(--deep);border-radius:999px;padding:1px 7px;font-style:normal}
+
+/* 태그 */
+.tag{border-radius:999px;padding:2px 9px;font-size:11px;background:var(--chip);color:var(--muted)}
+.tag.ok{background:var(--cta);color:var(--cta-ink)}
+.tag.warn{background:var(--hot-soft);color:var(--hot)}
+.tag.car{background:color-mix(in srgb,#3A86C8 18%,transparent);color:color-mix(in srgb,#3A86C8 70%,var(--ink))}
+.tag.stay{background:color-mix(in srgb,#9A5BC4 18%,transparent);color:color-mix(in srgb,#9A5BC4 70%,var(--ink))}
+.tag.food{background:color-mix(in srgb,var(--accent2) 26%,transparent);color:color-mix(in srgb,var(--accent2) 45%,var(--ink))}
+
+/* 장소 칩 */
+.pls{gap:8px}
+.pl{background:var(--chip);border:1px solid var(--line);border-radius:16px;padding:9px 12px 9px 30px}
+.pl::before{background:var(--accent);left:11px}
+.pl::after{background:var(--solid);left:14.5px}
+.pl b{font-size:14px}
+.pl span{color:var(--muted);font-size:12px}
+.pl .tel{color:var(--ink)}
+
+/* ---------- 홈: 지금·다음 ---------- */
+.now{border-radius:28px;background:var(--surface);border:1px solid var(--line);-webkit-backdrop-filter:blur(22px) saturate(1.2);backdrop-filter:blur(22px) saturate(1.2);box-shadow:0 16px 44px rgba(0,0,0,.16)}
+.now-top{border-left:0;padding:16px 18px 8px;gap:6px}
+.now-label{color:var(--ink);font-weight:500}
+.now-label .pulse{background:var(--accent);box-shadow:0 0 0 4px var(--hot-soft)}
+.now-title{font-size:20px;line-height:1.3}
+.now-sub{font-size:13px;color:var(--muted)}
+.next{margin:0 18px;padding:10px 0;border-top:1px solid var(--line);grid-template-columns:auto minmax(0,1fr);gap:2px 10px}
+.next .t{font-size:12px;font-weight:700;background:var(--cta);color:var(--cta-ink);padding:2px 9px;border-radius:999px;align-self:center}
+.next .w{font-size:13.5px}
+.next .in{font-size:12px}
+.now-acts{padding:4px 18px 16px}
+.now-acts .btn{flex:1 1 auto}
+.prep{border-top:1px solid var(--line);border-radius:var(--r-lg);padding:16px}
+.prep h2{font-size:20px}
+.prep .bar i,.bar i{background:var(--accent)}
+.prep.done .bar i{background:var(--mint)}
+.check.mini{background:transparent;border:0}
+.mapcard{padding:16px}
+.mapcard h2{font-size:20px}
+.stamps .lab{color:var(--muted)}
+.stamp{background:var(--solid)}
+.wx div{border-radius:18px;background:var(--surface);border:1px solid var(--line)}
+.wx div:first-child{background:var(--cta);color:var(--cta-ink);border-color:var(--cta)}
+.wx div:first-child .d,.wx div:first-child .p,.wx div:first-child .s{color:inherit;opacity:.85}
+.wx .t{font-family:var(--font-display);font-size:16px}
+.quick a,.quick button{border-radius:20px}
+.quick .v{color:var(--ink)}
+
+/* ---------- 일정 ---------- */
+.daypick,.jump,.pb-bar{background:color-mix(in srgb,var(--paper) 84%,transparent);-webkit-backdrop-filter:blur(16px);backdrop-filter:blur(16px);border-bottom:1px solid var(--line)}
+.daypick button{border-radius:18px;border:1px solid var(--line);background:var(--surface);min-height:48px;color:var(--muted)}
+.daypick button[aria-pressed="true"]{background:var(--cta);border-color:var(--cta);color:var(--cta-ink)}
+.daypick button[aria-pressed="true"] b{color:var(--cta-ink)}
+.day{background:transparent;border:0;border-radius:0;overflow:visible}
+.day-head{background:none;border:0;padding:4px 2px 12px;gap:14px}
+.day-head h3{font-family:var(--font-display);font-size:20px;line-height:1.25}
+.day-head .wxline{color:var(--hot);font-size:12.5px}
+.day-head p{color:var(--muted)}
+.rows{display:grid;gap:8px;padding:0}
+.row{grid-template-columns:50px minmax(0,1fr);gap:12px;padding:12px 14px;border-radius:22px;background:var(--surface);border:1px solid var(--line)}
+.row::before,.row::after{display:none}
+.row time{font-size:13.5px;font-weight:900;padding-top:1px}
+.row .t{font-size:15px}
+.row.key .t{font-size:15px}
+.row.key .t::after{content:"핵심";display:inline-block;margin-left:6px;vertical-align:2px;font-size:10px;font-weight:700;padding:1px 7px;border-radius:999px;background:var(--hot-soft);color:var(--hot)}
+.row .n{font-size:13.5px}
+.row.now{background:var(--hot-soft);border-color:color-mix(in srgb,var(--accent) 60%,transparent)}
+.row.now time::after{color:var(--hot);font-weight:700}
+.row.done{opacity:.5}
+.row.fork{margin:0;background:color-mix(in srgb,#E8A23A 16%,transparent);border-color:transparent}
+.row.checked{opacity:.5}
+.rows.checkable .row{grid-template-columns:50px minmax(0,1fr) 34px}
+.day-foot{margin-top:8px;border:0;border-radius:18px;background:var(--chip)}
+.day-head .facts .fact{background:var(--chip);border-color:var(--line)}
+.ring{background:radial-gradient(closest-side,var(--paper) 76%,transparent 78% 100%),conic-gradient(var(--accent) calc(var(--p)*1%),var(--chip) 0)}
+.chk[aria-pressed="true"]{background:var(--accent);border-color:var(--accent);color:var(--deep)}
+.detail{background:var(--chip);border-color:var(--line);border-radius:18px}
+.nextbar{left:12px;right:12px;bottom:calc(88px + env(safe-area-inset-bottom,0px));border-radius:24px;border:1px solid var(--line);background:color-mix(in srgb,var(--solid) 86%,transparent);-webkit-backdrop-filter:blur(18px);backdrop-filter:blur(18px);box-shadow:0 10px 30px rgba(0,0,0,.2);max-width:576px}
+
+/* ---------- 맛집 ---------- */
+.eatswitch{border-radius:999px;background:var(--chip);border:1px solid var(--line);padding:4px}
+.eatswitch button{border-radius:999px;min-height:40px;color:var(--ink)}
+.eatswitch button[aria-pressed="true"]{background:var(--cta);color:var(--cta-ink)}
+.eatswitch .n{background:var(--accent);color:var(--deep)}
+.jump a{border-radius:999px;background:var(--surface);border:1px solid var(--line);font-size:12.5px;min-height:34px;display:inline-flex;align-items:center}
+.group-label{font-size:14.5px;margin:10px 2px -6px}
+.group-label::before{background:var(--accent);width:9px;height:9px}
+.wish-have{background:var(--chip);border-radius:20px;padding:12px}
+
+/* ---------- 숙소 ---------- */
+.stay-card{border-top:1px solid var(--line);box-shadow:inset 0 4px 0 var(--c,var(--accent))}
+.stay-card .rank{color:var(--hot)}
+.stay-card h3{font-family:var(--font-display);font-size:21px}
+
+/* ---------- 체크리스트 ---------- */
+.check{border-radius:var(--r-lg);overflow:hidden}
+.check input{accent-color:var(--accent)}
+.cl-head .due{color:var(--hot)}
+
+/* ---------- 연락처 ---------- */
+.contact{border-radius:20px}
+.contact a.num{color:var(--ink)}
+.copy{border-radius:999px}
+
+/* ---------- 회화 ---------- */
+.pb-wrap{display:grid;grid-template-columns:minmax(0,1fr);gap:12px}
+.pb-wrap>*{min-width:0}
+.pb-sign{background:none;border:0;padding:0;box-shadow:none;color:var(--ink)}
+.pb-sign-in{padding:0;border:0;background:none;display:grid;gap:8px}
+.pb-sign h1{display:none}
+.pb-sign-k{color:var(--muted);font-size:12px;letter-spacing:0;font-family:var(--font-ja)}
+.pb-sign-facts{gap:6px}
+.pb-fact{background:var(--mint);color:#fff;border:0;border-radius:999px;padding:5px 12px;font-size:12px}
+.pb-fact b{color:#fff}
+.pb-legend{color:var(--muted);font-size:11.5px}
+.pb-bar{margin-inline:-16px;padding:10px 16px}
+.pb-search{border-radius:999px;background:var(--surface);border:1px solid var(--line);min-height:46px}
+.pb-search input{color:var(--ink)}
+.pb-speed{border-radius:999px;background:var(--surface);border:1px solid var(--line);color:var(--ink)}
+.pb-chip{border-radius:999px;background:var(--surface);border:1px solid var(--line);color:var(--ink)}
+.pb-chip.pb-on{background:var(--cta);border-color:var(--cta);color:var(--cta-ink)}
+.pb-chip.pb-fav{border-color:color-mix(in srgb,var(--accent) 60%,transparent);color:var(--hot)}
+.pb-count,.pb-note,.pb-eyebrow{color:var(--muted)}
+.pb-plate{background:none;border:0;padding:0;box-shadow:none}
+.pb-plate h2{font-family:var(--font-display);font-weight:400;font-size:20px;color:var(--ink);background:none;border:0;padding:0}
+.pb-rows{background:none;border:0;display:grid;gap:8px}
+.pb-row{background:var(--surface);border:1px solid var(--line);border-radius:22px;padding:6px 8px 6px 4px}
+.pb-row:first-child{border-top:1px solid var(--line)}
+.pb-ko{color:var(--muted);font-size:12px}
+.pb-jp{font-family:var(--font-ja);font-size:20px;color:var(--ink)}
+.pb-pr{color:var(--mint);font-weight:700}
+.pb-tip{color:var(--muted)}
+.pb-ib.pb-spk{background:var(--cta);color:var(--cta-ink);border:0}
+.pb-ib.pb-star{background:transparent;border:1px solid var(--line);color:var(--muted)}
+.pb-ib.pb-star[aria-pressed="true"]{color:var(--hot);border-color:color-mix(in srgb,var(--accent) 50%,transparent)}
+.pb-show{background:color-mix(in srgb,var(--paper) 96%,transparent);-webkit-backdrop-filter:blur(20px);backdrop-filter:blur(20px)}
+.pb-btn{border-radius:999px}
+.pb-btn.pb-go{background:var(--cta);color:var(--cta-ink)}
+
+/* ---------- 촬영 (bk-shoot-pd 스타일 콘티) ---------- */
+.sh-hero{background:none;border:0;padding:0}
+.sh-title{font-family:var(--font-display);font-weight:400}
+.sh-rec i{background:#FF3B30}
+.sh-meter,.sh-top3,.sh-plan,.sh-place,.sh-day,.sh-prompt,.sh-assume{border-radius:var(--r-lg)}
+.sh-plan,.sh-place,.sh-prompt,.sh-top3,.sh-meter{background:var(--surface);border:1px solid var(--line)}
+.sh-meter .bar i{background:var(--accent)}
+.sh-shots input{accent-color:var(--accent)}
+.sh-k{color:var(--hot)}
+.sh-say{border-radius:16px}
+
+/* ---------- 가계부 ---------- */
+.ledger{border-top:1px solid var(--line);box-shadow:inset 0 4px 0 var(--accent);border-radius:var(--r-lg)}
+.lg-top h2{font-size:22px}
+.lg-sum b{font-family:var(--font-display)}
+.lg-budget .bar i{background:var(--accent)}
+.lg-form input,.lg-form select{background:var(--solid);border-radius:14px}
+.lg-form .btn{background:var(--cta);color:var(--cta-ink);border-color:var(--cta)}
+
+/* ---------- 하단 탭: 유리 알약 + 따로 떠 있는 ⋯ ---------- */
+.nav{position:fixed;left:0;right:0;bottom:0;z-index:50;max-width:600px;margin:0 auto;background:none;border:0;-webkit-backdrop-filter:none;backdrop-filter:none;padding:0 12px calc(14px + env(safe-area-inset-bottom,0px));display:flex;gap:8px;align-items:center}
+.nav-pill{flex:1;min-width:0;display:grid;grid-template-columns:repeat(var(--n,5),minmax(0,1fr));gap:2px;padding:5px;border-radius:999px;background:var(--navbg);border:1px solid var(--navline);-webkit-backdrop-filter:blur(22px) saturate(1.4);backdrop-filter:blur(22px) saturate(1.4);box-shadow:0 12px 36px rgba(0,0,0,.28)}
+.nav .nav-pill button,.nav .nav-more{display:grid;justify-items:center;align-content:center;gap:2px;min-height:50px;padding:0;border:0;border-radius:999px;background:none;color:var(--navink);font:inherit;font-size:10.5px;font-weight:600;cursor:pointer}
+.nav svg{width:19px;height:19px;color:inherit}
+.nav .nav-pill button[aria-current="page"],.nav .nav-more[aria-current="page"]{background:var(--cta);color:var(--cta-ink);font-weight:700}
+.nav .nav-pill button[aria-current="page"] svg{color:inherit}
+.nav .nav-more{flex:none;width:60px;height:60px;background:var(--navbg);border:1px solid var(--navline);-webkit-backdrop-filter:blur(22px) saturate(1.4);backdrop-filter:blur(22px) saturate(1.4);box-shadow:0 12px 36px rgba(0,0,0,.28)}
+.nav .nav-more svg{width:22px;height:22px}
+.toast{bottom:calc(96px + env(safe-area-inset-bottom,0px));background:var(--cta);color:var(--cta-ink)}
+
+/* ---------- 더보기 타일 ---------- */
+.tiles{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+.tile{display:flex;flex-direction:column;align-items:flex-start;gap:10px;padding:14px;border-radius:24px;background:var(--surface);border:1px solid var(--line);color:var(--ink);font:inherit;text-align:left;cursor:pointer;min-width:0}
+.tile .ti{width:40px;height:40px;flex:none;border-radius:12px;display:grid;place-items:center;color:#fff;background:var(--tc,var(--accent))}
+.tile .ti svg{width:20px;height:20px}
+.tile .tx{display:flex;flex-direction:column;gap:1px;min-width:0}
+.tile .tt{font-weight:700;font-size:15px}
+.tile .ds{font-size:11.5px;color:var(--muted);line-height:1.4}
+.tile.big{grid-column:1/-1;flex-direction:row;align-items:center;background:var(--cta);color:var(--cta-ink);border-color:var(--cta)}
+.tile.big .tt{font-family:var(--font-display);font-weight:400;font-size:18px}
+.tile.big .ds{color:inherit;opacity:.8}
+.tile.big .plus{margin-left:auto;width:40px;height:40px;border-radius:50%;display:grid;place-items:center;background:var(--accent);color:var(--deep);flex:none}
+.tile.sos{background:var(--hot-soft);border-color:color-mix(in srgb,var(--accent) 45%,transparent)}
+.setting{border-radius:999px;padding:8px 8px 8px 16px}
+.seg3{background:var(--chip)}
+.seg3 button[aria-pressed="true"]{background:var(--cta);color:var(--cta-ink)}
+
+/* =====================================================================
+   허브
+   ===================================================================== */
+body.hub{background:var(--paper);color:var(--ink)}
+body.hub #sky{height:560px}
+.hub-wrap{position:relative;z-index:1;gap:18px;padding-top:calc(18px + env(safe-area-inset-top,0px))}
+.hub-head{color:#fff}
+.brand{color:#fff}
+.brand b{font-family:var(--font-display);font-size:22px;color:#fff}
+.brand small{color:rgba(255,255,255,.82)}
+.brand img{border-radius:10px;box-shadow:none}
+.theme-btn{background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.32);color:#fff;-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px)}
+.hub-hello{color:#fff;margin-top:14px}
+.hub-hello h1{font-family:var(--font-display);font-size:clamp(28px,8.4vw,36px);color:#fff;line-height:1.15;text-shadow:0 2px 14px rgba(0,0,0,.25)}
+.hub-hello p{color:rgba(255,255,255,.9);font-weight:300;text-shadow:0 1px 8px rgba(0,0,0,.3)}
+.hub-sec>h2{color:var(--muted);letter-spacing:0;font-size:13px}
+.hub-sec.on-sky>h2{color:rgba(255,255,255,.85)}
+.hub-sec.on-sky>h2::after{background:rgba(255,255,255,.25)}
+/* 큰 포스터 카드 (진행 중 · 다음 여행) */
+.pcard{position:relative;display:flex;flex-direction:column;border-radius:28px;overflow:hidden;text-decoration:none;color:#fff;border:1px solid rgba(255,255,255,.3);background:color-mix(in srgb,var(--deep) 84%,transparent);-webkit-backdrop-filter:blur(22px) saturate(1.2);backdrop-filter:blur(22px) saturate(1.2);box-shadow:0 18px 50px rgba(10,6,14,.4)}
+.pcard .poster{position:relative;height:200px;overflow:hidden}
+.pcard .poster .art{position:absolute;inset:0;width:100%;height:100%}
+.pcard .pg{position:absolute;left:16px;bottom:26px;font-family:var(--glyph-font);font-size:var(--gsize,64px);line-height:1;color:var(--cream);text-shadow:3px 3px 0 var(--deep);white-space:nowrap}
+.pcard .stk{position:absolute;right:14px;top:14px;width:70px;height:70px;border-radius:50%;background:var(--accent);color:var(--deep);display:flex;flex-direction:column;align-items:center;justify-content:center;transform:rotate(9deg);box-shadow:3px 3px 0 var(--deep);line-height:1.1}
+.pcard .stk b{font-family:var(--font-display);font-weight:400;font-size:22px}
+.pcard .stk span{font-size:9.5px;font-weight:700}
+.pcard .body{padding:14px 16px 16px;display:flex;flex-direction:column;gap:10px}
+.pcard h3{font-family:var(--font-display);font-weight:400;font-size:24px;line-height:1.15;margin:0;color:#fff}
+.pcard .sum{margin:0;font-size:12.5px;font-weight:300;color:rgba(255,255,255,.9)}
+.pcard .chips{display:flex;flex-wrap:wrap;gap:6px}
+.pcard .chips span{font-size:11.5px;font-weight:500;padding:4px 10px;border-radius:999px;background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.28)}
+.pcard .go{display:inline-flex;align-items:center;justify-content:center;min-height:44px;border-radius:999px;background:var(--cream);color:var(--navy);font-weight:700;font-size:14px}
+/* 작은 포스터 카드 (지난 여행 · 다른 예정) */
+.minis{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+.mini{display:flex;flex-direction:column;border-radius:22px;overflow:hidden;text-decoration:none;color:var(--ink);background:var(--surface);border:1px solid var(--line);box-shadow:0 6px 18px rgba(0,0,0,.08)}
+.mini .poster{position:relative;height:96px;overflow:hidden}
+.mini .poster .art{position:absolute;inset:0;width:100%;height:100%}
+.mini .pg{position:absolute;left:10px;top:10px;font-family:var(--glyph-font);font-size:var(--gsize,26px);line-height:1;color:var(--pg-c,var(--cream));text-shadow:2px 2px 0 var(--pg-s,var(--deep));white-space:nowrap}
+.mini .stk{position:absolute;right:8px;top:8px;font-size:11px;font-weight:700;padding:2px 8px;border-radius:999px;background:var(--accent);color:var(--deep)}
+.mini .body{padding:9px 12px 12px;display:flex;flex-direction:column;gap:1px}
+.mini .body b{font-size:14px}
+.mini .body span{font-size:11.5px;color:var(--muted)}
+.empty-card{border-radius:28px;background:rgba(20,18,26,.36);border:1px dashed rgba(255,255,255,.45);color:rgba(255,255,255,.9);-webkit-backdrop-filter:blur(18px);backdrop-filter:blur(18px)}
+.empty-card b{color:#fff}
+.hub-foot{color:var(--muted)}
+@media (min-width:560px){.minis{grid-template-columns:repeat(3,minmax(0,1fr))}}
+@media (prefers-reduced-motion:no-preference){.pcard,.mini{transition:transform .15s}.pcard:active,.mini:active{transform:scale(.985)}}
+
+/* 탭 머리(작은 하늘)에서는 그림을 조금 작게 */
+body[data-panel="inner"] #sky .art{height:150px;bottom:30px}
+.stay-card .rank{background:none;padding:0;margin:0;font-size:12px}
+.vh{position:absolute!important;width:1px;height:1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap}

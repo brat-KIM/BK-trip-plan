@@ -19,6 +19,32 @@
   ],
   "glyph": "군산"
  },
+ "theme": {
+  "preset": "coast",
+  "rails": true,
+  "sky": [
+   "#2A2340",
+   "#8A4A4E",
+   "#E07A4A",
+   "#F2A05B",
+   "#B04A3A"
+  ],
+  "sun": "#E25D3A",
+  "hill1": "#1B2A49",
+  "hill2": "#1B2A49",
+  "water": "#2C3E52",
+  "accent": "#E8B032",
+  "accent2": "#E8B032",
+  "glyph": "군산",
+  "glyphFont": "blackhan",
+  "poster": {
+   "paper": "#E8B032",
+   "sun": "#E25D3A",
+   "hill2": "#1B2A49",
+   "water": "#1B2A49",
+   "accent2": "#E8B032"
+  }
+ },
  "footer": "체크 표시는 각자 폰에 따로 저장돼. 영업시간·휴무는 다이닝코드·ktriptips 등 2차 정보 기준이라 연휴엔 다를 수 있어. T맵 버튼을 누르면 T맵 앱이 바로 열려. 혹시 몰라 주소도 같이 복사해 둬.",
  "sections": {
   "home": {

@@ -1,0 +1,40 @@
+{
+ "_help": "여행별 테마 예시 모음. trip.json 과 trips.json 의 theme 에 같은 값을 넣는다. 필드 설명은 trips/_schema.md 의 theme 항목.",
+ "sapporo": {
+  "preset": "mountains",
+  "sky": ["#1B1020", "#4A1A2C", "#A63A2E", "#E58A55", "#3E5B5E"],
+  "sun": "#FF8A5B", "hill1": "#6B3242", "hill2": "#2C2F3A", "water": "#2F6E8A",
+  "accent": "#FF6B4A", "glyph": "札幌", "glyphFont": "dela",
+  "poster": { "paper": "#F3E7D3", "sun": "#D7381F", "hill1": "#5C7A5A", "hill2": "#2E4A3A", "water": "#2F6E8A" }
+ },
+ "gunsan": {
+  "preset": "coast", "rails": true,
+  "sky": ["#2A2340", "#8A4A4E", "#E07A4A", "#F2A05B", "#B04A3A"],
+  "sun": "#E25D3A", "hill1": "#1B2A49", "hill2": "#1B2A49", "water": "#2C3E52",
+  "accent": "#E8B032", "accent2": "#E8B032", "glyph": "군산", "glyphFont": "blackhan",
+  "poster": { "paper": "#E8B032", "sun": "#E25D3A", "hill2": "#1B2A49", "water": "#1B2A49", "accent2": "#E8B032" }
+ },
+ "sydney": {
+  "preset": "harbour",
+  "sky": ["#0A2A66", "#1D63C2", "#4C9BEB", "#8FD0FF", "#1D5AAE"],
+  "sun": "#F4D9A6", "hill1": "#F3E7D3", "water": "#0A2F6A", "ink": "#0A2A66",
+  "accent": "#FF6B4A", "glyph": "SYDNEY", "glyphFont": "limelight",
+  "poster": { "paper": "#0E4DA4", "sun": "#F4D9A6", "water": "#0A2F6A" }
+ },
+ "_examples": {
+  "night-city": {
+   "preset": "city",
+   "sky": ["#0B1030", "#25205A", "#5B2A7A", "#C24C7A", "#2A3A6A"],
+   "sun": "#FFD36E", "hill1": "#1E2448", "hill2": "#2C3466", "water": "#1A2550",
+   "accent": "#FF5E8A", "glyph": "TOKYO", "glyphFont": "dela",
+   "poster": { "paper": "#F3E7D3", "sun": "#E8463A", "hill1": "#1B2A49", "hill2": "#2F6E8A", "water": "#1B2A49" }
+  },
+  "jade-mountains": {
+   "preset": "mountains",
+   "sky": ["#0E2A2A", "#1F5A52", "#4E9A7A", "#C9D9A0", "#3A6A6A"],
+   "sun": "#FFE9A8", "hill1": "#2E5A48", "hill2": "#1C3A32", "water": "#2F6E8A",
+   "accent": "#F2B544", "glyph": "濟州", "glyphFont": "mincho",
+   "poster": { "paper": "#E9F0E2", "sun": "#E8A23A", "hill1": "#3C7A5A", "hill2": "#1C3A32", "water": "#2F6E8A" }
+  }
+ }
+}

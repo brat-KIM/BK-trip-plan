@@ -24,6 +24,28 @@
   ],
   "glyph": "SYD"
  },
+ "theme": {
+  "preset": "harbour",
+  "sky": [
+   "#0A2A66",
+   "#1D63C2",
+   "#4C9BEB",
+   "#8FD0FF",
+   "#1D5AAE"
+  ],
+  "sun": "#F4D9A6",
+  "hill1": "#F3E7D3",
+  "water": "#0A2F6A",
+  "ink": "#0A2A66",
+  "accent": "#FF6B4A",
+  "glyph": "SYDNEY",
+  "glyphFont": "limelight",
+  "poster": {
+   "paper": "#0E4DA4",
+   "sun": "#F4D9A6",
+   "water": "#0A2F6A"
+  }
+ },
  "footer": "최종 업데이트: 2026.4.13 · 좋은 여행 되세요! 🇦🇺",
  "sections": {
   "home": {

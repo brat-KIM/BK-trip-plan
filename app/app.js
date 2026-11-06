@@ -279,18 +279,44 @@
 
   function secTitle(id) { var s = S[id]; return (s && s.title) || (SEC[id] && SEC[id].t) || id; }
   function backBtn(to) { return '<button type="button" class="back" data-go="' + to + '">' + IC.back + secTitle(to) + '</button>'; }
-  function panel(id, label, inner, hidden) { return '<section class="panel" id="' + id + '" aria-label="' + esc(stripTags(label)) + '"' + (hidden ? ' hidden' : '') + '>' + inner + '</section>'; }
+  /* 화면 = 하늘 위 머리(작은 여행 이름 + 큰 탭 이름 + 지역 글씨) + 내용 */
+  function panel(id, label, inner, hidden, opt) {
+    opt = opt || {};
+    var head = '';
+    if (id !== 'home') {
+      var back = '';
+      if (NAVSET.indexOf(id) < 0 && id !== 'more' && !(id === 'wish' && S.eat)) back = backBtn(PARENT[id] || 'more');
+      var g = (T.theme && T.theme.glyph) || '';
+      head = '<header class="ptitle">' + back + '<div class="pt-l"><span class="pt-sub">' + (opt.sub || T.title) + '</span><h1 class="pt-h">' + label + '</h1></div>' +
+        (g ? '<span class="pt-glyph" aria-hidden="true">' + esc(g) + '</span>' : '') + '</header>';
+    }
+    return '<section class="panel" id="' + id + '" aria-label="' + esc(stripTags(label)) + '"' + (hidden ? ' hidden' : '') + '>' + head + inner + '</section>';
+  }
+  /* 지역 글씨 크기: 글자 수에 맞춰 화면 폭 안에 */
+  function glyphSize(g, max, width) {
+    var n = Array.from(String(g)).length, latin = /^[ -~]+$/.test(g);
+    return Math.max(26, Math.min(max, Math.floor((width || 330) / (n * (latin ? 0.8 : 1.06)))));
+  }
 
   /* =====================================================================
      홈
      ===================================================================== */
+  /* subtitle 이 비었을 때 날짜·지역으로 한 줄 자동 생성 (예: 12월 20일 일요일부터 22일 화요일까지 · 일본 오사카) */
+  function autoWhen() {
+    var W = '일월화수목금토', d = function (s) { var x = new Date(s + 'T00:00:00Z'); return { m: x.getUTCMonth() + 1, d: x.getUTCDate(), w: W[x.getUTCDay()] }; };
+    if (!T.start) return T.region || '';
+    var a = d(T.start), b = d(T.end || T.start);
+    var t = a.m + '월 ' + a.d + '일 ' + a.w + '요일' + (T.end && T.end !== T.start ? '부터 ' + (b.m !== a.m ? b.m + '월 ' : '') + b.d + '일 ' + b.w + '요일까지' : '');
+    return t + (T.region ? ' · ' + esc(T.region) : '');
+  }
   function heroHTML() {
     var h = (S.home && S.home.hero) || {};
     var flights = arr(h.flights);
+    var g = (T.theme && T.theme.glyph) || '';
     return '<header class="hero">' +
-      '<a class="hub-link" href="/">' + '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="m15 6-6 6 6 6"/></svg>BK Trip</a>' +
-      '<div class="hero-top"><div><h1>' + (h.title || T.title) + '</h1>' + ((h.when || T.subtitle) ? '<p class="when">' + (h.when || T.subtitle) + '</p>' : '') + '</div>' +
-      '<div class="dday" id="dday"><b>-</b><span></span></div></div>' +
+      '<div class="hero-bar"><a class="hub-link" href="/">' + IC.back + 'BK Trip</a><div class="dday" id="dday"><b>-</b><span></span></div></div>' +
+      (g ? '<span class="hero-glyph" aria-hidden="true" style="--gsize:' + glyphSize(g, 84) + 'px">' + esc(g) + '</span>' : '') +
+      '<h1>' + (h.title || T.title) + '</h1>' + '<p class="when">' + (h.when || T.subtitle || autoWhen()) + '</p>' +
       (flights.length ? '<div class="flights">' + flights.map(function (f) { return '<div class="flight"><span class="k">' + f.k + '</span><span class="v">' + f.v + '</span>' + (f.s ? '<span class="s">' + f.s + '</span>' : '') + '</div>'; }).join('') + '</div>' : '') +
       (h.html || '') + '</header>';
   }
@@ -422,7 +448,7 @@
       return B.group(g) + (arr(g.items).length ? '<div class="grid2' + dc(g.day) + '">' + arr(g.items).map(cardHTML).join('') + '</div>' : '') +
         (g.also ? B.places({ label: g.also.label || '일정에 이미 있는 곳', items: g.also.places }) : '') + blocks(g.blocks);
     }).join('');
-    var back = (id === 'wish' && !S.eat) ? backBtn('more') : '';
+    var back = '';
     return panel(id, secTitle(id), back + eatSwitch(id) + jumpHTML(jump, secTitle(id) + ' 바로가기') + blocks(s.top) + groups + blocks(s.blocks), true);
   }
 
@@ -437,7 +463,7 @@
         (st.price ? '<div class="price">' + st.price + (st.priceNote ? ' <small>' + st.priceNote + '</small>' : '') + '</div>' : '') +
         (st.facts ? listHTML(st.facts) : '') + bodyHTML({ text: st.text, html: st.html }) + tagsHTML(st.tags) + '</article>';
     }).join('') + '</div>' : '';
-    return panel('stay', secTitle('stay'), backBtn('more') + blocks(s.top) + cards + blocks(s.blocks), true);
+    return panel('stay', secTitle('stay'), blocks(s.top) + cards + blocks(s.blocks), true);
   }
 
   /* =====================================================================
@@ -457,7 +483,7 @@
     var head = s.head || { title: secTitle(id) };
     var h = '<div class="sec-head"><h2>' + head.title + '</h2>' + (head.text ? '<p>' + head.text + '</p>' : '') +
       '<div class="progress" id="' + id + '-progress">0 / 0</div><div class="bar"><i id="' + id + '-bar"></i></div></div>';
-    return panel(id, secTitle(id), backBtn('more') + blocks(s.top) + h + checkGroups(id, s.groups) +
+    return panel(id, secTitle(id), blocks(s.top) + h + checkGroups(id, s.groups) +
       '<button type="button" class="reset" data-reset="' + id + '">체크 전부 지우기</button>' + blocks(s.blocks), true);
   }
 
@@ -485,13 +511,13 @@
   function renderMoney() {
     var s = S.money;
     var lg = s.ledger === false ? '' : ledgerHTML();
-    return panel('money', secTitle('money'), backBtn('more') + (s.ledgerFirst === false ? '' : lg) + blocks(s.top) + blocks(s.blocks) + (s.ledgerFirst === false ? lg : ''), true);
+    return panel('money', secTitle('money'), (s.ledgerFirst === false ? '' : lg) + blocks(s.top) + blocks(s.blocks) + (s.ledgerFirst === false ? lg : ''), true);
   }
 
   /* =====================================================================
      이동 · 대안 · 비상 · 추가 페이지
      ===================================================================== */
-  function renderSimple(id) { var s = S[id]; return panel(id, secTitle(id), backBtn('more') + blocks(s.top) + blocks(s.blocks), true); }
+  function renderSimple(id) { var s = S[id]; return panel(id, secTitle(id), blocks(s.top) + blocks(s.blocks), true); }
   function planbHTML(items) {
     items = arr(items); if (!items.length) return '';
     return '<div class="planb">' + items.map(function (r) { return '<div class="trow"><b>' + r.if + '</b>' + r.then + '</div>'; }).join('') + '</div>';
@@ -499,7 +525,7 @@
   function renderPlanb() {
     var s = S.planb;
     var head = s.head || { title: '막힐 때', text: '현장에서 일정이 꼬이면 여기서 바로 바꾸기.' };
-    return panel('planb', secTitle('planb'), backBtn('more') + blocks(s.top) + '<div class="sec-head"><h2>' + head.title + '</h2>' + (head.text ? '<p>' + head.text + '</p>' : '') + '</div>' + (s.listTitle ? '<div class="lbl planb-l">' + s.listTitle + ' · ' + arr(s.items).length + '</div>' : '') + planbHTML(s.items) + blocks(s.blocks), true);
+    return panel('planb', secTitle('planb'), blocks(s.top) + '<div class="sec-head"><h2>' + head.title + '</h2>' + (head.text ? '<p>' + head.text + '</p>' : '') + '</div>' + (s.listTitle ? '<div class="lbl planb-l">' + s.listTitle + ' · ' + arr(s.items).length + '</div>' : '') + planbHTML(s.items) + blocks(s.blocks), true);
   }
   function parkingHTML() {
     if (!S.plan) return '';
@@ -516,7 +542,7 @@
   }
   function renderSos() {
     var s = S.sos;
-    return panel('sos', secTitle('sos'), backBtn('more') + blocks(s.top) + (s.contacts ? B.contacts({ items: s.contacts }) : '') + blocks(s.blocks), true);
+    return panel('sos', secTitle('sos'), blocks(s.top) + (s.contacts ? B.contacts({ items: s.contacts }) : '') + blocks(s.blocks), true);
   }
   function pageFrame(src, title) {
     return '<div class="pageframe"><iframe src="' + esc(asset(src)) + '" title="' + esc(title || '페이지') + '" loading="lazy"></iframe><a class="btn" href="' + esc(asset(src)) + '" target="_blank" rel="noopener">새 창으로 크게 보기</a></div>';
@@ -526,7 +552,7 @@
     var inner = blocks(s.top) + (s.page ? pageFrame(s.page, '촬영 콘티') : '') + blocks(s.blocks);
     return panel('shoot', secTitle('shoot'), inner, true);
   }
-  function renderExtra(p) { return panel('x-' + p.id, p.title, backBtn('more') + blocks(p.top) + blocks(p.blocks), true); }
+  function renderExtra(p) { return panel('x-' + p.id, p.title, blocks(p.top) + blocks(p.blocks), true); }
 
   /* ---------- 더보기 ---------- */
   function moreItems() {
@@ -537,17 +563,27 @@
     ORDER_PRIMARY.forEach(function (id) { if (S[id] && NAVSET.indexOf(id) < 0 && id !== 'home') list.push({ id: id, t: secTitle(id), d: S[id].desc || '', ic: SEC[id].ic }); });
     return list;
   }
+  var TILE_C = ['#2F6E8A', '#5C7A5A', '#C98A1E', '#6B3242', '#4E5D6C', '#1F6F78'];
   function renderMore() {
     var items = moreItems();
-    var head = (T.more && T.more.head) || { title: '더보기', text: '' };
-    var menu = '<ul class="menu">' + items.map(function (m, i) {
-      return '<li><button type="button" data-go="' + m.id + '" class="d' + ((i % 4) + 1) + '"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">' + m.ic + '</svg></span><span><span class="tt">' + m.t + '</span>' + (m.d ? '<span class="ds">' + m.d + '</span>' : '') + '</span>' + IC.more + '</button></li>';
-    }).join('') + '</ul>';
+    var head = (T.more && T.more.head) || {};
+    var ico = function (ic) { return '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">' + ic + '</svg>'; };
+    var tiles = '', k = 0;
+    items.forEach(function (m) {
+      if (m.id === 'money') {
+        tiles = '<button type="button" class="tile big" data-go="money"><span class="ti" style="--tc:var(--accent);color:var(--deep)">' + ico(m.ic) + '</span><span class="tx"><span class="tt">' + m.t + '</span><span class="ds" id="tile-money">' + (m.d || '') + '</span></span>' +
+          '<span class="plus" aria-hidden="true"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></span></button>' + tiles;
+        return;
+      }
+      var sos = m.id === 'sos';
+      tiles += '<button type="button" class="tile' + (sos ? ' sos' : '') + '" data-go="' + m.id + '"><span class="ti" style="--tc:' + (sos ? 'var(--accent)' : TILE_C[k++ % TILE_C.length]) + '">' + ico(m.ic) + '</span>' +
+        '<span class="tx"><span class="tt">' + m.t + '</span>' + (m.d ? '<span class="ds">' + m.d + '</span>' : '') + ((m.id === 'todo' || m.id === 'pack') ? '<span class="ds" id="tile-' + m.id + '"></span>' : '') + '</span></button>';
+    });
     var theme = '<div class="setting"><span>화면 모드</span><div class="seg3" role="group" aria-label="화면 모드">' +
       [['auto', '자동'], ['light', '라이트'], ['dark', '다크']].map(function (o) { return '<button type="button" data-theme-set="' + o[0] + '">' + o[1] + '</button>'; }).join('') + '</div></div>';
     var hub = '<a class="btn hub-btn" href="/">BK Trip 전체 여행 목록</a>';
-    return panel('more', '더보기', '<div class="sec-head"><h2>' + head.title + '</h2>' + (head.text ? '<p>' + head.text + '</p>' : '') + '</div>' + (items.length ? menu : '') + blocks(T.more && T.more.blocks) + theme + hub +
-      (T.footer ? '<p class="cap">' + T.footer + '</p>' : ''), true);
+    return panel('more', head.title || '더보기', (tiles ? '<div class="tiles">' + tiles + '</div>' : '') + blocks(T.more && T.more.blocks) + theme + hub +
+      (T.footer ? '<p class="cap">' + T.footer + '</p>' : ''), true, { sub: head.text || T.title });
   }
 
   /* =====================================================================
@@ -564,29 +600,29 @@
     var show = '<div class="pb-show" id="pb-show" role="dialog" aria-modal="true" aria-labelledby="pb-show-jp" hidden><p class="pb-show-hint">' + (s.showHint || '이 화면을 보여주세요') + '</p>' +
       '<div class="pb-show-main"><p class="pb-show-jp" id="pb-show-jp"></p><p class="pb-show-pr" id="pb-show-pr"></p><p class="pb-show-ko" id="pb-show-ko"></p><p class="pb-tip" id="pb-show-tip" hidden></p></div>' +
       '<div class="pb-show-acts"><button class="pb-btn pb-go" id="pb-show-spk" type="button"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5.5v13l10.5-6.5z"/></svg>듣기</button><button class="pb-btn" id="pb-show-close" type="button">닫기</button></div></div>';
-    return panel('talk', secTitle('talk'), '<div class="pb-wrap">' + blocks(s.top) + sign + bar + '<p class="pb-count" id="pb-count"></p><main id="pb-list"></main><p class="pb-empty" id="pb-empty" hidden></p>' + (s.foot ? '<p class="pb-foot">' + s.foot + '</p>' : '') + blocks(s.blocks) + '</div>' + show, true);
+    return panel('talk', secTitle('talk'), '<div class="pb-wrap">' + blocks(s.top) + sign + bar + '<p class="pb-count" id="pb-count"></p><main id="pb-list"></main><p class="pb-empty" id="pb-empty" hidden></p>' + (s.foot ? '<p class="pb-foot">' + s.foot + '</p>' : '') + blocks(s.blocks) + '</div>' + show, true, { sub: sg.title });
   }
 
   /* =====================================================================
      하단 탭
      ===================================================================== */
+  /* 표준: 유리 알약 5칸 + 따로 떠 있는 ⋯(더보기)
+     해외 = 홈·일정·맛집·회화·촬영 / 국내(회화 없음) = 홈·일정·맛집·체크(할 일)·촬영
+     trip.json 의 nav 로 직접 정할 수도 있음 (최대 5칸, "more"는 무시) */
   var NAVSET = [];
   function buildNav() {
-    var explicit = arr(T.nav).filter(function (id) { return id === 'more' || S[id]; });
-    var nav;
-    if (explicit.length) nav = explicit;
+    var nav, explicit = arr(T.nav).filter(function (id) { return id !== 'more' && S[id]; });
+    if (explicit.length) nav = explicit.slice(0, 5);
     else {
-      nav = ORDER_PRIMARY.filter(function (id) { return S[id]; });
-      if (S.wish && !S.eat) { /* 찜 목록만 있는 여행 */ }
-      var rest = ORDER_MORE.filter(function (id) { return S[id]; }).length + arr(T.extra).length + (S.wish && !S.eat ? 1 : 0);
-      if (nav.length + rest <= 5) { ORDER_MORE.forEach(function (id) { if (S[id]) nav.push(id); }); if (S.wish && !S.eat) nav.push('wish'); if (arr(T.extra).length) nav.push('more'); }
-      else nav.push('more');
+      nav = ['home', 'plan', 'eat', S.talk ? 'talk' : 'todo', 'shoot'].filter(function (id) { return S[id]; });
+      if (!S.eat && S.wish) nav.splice(2, 0, 'wish');
+      nav = nav.slice(0, 5);
     }
     NAVSET = nav;
-    NAV.innerHTML = '<div class="nav-in" style="grid-template-columns:repeat(' + nav.length + ',minmax(0,1fr))">' + nav.map(function (id) {
-      var label = id === 'more' ? '더보기' : ((S[id] && S[id].navLabel) || secTitle(id));
-      return '<button type="button" data-go="' + id + '"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">' + (SEC[id] ? SEC[id].ic : EXTRA_IC) + '</svg>' + label + '</button>';
-    }).join('') + '</div>';
+    var label = function (id) { return (S[id] && S[id].navLabel) || (id === 'todo' && !S.talk ? '체크' : (SEC[id] ? SEC[id].t : secTitle(id))); };
+    NAV.innerHTML = '<div class="nav-pill" style="--n:' + nav.length + '">' + nav.map(function (id) {
+      return '<button type="button" data-go="' + id + '"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">' + (SEC[id] ? SEC[id].ic : EXTRA_IC) + '</svg>' + label(id) + '</button>';
+    }).join('') + '</div><button type="button" class="nav-more" data-go="more" aria-label="더보기"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><circle cx="5" cy="12" r="1.8"/><circle cx="12" cy="12" r="1.8"/><circle cx="19" cy="12" r="1.8"/></svg></button>';
     // 하위 화면 → 부모 탭
     Object.keys(S).forEach(function (id) { if (nav.indexOf(id) < 0) PARENT[id] = (SEC[id] && SEC[id].parent && nav.indexOf(SEC[id].parent) > -1) ? SEC[id].parent : 'more'; });
     arr(T.extra).forEach(function (p) { PARENT['x-' + p.id] = 'more'; });
@@ -600,6 +636,7 @@
   function go(id, keepScroll) {
     if (ids.indexOf(id) < 0) id = 'home';
     panels.forEach(function (p) { p.hidden = p.id !== id; });
+    document.body.setAttribute('data-panel', id === 'home' ? 'home' : 'inner');
     var navId = PARENT[id] || id;
     $$('.nav [data-go]').forEach(function (b) { if (b.getAttribute('data-go') === navId) b.setAttribute('aria-current', 'page'); else b.removeAttribute('aria-current'); });
     UI.tab = id; LS.set('ui', UI);
@@ -697,6 +734,7 @@
     var p = $('#' + group + '-progress'), bar = $('#' + group + '-bar');
     if (p) p.textContent = done + ' / ' + boxes.length + ' 완료';
     if (bar) bar.style.width = (boxes.length ? done / boxes.length * 100 : 0) + '%';
+    var tl = $('#tile-' + group); if (tl && boxes.length) tl.textContent = done + ' / ' + boxes.length + ' 완료';
     if (group === 'quick') { var pr = $('#prep'); if (pr) pr.classList.toggle('done', boxes.length > 0 && done === boxes.length); }
   }
   function shootRefresh() {
@@ -748,6 +786,7 @@
       $('#lg-krw').textContent = CUR.code && CUR.krw ? '≈ ' + fmtNum(Math.round(krw)) + '원' : (list.length + '건');
       var bar = $('#lg-bar'), left = $('#lg-left');
       if (bar && L.budget) { var used = CUR.code ? tot : krw; bar.style.width = Math.min(100, used / L.budget * 100) + '%'; bar.classList.toggle('over', used > L.budget); left.textContent = '예산 ' + fmtNum(L.budget) + unit + ' 중 ' + (used > L.budget ? fmtNum(Math.round(used - L.budget)) + unit + ' 초과' : fmtNum(Math.round(L.budget - used)) + unit + ' 남음'); }
+      var tm = $('#tile-money'); if (tm && list.length) tm.textContent = list.length + '건 · ' + $('#lg-total').textContent + (CUR.code && CUR.krw ? ' (' + $('#lg-krw').textContent + ')' : '');
       $('#lg-cats').innerHTML = Object.keys(cats).map(function (c) { return '<span class="tag">' + esc(c) + ' ' + fmtNum(Math.round(cats[c])) + '원</span>'; }).join('');
       var byDate = {};
       list.forEach(function (e, i) { (byDate[e.date] = byDate[e.date] || []).push([e, i]); });
@@ -956,6 +995,12 @@
     Object.keys(secs).forEach(function (k) { if (secs[k] && SEC[k] && k !== 'more' && hasContent(k, secs[k])) S[k] = secs[k]; });
     S.home = S.home || {};
     CUR = T.currency || {};
+    if (window.BKTheme) {
+      BKTheme.apply(document.documentElement, T.theme || {});
+      var sk = document.getElementById('sky'); if (sk) sk.innerHTML = BKTheme.art(T.theme || {}, 'sky');
+      var top = (BKTheme.merge(T.theme).sky || [])[0];
+      if (top) $$('meta[name="theme-color"]').forEach(function (m) { m.setAttribute('content', top); });
+    }
     UI = LS.get('ui', {});
     document.title = T.title + ' · BK Trip';
     var mt = document.querySelector('meta[name="description"]'); if (mt) mt.setAttribute('content', stripTags(T.summary || T.subtitle || T.title));
@@ -980,6 +1025,8 @@
     ROOT.innerHTML = out;
 
     panels = $$('#app > section.panel'); ids = panels.map(function (p) { return p.id; });
+    // 탭 머리와 똑같은 첫 소제목은 화면에서만 숨김 (내용은 그대로 둠)
+    panels.forEach(function (p) { var t = $('.pt-h', p), h = $('.sec-head h2', p); if (t && h && h.textContent.trim() === t.textContent.trim()) h.classList.add('vh'); });
     days = $$('#plan article.day'); picks = $$('.daypick button');
     rows = $$('#plan .row[data-at]').map(function (r) {
       var art = r.closest('article'), di = +art.getAttribute('data-day') - 1, d = S.plan.days[di];
