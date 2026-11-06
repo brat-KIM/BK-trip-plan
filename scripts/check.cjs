@@ -3,7 +3,7 @@
 const { chromium } = require('playwright');
 const BASE = process.env.BASE || 'http://localhost:4173';
 const OUT = (process.env.OUT || require('os').tmpdir()) + '/';
-const slugs = (process.argv[2] || require('../trips.json').trips.map(t => t.slug).join(',')).split(',');
+const slugs = (process.argv[2] || require('../trips.json').trips.filter(t => !t.draft).map(t => t.slug).join(',')).split(',');
 const shots = process.env.SHOTS === '1';
 (async () => {
   const b = await chromium.launch();

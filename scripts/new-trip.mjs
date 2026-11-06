@@ -123,3 +123,5 @@ const n = days.length;
 console.log('✓ trips/' + slug + '/trip.json 만들었어 (' + (n === 1 ? '당일치기' : (n - 1) + '박 ' + n + '일') + ', 일정 칸 ' + n + '개)');
 console.log('✓ trips.json 에 등록했어 (테마: ' + themeName + ' · 커버 글자 “' + glyph + '”)');
 console.log('→ 이제 trip.json 을 채우고 커밋·푸시하면 /' + slug + ' 로 열려.');
+if (country !== 'KR' && /[가-힣]/.test(glyph)) console.log('! 커버 글자가 한글이야. 그 나라 글자로 바꿔줘: --glyph "大阪" 처럼 (trip.json·trips.json 의 theme.glyph)');
+console.log('! 대표 랜드마크 그림 넣기: theme.landmark (없으면 app/theme.js LANDMARK 에 새로 그리기) — trips/_schema.md "테마"');

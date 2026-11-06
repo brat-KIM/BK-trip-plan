@@ -18,7 +18,7 @@
                         app.css(추가 컴포넌트), skin.css(디자인 D 스킨 — 맨 마지막에 덮어씀. 디자인 손볼 땐 여기)
 /scripts/themes.json    여행별 테마 예시 (나라 느낌 색·그림)
 /sw.js                  서비스워커 1개 (오프라인: 한 번 연 여행은 데이터 끊겨도 보임)
-/manifest.webmanifest   PWA "BK Trip", 아이콘은 /assets/
+/manifest.webmanifest   PWA "여행 기록", 아이콘은 /assets/ (탭 아이콘은 /favicon.ico + /assets/favicon.svg. 아이콘 바꾸면 링크의 ?v= 숫자도 올리기 — 크롬이 옛 아이콘을 오래 기억함)
 /vercel.json            /<slug> → /app/index.html 연결, 전 페이지 noindex 헤더
 /scripts/new-trip.mjs   새 여행 뼈대 만들기
 /scripts/serve.mjs      로컬 미리보기 서버
@@ -48,6 +48,8 @@
 - 국내(`country: "KR"`)는 장소 `q`에 주소를 넣으면 T맵 버튼 + 주소 복사 자동.
 - 체크리스트 `id`는 여행 안에서 고유하게(저장 키가 됨). 이미 쓰던 id를 바꾸면 형 폰에 저장된 체크가 풀린다.
 - 확인 못 한 영업시간·가격은 지어내지 말고 `★`(확인필요) 표시. 출처는 `foot` 블록에.
+- **여행지마다 그곳만의 포스터 필수**: `theme.landmark`에 대표 랜드마크를 꼭 넣는다(삿포로=TV타워, 군산=철길, 시드니=하버브리지, 다카마쓰=우동+야돈). 없는 곳은 `app/theme.js`의 `LANDMARK`에 평면 일러스트로 새로 그린다(베이징=만리장성, 두바이=버즈 알 아랍·사막 선인장 같은 느낌). 커버 큰 글자 `glyph`는 그 나라 글자로(국내=한글, 일본=한자).
+- 허브 포스터: 진행중·다가오는 여행은 가로 파노라마, 끝나면 자동으로 작은 2열. 아직 내용 없는 여행은 trips.json에만 `"draft": true`로 넣으면 "준비 중"(링크 없음) 카드로 뜬다. 지금 다카마쓰가 이 상태 — trip.json 만들 때 `new-trip.mjs takamatsu …`로 만들고 draft는 빠짐.
 - **나라 느낌은 `theme`으로 낸다** (디자인 D = 그 나라 하늘 그라데이션 + 평면 포스터 그림 + 커버 큰 글자). `new-trip.mjs`가 나라별 기본 테마를 넣어 주니, 그 나라 하늘·노을·바다 색과 현지어 `glyph`(예: 大阪, 濟州, BANGKOK)만 다듬으면 된다. 필드는 `_schema.md` "테마", 예시는 `scripts/themes.json`. trip.json과 trips.json 두 곳 다 같은 값.
 - 템플릿에 안 맞는 고유 내용은 `html` 블록이나 `extra` 페이지로. 그래도 디자인 톤(base.css 클래스: `note`, `answer`, `card`, `grid2`, `sec-head` …)을 맞춘다.
 - `trips.json`의 제목·날짜·커버는 trip.json과 같은 값으로 같이 고친다(허브 카드가 이걸 봄).
@@ -75,7 +77,7 @@ check.cjs가 보는 것: 콘솔 에러, 깨진 앵커(#id)·`data-go` 대상·�
 
 - GitHub `brat-KIM/BK-trip-plan`이 Vercel 프로젝트 `bk-trip-plan`에 Git 연동돼 있다. **프로덕션 브랜치(main)에 푸시하면 자동 배포**, 다른 브랜치는 미리보기 배포(Vercel 로그인 필요할 수 있음).
 - 세션 규칙상 작업 브랜치가 따로 주어지면 거기에 푸시하고, main 반영은 형한테 물어보거나 PR로.
-- 앱 껍데기(`/app/*`, `index.html`, `sw.js`) 구조를 크게 바꾸면 `sw.js`의 `VERSION`을 올린다(지금 `bk-trip-v5` → 다음 `bk-trip-v6`). 새 파일을 추가했으면 `sw.js`의 `SHELL` 목록에도 넣는다. trip.json만 바꾸는 건 안 올려도 됨(네트워크 우선이라 바로 반영).
+- 앱 껍데기(`/app/*`, `index.html`, `sw.js`) 구조를 크게 바꾸면 `sw.js`의 `VERSION`을 올린다(지금 `bk-trip-v6` → 다음 `bk-trip-v7`). 새 파일을 추가했으면 `sw.js`의 `SHELL` 목록에도 넣는다. trip.json만 바꾸는 건 안 올려도 됨(네트워크 우선이라 바로 반영).
 - 지켜야 할 것: 전 페이지 noindex 유지(meta + `X-Robots-Tag` + robots.txt), 비밀번호/PIN 없음, 유료 기능·유료 API 금지, `_originals/` 수정 금지.
 
 ## 옛 주소

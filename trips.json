@@ -1,6 +1,46 @@
 {
  "trips": [
   {
+   "slug": "takamatsu",
+   "title": "다카마쓰 2박 3일",
+   "region": "일본 가가와현 다카마쓰",
+   "country": "JP",
+   "draft": true,
+   "companions": [],
+   "summary": "세토내해 · 사누키 우동 · 야돈 현",
+   "theme": {
+    "preset": "islands",
+    "landmark": [
+     "udon",
+     "yadon"
+    ],
+    "sky": [
+     "#173A6B",
+     "#2E6AA6",
+     "#6FA8D6",
+     "#F6C9A0",
+     "#F4A26B"
+    ],
+    "sun": "#FFB25B",
+    "hill1": "#3E6E5A",
+    "hill2": "#7FA79A",
+    "water": "#1F5F8B",
+    "accent": "#F4A3B5",
+    "accent2": "#E8503A",
+    "glyph": "高松",
+    "glyphFont": "dela",
+    "poster": {
+     "paper": "#F3E7D3",
+     "sun": "#E8503A",
+     "hill1": "#3E6E5A",
+     "hill2": "#9DBFB2",
+     "water": "#2A6F9E"
+    }
+   },
+   "start": "2026-12-18",
+   "end": "2026-12-20"
+  },
+  {
    "slug": "sapporo",
    "title": "삿포로 3박 4일",
    "region": "일본 홋카이도",
@@ -39,7 +79,8 @@
      "hill1": "#5C7A5A",
      "hill2": "#2E4A3A",
      "water": "#2F6E8A"
-    }
+    },
+    "landmark": "tvtower"
    }
   },
   {

@@ -36,6 +36,7 @@
 | `extra` | `[{…}]` | 템플릿에 안 맞는 고유 페이지. 아래 4번 |
 
 trips.json(허브 목록)에도 `slug, title, region, start, end, companions, cover, theme, summary`가 같은 값으로 들어간다. **둘 다 고쳐야 허브 카드가 바뀐다.**
+trips.json에만 쓰는 것: `"draft": true` → 허브에 포스터는 뜨지만 눌러도 안 열림("준비 중"). trip.json을 다 만들면 지운다. `start`가 없으면 "날짜 미정"으로 뜬다.
 
 ### 테마 `theme` (나라 느낌 내는 곳)
 
@@ -51,16 +52,17 @@ trips.json(허브 목록)에도 `slug, title, region, start, end, companions, co
 ```
 | 필드 | 설명 |
 |---|---|
-| `preset` | 그림 종류: `mountains`(산·호수) · `coast`(바다·섬, `"rails": true`면 철길 추가) · `harbour`(항구·다리·빛줄기) · `city`(야경 빌딩) |
+| `preset` | 배경 그림: `mountains`(산·호수) · `coast`(바다·섬, `"rails": true`면 철길 추가) · `harbour`(항구·다리·빛줄기) · `city`(야경 빌딩) · `islands`(잔잔한 바다 섬들 + 페리) |
+| `landmark` | **그 여행지 대표 랜드마크 (필수)**: `"tvtower"`(삿포로 TV타워) · `"udon"`(사누키 우동) · `"yadon"`(야돈) · 여러 개면 `["udon","yadon"]`. 없는 여행지는 `app/theme.js`의 `LANDMARK`에 새로 그려 넣는다 (예: 베이징=만리장성, 두바이=버즈 알 아랍·사막 선인장, 파리=에펠탑) |
 | `sky` | 하늘 그라데이션 색 (위 → 아래, 3~5개). 그 나라 하늘·노을 느낌 |
 | `sun`, `hill1`, `hill2`, `water` | 그림 색 (해 · 앞산/섬 · 뒷산 · 물) |
 | `accent` | 스티커(D-day)·강조 색. `accent2`는 철길·보조 강조 |
 | `ink` | 진한 남색 계열(그림자·버튼 글자). 없으면 `#1B2A49` |
-| `glyph` | 커버 큰 글자 (`"札幌"`, `"군산"`, `"SYDNEY"`) — 현지어·영문 대문자가 제일 예쁨 |
+| `glyph` | 커버 큰 글자. **그 나라 글자로**: 국내=한글(`"군산"`, `"제주"`), 일본=한자(`"札幌"`, `"高松"`), 중국=한자(`"北京"`), 영어권=영문 대문자(`"SYDNEY"`), 그 외=현지 글자나 영문 |
 | `glyphFont` | 큰 글자 서체: `dela`(굵은 일본풍) · `blackhan`(굵은 한글) · `limelight`(아르데코 영문) · `mincho`(붓글씨풍 한자) |
 | `poster` | 허브 포스터 카드 색 (`paper`=종이 바탕, 나머지는 그림 색). 종이가 밝으면 글자가 자동으로 남색 |
 
-빠진 값은 기본값(삿포로 노을)으로 채운다. 예시 모음은 `scripts/themes.json`(삿포로·군산·시드니 + 도쿄 야경·제주 옥빛).
+빠진 값은 기본값(삿포로 노을)으로 채운다. 예시 모음은 `scripts/themes.json`(삿포로·군산·시드니·다카마쓰 + 도쿄 야경·제주 옥빛).
 `new-trip.mjs`가 나라별로 골라 넣어 줌: JP=노을 산(sunset), KR=바다(coast), TW·HK·SG·US=야경(night), TH·VN·NZ=옥빛 산(jade), AU=항구(harbour), GB·FR=새벽(dawn). `--theme night` 처럼 직접 고를 수도 있다.
 
 ### 하단 탭 (표준)

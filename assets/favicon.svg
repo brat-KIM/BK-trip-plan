@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+<defs><linearGradient id="bg" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#2E54AE"/><stop offset=".6" stop-color="#5A85D2"/><stop offset="1" stop-color="#9DB8EC"/></linearGradient></defs>
+<rect width="512" height="512" fill="url(#bg)"/>
+<circle cx="372" cy="138" r="92" fill="#FFD98A" opacity=".22"/>
+<circle cx="372" cy="138" r="58" fill="#FFD27A"/>
+<g fill="#FFFFFF"><path d="M118 104l6 15.5 15.5 6-15.5 6-6 15.5-6-15.5-15.5-6 15.5-6z"/><circle cx="196" cy="74" r="6" opacity=".7"/><circle cx="450" cy="300" r="5" opacity=".6"/></g>
+<path d="M70 430C120 418 150 372 196 360" fill="none" stroke="#FFFFFF" stroke-width="10" stroke-linecap="round" stroke-dasharray="2 26" opacity=".95"/>
+<path d="M66 448c-21-15-33-26-33-38 0-8 6-13.5 13.4-13.5 4.9 0 9.2 2.4 11.6 6.4h5c2.4-4 6.7-6.4 11.6-6.4 7.4 0 13.4 5.5 13.4 13.5 0 12-12 23-33 38z" fill="#FF7A8A" transform="translate(-6 -10)"/>
+<g fill="#FFFFFF"><rect x="300" y="392" width="190" height="56" rx="28"/><circle cx="350" cy="392" r="36"/><circle cx="410" cy="378" r="46"/><circle cx="462" cy="398" r="30"/></g>
+<g transform="translate(258 262) rotate(-14) scale(3.45)">
+<path d="M-4 -13L-14 -31Q-12 -35-7 -33L12 -14Z" fill="#E3A42E"/>
+<path d="M-38 -8L-48 -34Q-47 -39-41 -37L-18 -13Z" fill="#FF7A6B"/>
+<rect x="-46" y="-18" width="92" height="36" rx="18" fill="#FFFFFF"/>
+<path d="M-46 3H46A17 17 0 0 1 30 18H-30A17 17 0 0 1-46 3Z" fill="#E6EEFA"/>
+<rect x="-38" y="6" width="52" height="4" rx="2" fill="#FF7A6B"/>
+<circle cx="-24" cy="-4" r="5" fill="#8FC1F0"/><circle cx="-9" cy="-4" r="5" fill="#8FC1F0"/><circle cx="6" cy="-4" r="5" fill="#8FC1F0"/>
+<ellipse cx="-44" cy="6" rx="9" ry="4.5" fill="#FF7A6B"/>
+<circle cx="31" cy="-5" r="3.4" fill="#1B2A49"/><circle cx="32.3" cy="-6.1" r="1.1" fill="#FFFFFF"/>
+<path d="M29 3Q33.5 7.5 38 3" fill="none" stroke="#1B2A49" stroke-width="2.1" stroke-linecap="round"/>
+<ellipse cx="22" cy="4" rx="5" ry="3" fill="#FF9FB0" opacity=".9"/>
+<path d="M-4 8L-20 36Q-18 40-12 38L18 10Z" fill="#F5B83D"/>
+</g>
+</svg>

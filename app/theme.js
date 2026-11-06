@@ -4,7 +4,8 @@
    허브(index.html)와 여행 화면(app.js)이 같이 씀.
 
    theme = {
-     preset: "mountains" | "coast" | "harbour" | "city",   // 그림 종류
+     preset: "mountains" | "coast" | "harbour" | "city" | "islands",   // 배경 그림 종류
+     landmark: "tvtower" | "udon" | "yadon" | ["udon", "yadon"],          // 그 여행지 대표 랜드마크 (꼭 넣기! 없으면 아래 LANDMARK 에 새로 그림)
      sky: ["#1B1020", "#4A1A2C", ...],                       // 하늘 그라데이션 (위 → 아래)
      sun, hill1, hill2, water, accent, accent2,              // 그림 색
      rails: true,                                            // coast 에 철길 추가
@@ -67,6 +68,18 @@
         '<rect x="0" y="198" width="390" height="22" fill="' + c.water + '"/>' +
         '<path d="M30 210 Q195 202 360 210" stroke="' + c.sun + '" stroke-width="1.5" fill="none" opacity=".5"/>';
     },
+    islands: function (c) {
+      return '<circle cx="292" cy="80" r="76" fill="' + c.sun + '" opacity=".16"/><circle cx="292" cy="80" r="38" fill="' + c.sun + '"/>' +
+        '<path d="M-10 152 C22 128 58 124 92 140 C112 130 134 132 154 152 Z" fill="' + c.hill2 + '"/>' +
+        '<path d="M150 152 C166 140 184 140 198 152 Z" fill="' + c.hill2 + '"/>' +
+        '<path d="M206 152 C236 116 296 104 346 128 C366 122 384 130 400 140 L400 152 Z" fill="' + c.hill1 + '"/>' +
+        '<rect x="0" y="150" width="390" height="70" fill="' + c.water + '"/>' +
+        '<path d="M190 168 H250 M214 180 H282 M232 194 H300" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" opacity=".35"/>' +
+        /* 작은 페리 */
+        '<g transform="translate(320 176)"><path d="M-28 0 H28 L21 10 H-21 Z" fill="' + c.ink + '"/><rect x="-16" y="-10" width="30" height="10" rx="2" fill="#FFFFFF"/>' +
+        '<rect x="-12" y="-7" width="5" height="4" fill="' + c.water + '"/><rect x="-3" y="-7" width="5" height="4" fill="' + c.water + '"/><rect x="6" y="-7" width="5" height="4" fill="' + c.water + '"/>' +
+        '<rect x="-6" y="-17" width="10" height="7" fill="' + (c.accent2 || c.accent) + '"/></g>';
+    },
     city: function (c) {
       var b = '', xs = [[0, 120, 40], [40, 92, 34], [74, 140, 28], [102, 70, 44], [146, 110, 30], [176, 54, 38], [214, 96, 34], [248, 128, 26], [274, 80, 42], [316, 112, 36], [352, 90, 38]];
       xs.forEach(function (x, i) { b += '<rect x="' + x[0] + '" y="' + x[1] + '" width="' + x[2] + '" height="' + (200 - x[1]) + '" fill="' + (i % 2 ? c.hill1 : c.hill2) + '"/>'; });
@@ -77,6 +90,52 @@
     }
   };
 
+  /* 랜드마크 — 여행지마다 한눈에 "아 거기!" 하는 그림. 같은 390 x 220 좌표, 배경 그림 위에 얹힘 */
+  var LANDMARK = {
+    /* 삿포로 TV타워 (주황 철탑 + 시계) */
+    tvtower: function (c) {
+      var col = c.accent || '#FF6B4A';
+      return '<g transform="translate(64 0)">' +
+        '<path d="M-14 200 L-4 118 M14 200 L4 118" stroke="' + col + '" stroke-width="3.4" fill="none"/>' +
+        '<path d="M-12 186 L11 168 M12 186 L-11 168 M-10 168 L9 150 M10 168 L-9 150 M-8 150 L7 134 M8 150 L-7 134 M-6 134 L5 120 M6 134 L-5 120" stroke="' + col + '" stroke-width="1.6" fill="none"/>' +
+        '<rect x="-11" y="148" width="22" height="13" rx="2" fill="#F3E7D3" stroke="' + col + '" stroke-width="2"/>' +
+        '<path d="M-6 154.5 H-1 M1 154.5 H6" stroke="' + c.ink + '" stroke-width="2"/>' +
+        '<rect x="-8" y="108" width="16" height="12" rx="2" fill="' + col + '"/><rect x="-6" y="111" width="12" height="3" fill="#F3E7D3" opacity=".8"/>' +
+        '<path d="M0 108 V70" stroke="' + col + '" stroke-width="2.6"/><path d="M-3 90 H3 M-2.5 80 H2.5" stroke="' + col + '" stroke-width="2"/></g>';
+    },
+    /* 사누키 우동 한 그릇 (김 모락모락) — 왼쪽 바닷가 */
+    udon: function (c) {
+      return '<path d="M-10 176 C40 168 120 168 186 174 C204 178 214 200 226 220 L-10 220 Z" fill="#E9D3A6"/>' +
+        '<g transform="translate(70 176)">' +
+        '<path d="M-14 -40 C-20 -48 -8 -54 -14 -62 M0 -42 C-6 -50 6 -56 0 -64 M14 -40 C8 -48 20 -54 14 -62" stroke="#FFFFFF" stroke-width="2.6" fill="none" stroke-linecap="round" opacity=".85"/>' +
+        '<ellipse cx="0" cy="-22" rx="40" ry="9" fill="#F7E9C8"/>' +
+        '<path d="M-30 -24 q6 -5 12 0 t12 0 t12 0 t12 0 t12 0 M-26 -19 q6 -5 12 0 t12 0 t12 0 t12 0" stroke="#E8CF94" stroke-width="2" fill="none"/>' +
+        '<circle cx="14" cy="-24" r="6" fill="#FFFFFF"/><path d="M14 -24 m-3 0 a3 3 0 1 1 3 3" stroke="#F28AA0" stroke-width="1.6" fill="none"/>' +
+        '<circle cx="-12" cy="-25" r="2.2" fill="#6DBA5A"/><circle cx="-6" cy="-21" r="2" fill="#6DBA5A"/><circle cx="-16" cy="-20" r="1.8" fill="#6DBA5A"/>' +
+        '<path d="M-42 -22 H42 C40 -2 24 10 0 10 C-24 10 -40 -2 -42 -22 Z" fill="#FFFFFF"/>' +
+        '<path d="M-41 -18 H41" stroke="#2A4A8A" stroke-width="3"/><path d="M-30 -6 l6 6 6 -6 6 6 6 -6 6 6 6 -6 6 6 6 -6" stroke="#2A4A8A" stroke-width="2" fill="none"/>' +
+        '<rect x="-14" y="10" width="28" height="5" rx="2" fill="#D8DEEA"/>' +
+        '<path d="M22 -40 L52 -14 M28 -44 L56 -18" stroke="#B5703C" stroke-width="3" stroke-linecap="round"/></g>';
+    },
+    /* 야돈 — 가가와는 "야돈 현"! 꼬리를 바다에 담그고 멍하니 낚시 중 */
+    yadon: function (c) {
+      var P = '#F4A3B5', D = '#D9788F', M = '#FBE3C8';
+      return '<g transform="translate(150 0)">' +
+        '<path d="M18 186 C40 190 52 176 70 186" stroke="' + P + '" stroke-width="8" fill="none" stroke-linecap="round"/>' +
+        '<circle cx="72" cy="188" r="5" fill="#FFFFFF"/>' +
+        '<path d="M66 196 q6 -3 12 0" stroke="#FFFFFF" stroke-width="1.6" fill="none" opacity=".7"/>' +
+        '<ellipse cx="2" cy="184" rx="24" ry="14" fill="' + P + '"/>' +
+        '<ellipse cx="-14" cy="194" rx="7" ry="4" fill="' + D + '"/><ellipse cx="12" cy="195" rx="7" ry="4" fill="' + D + '"/>' +
+        '<circle cx="-12" cy="160" r="19" fill="' + P + '"/>' +
+        '<path d="M-26 146 q-3 -9 5 -8 M2 146 q3 -9 -5 -8" stroke="' + P + '" stroke-width="6" fill="none" stroke-linecap="round"/>' +
+        '<ellipse cx="-14" cy="168" rx="13" ry="8" fill="' + M + '"/>' +
+        '<path d="M-22 169 q8 6 16 0" stroke="#8A4A5A" stroke-width="1.6" fill="#E77A92"/>' +
+        '<circle cx="-20" cy="156" r="4.2" fill="#FFFFFF"/><circle cx="-5" cy="156" r="4.2" fill="#FFFFFF"/>' +
+        '<circle cx="-20" cy="156.5" r="1.4" fill="#1A1A1A"/><circle cx="-5" cy="156.5" r="1.4" fill="#1A1A1A"/>' +
+        '<ellipse cx="-27" cy="163" rx="3" ry="1.8" fill="' + D + '" opacity=".6"/><ellipse cx="2" cy="163" rx="3" ry="1.8" fill="' + D + '" opacity=".6"/></g>';
+    }
+  };
+
   function art(theme, mode, h) {
     var t = merge(theme), c = {}, k;
     for (k in t) if (typeof t[k] === 'string') c[k] = t[k];
@@ -84,7 +143,8 @@
     var fn = PRESET[t.preset] || PRESET.mountains;
     var bg = mode === 'poster' ? '<rect x="-20" y="-60" width="430" height="300" fill="' + (t.poster.paper || '#F3E7D3') + '"/>' : '';
     return '<svg class="art" viewBox="0 0 390 ' + (h || 220) + '" preserveAspectRatio="xMidYMax slice" aria-hidden="true">' +
-      '<g transform="translate(0 ' + ((h || 220) - 220) + ')">' + bg + fn(c, t) + '</g></svg>';
+      '<g transform="translate(0 ' + ((h || 220) - 220) + ')">' + bg + fn(c, t) +
+      [].concat(t.landmark || []).map(function (n) { return LANDMARK[n] ? LANDMARK[n](c, t) : ''; }).join('') + '</g></svg>';
   }
   function sky(theme) {
     var t = merge(theme), s = t.sky, n = s.length;
@@ -112,5 +172,5 @@
   }
   function apply(el, theme) { var v = vars(theme); for (var k in v) el.style.setProperty(k, v[k]); }
 
-  window.BKTheme = { merge: merge, art: art, sky: sky, vars: vars, apply: apply, esc: esc, presets: Object.keys(PRESET) };
+  window.BKTheme = { merge: merge, art: art, sky: sky, vars: vars, apply: apply, esc: esc, presets: Object.keys(PRESET), landmarks: Object.keys(LANDMARK) };
 })();

@@ -374,3 +374,6 @@ body[data-panel="inner"] #sky .art{height:150px;bottom:30px}
 .pano .go{margin-left:auto;flex:none;display:inline-flex;align-items:center;gap:2px;min-height:36px;padding:0 10px 0 14px;border-radius:999px;background:var(--cta);color:var(--cta-ink);font-size:13px;font-weight:700}
 .pano .go svg{width:16px;height:16px}
 @media (prefers-reduced-motion:no-preference){.pano{transition:transform .15s}.pano:active{transform:scale(.985)}}
+.pano.is-draft{cursor:default}
+.pano.is-draft:active{transform:none}
+.pano .go.soon{padding:0 14px;background:transparent;color:var(--muted);border:1.5px dashed var(--line)}

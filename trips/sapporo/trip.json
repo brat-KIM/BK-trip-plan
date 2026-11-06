@@ -52,7 +52,8 @@
    "hill1": "#5C7A5A",
    "hill2": "#2E4A3A",
    "water": "#2F6E8A"
-  }
+  },
+  "landmark": "tvtower"
  },
  "sections": {
   "home": {
