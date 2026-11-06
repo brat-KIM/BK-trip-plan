@@ -18,7 +18,7 @@ const shots = process.env.SHOTS === '1';
   // hub
   await page.goto(BASE + '/', { waitUntil: 'networkidle' });
   if (shots) await page.screenshot({ path: OUT + 'hub.png', fullPage: true });
-  console.log('hub cards:', await page.$$eval('.pcard, .mini', a => a.map(x => x.getAttribute('href') + ' ' + x.querySelector('h3, b').textContent)));
+  console.log('hub cards:', await page.$$eval('.pano, .mini', a => a.map(x => x.getAttribute('href') + ' ' + x.querySelector('h3, b').textContent)));
   for (const slug of slugs) {
     await page.goto(BASE + '/' + slug, { waitUntil: 'networkidle' });
     const ids = await page.$$eval('#app > section.panel', s => s.map(x => x.id));

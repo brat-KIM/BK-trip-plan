@@ -352,3 +352,25 @@ body.hub #sky{height:560px}
 body[data-panel="inner"] #sky .art{height:150px;bottom:30px}
 .stay-card .rank{background:none;padding:0;margin:0;font-size:12px}
 .vh{position:absolute!important;width:1px;height:1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap}
+
+/* 허브 A안: 인사말을 위쪽 그림 아래에 겹침 + 다가오는 여행 = 파노라마 포스터 */
+.hub-art{position:relative}
+.hub-art svg{max-height:236px}
+.hub-art .hub-hello{position:absolute;left:8px;right:8px;bottom:4px;margin:0;gap:4px;pointer-events:auto}
+.hub-art .hub-hello h1{font-size:clamp(23px,7.2vw,30px);text-shadow:0 2px 12px rgba(10,20,60,.55)}
+.hub-art .hub-hello p{font-size:13px;font-weight:400;text-shadow:0 1px 8px rgba(10,20,60,.7)}
+.panos{display:grid;gap:14px}
+.pano{display:flex;flex-direction:column;border-radius:24px;overflow:hidden;text-decoration:none;color:var(--ink);background:var(--surface);border:1px solid var(--line);box-shadow:0 10px 28px rgba(10,20,60,.14)}
+.pano .poster{position:relative;height:150px;overflow:hidden}
+.pano .poster .art{position:absolute;inset:0;width:100%;height:100%}
+.pano .pg{position:absolute;left:14px;top:14px;font-family:var(--glyph-font);font-size:var(--gsize,44px);line-height:1;color:var(--pg-c,var(--cream));text-shadow:3px 3px 0 var(--pg-s,var(--deep));white-space:nowrap}
+.pano .stk{position:absolute;right:12px;top:12px;width:64px;height:64px;border-radius:50%;background:var(--accent);color:var(--deep);display:flex;flex-direction:column;align-items:center;justify-content:center;transform:rotate(9deg);box-shadow:3px 3px 0 var(--deep);line-height:1.1}
+.pano .stk b{font-family:var(--font-display);font-weight:400;font-size:19px}
+.pano .stk span{font-size:9px;font-weight:700}
+.pano .body{display:flex;align-items:center;gap:10px;padding:12px 14px 13px 16px}
+.pano .txt{display:flex;flex-direction:column;gap:2px;min-width:0}
+.pano .txt b{font-size:16px;font-weight:700}
+.pano .txt span{font-size:12px;color:var(--muted)}
+.pano .go{margin-left:auto;flex:none;display:inline-flex;align-items:center;gap:2px;min-height:36px;padding:0 10px 0 14px;border-radius:999px;background:var(--cta);color:var(--cta-ink);font-size:13px;font-weight:700}
+.pano .go svg{width:16px;height:16px}
+@media (prefers-reduced-motion:no-preference){.pano{transition:transform .15s}.pano:active{transform:scale(.985)}}

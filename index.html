@@ -29,7 +29,7 @@
     <button class="theme-btn" id="theme" type="button" aria-label="화면 모드 바꾸기"></button>
   </header>
   <div class="hub-art">
-<svg class="hub-svg" viewBox="0 8 390 180" aria-hidden="true">
+<svg class="hub-svg" viewBox="0 8 390 228" aria-hidden="true">
   <circle cx="330" cy="50" r="40" fill="#FFD98A" opacity=".24"/>
   <circle cx="330" cy="50" r="28" fill="#FFD27A"/>
   <g fill="#FFFFFF">
@@ -43,8 +43,8 @@
     <rect x="104" y="58" width="58" height="16" rx="8"/><circle cx="122" cy="58" r="11"/><circle cx="140" cy="54" r="13"/>
     <rect x="-10" y="118" width="70" height="18" rx="9"/><circle cx="12" cy="118" r="12"/><circle cx="34" cy="112" r="15"/>
   </g>
-  <path d="M26 182 C 70 176, 92 140, 128 146 S 168 160, 190 116" fill="none" stroke="#FFFFFF" stroke-width="3" stroke-linecap="round" stroke-dasharray="1 9" opacity=".9"/>
-  <path d="M26 186c-7-5-11-8.6-11-12.6 0-2.6 2-4.4 4.4-4.4 1.6 0 3 .8 3.8 2.1h1.6c.8-1.3 2.2-2.1 3.8-2.1 2.4 0 4.4 1.8 4.4 4.4 0 4-4 7.6-11 12.6z" fill="#FF7A8A" transform="translate(-6 -8)"/>
+  <path d="M24 150 C 60 150, 88 128, 124 136 S 168 150, 190 116" fill="none" stroke="#FFFFFF" stroke-width="3" stroke-linecap="round" stroke-dasharray="1 9" opacity=".9"/>
+  <path d="M26 186c-7-5-11-8.6-11-12.6 0-2.6 2-4.4 4.4-4.4 1.6 0 3 .8 3.8 2.1h1.6c.8-1.3 2.2-2.1 3.8-2.1 2.4 0 4.4 1.8 4.4 4.4 0 4-4 7.6-11 12.6z" fill="#FF7A8A" transform="translate(-8 -40)"/>
   <g transform="translate(66 64)">
     <g class="float-b">
       <path d="M0 -30C18 -30 28 -17 28 -3 28 13 12 22 7 30H-7C-12 22-28 13-28 -3-28-17-18-30 0-30Z" fill="#FF7A6B"/>
@@ -94,10 +94,9 @@
     <rect x="330" y="94" width="52" height="14" rx="7"/><circle cx="346" cy="94" r="9"/><circle cx="362" cy="90" r="11"/>
   </g>
 </svg>
+    <section class="hub-hello" id="hello"><h1>여행 불러오는 중…</h1></section>
   </div>
-  <section class="hub-hello" id="hello"><h1>여행 불러오는 중…</h1></section>
-  <section class="hub-sec on-sky" id="sec-feature"><div id="feature"></div></section>
-  <section class="hub-sec" id="sec-next" hidden><h2>그다음 여행 <span class="cnt" id="cnt-next"></span></h2><div class="minis" id="list-next"></div></section>
+  <section class="hub-sec" id="sec-next" hidden><h2>다가오는 여행 <span class="cnt" id="cnt-next"></span></h2><div class="panos" id="list-next"></div></section>
   <section class="hub-sec" id="sec-past" hidden><h2>다녀온 여행 <span class="cnt" id="cnt-past"></span></h2><div class="minis" id="list-past"></div></section>
 </main>
 <script src="/app/theme.js"></script>
@@ -139,15 +138,14 @@
   paint(getT());
   btn.addEventListener('click', function () { var t = THEMES[(THEMES.indexOf(getT()) + 1) % 3]; setT(t); paint(t); });
 
-  /* 큰 포스터 카드: 진행 중이거나 바로 다음 여행 */
-  function feature(t, kind, td) {
-    var th = themeOf(t), g = th.glyph || '';
-    var stk = kind === 'now' ? '<b>' + (diff(td, t.start) + 1) + '일차</b><span>여행 중</span>' : (diff(t.start, td) === 0 ? '<b>D-DAY</b><span>오늘 출발</span>' : '<b>D-' + diff(t.start, td) + '</b><span>출발까지</span>');
-    return '<a class="pcard" href="/' + esc(t.slug) + '" style="' + vars(th) + '">' +
-      '<div class="poster">' + TH.art(th, 'poster') + (g ? '<span class="pg" aria-hidden="true" style="--gsize:' + gsize(g, 66, 300) + 'px">' + esc(g) + '</span>' : '') + '<span class="stk">' + stk + '</span></div>' +
-      '<div class="body"><h3>' + esc(t.title) + '</h3>' + (t.summary ? '<p class="sum">' + esc(t.summary) + '</p>' : '') +
-      '<div class="chips"><span>' + range(t) + '</span><span>' + nights(t) + '</span>' + (who(t) ? '<span>' + esc(who(t)) + '</span>' : '') + '</div>' +
-      '<span class="go">' + (kind === 'now' ? '지금 일정 보기' : '여행 열기') + '</span></div></a>';
+  /* 파노라마 포스터: 진행 중 · 다가오는 여행 (한 줄에 하나, 가로로 길게). 끝나면 작은 포스터(양옆 잘림)로 */
+  function pano(t, td) {
+    var th = themeOf(t), g = th.glyph || '', isNow = diff(t.start, td) <= 0, d = diff(t.start, td);
+    var stk = isNow ? '<b>' + (diff(td, t.start) + 1) + '일차</b><span>여행 중</span>' : (d === 0 ? '<b>D-DAY</b><span>오늘 출발</span>' : '<b>D-' + d + '</b><span>출발까지</span>');
+    return '<a class="pano' + (isNow ? ' is-now' : '') + '" href="/' + esc(t.slug) + '" style="' + vars(th) + '">' +
+      '<div class="poster">' + TH.art(th, 'poster') + (g ? '<span class="pg" aria-hidden="true" style="--gsize:' + gsize(g, 46, 186) + 'px">' + esc(g) + '</span>' : '') + '<span class="stk">' + stk + '</span></div>' +
+      '<div class="body"><div class="txt"><b>' + esc(t.title) + '</b><span>' + range(t) + ' · ' + nights(t) + (who(t) ? ' · ' + esc(who(t)) : '') + '</span></div>' +
+      '<span class="go" aria-hidden="true">' + (isNow ? '지금 일정' : '열기') + '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg></span></div></a>';
   }
   /* 작은 포스터 카드 */
   function mini(t, td, next) {
@@ -166,7 +164,6 @@
     });
     next.sort(function (a, b) { return a.start < b.start ? -1 : 1; });
     past.sort(function (a, b) { return a.start > b.start ? -1 : 1; });
-    var feat = now[0] || next[0] || null, kind = now[0] ? 'now' : 'next';
     // 하늘: 허브는 항상 파란 여행 하늘 + 위쪽 귀여운 여행 그림(.hub-art). 여행별 색은 포스터 카드에서
     var skyTheme = { sky: ['#22408F', '#3A62B8', '#5A85D2', '#8EA8DF', '#D9B3B0'], accent: '#FF7A6B' };
     TH.apply(document.documentElement, skyTheme);
@@ -174,19 +171,17 @@
 
     var h = document.getElementById('hello');
     if (now[0]) h.innerHTML = '<h1>지금 ' + esc(now[0].title) + ' 여행 중</h1><p>오늘은 ' + (diff(td, now[0].start) + 1) + '일차 · 카드 누르면 지금 일정이 바로 떠</p>';
-    else if (next[0]) h.innerHTML = '<h1>다음 여행은 ' + esc(next[0].title) + '</h1><p>' + range(next[0]) + ' 출발 · ' + nights(next[0]) + (who(next[0]) ? ' · ' + esc(who(next[0])) : '') + '</p>';
-    else h.innerHTML = '<h1>다음 여행은 어디로 갈까</h1><p>다녀온 여행 ' + past.length + '개가 아래에 모여 있어</p>';
+    else if (next[0]) h.innerHTML = '<h1>다음 여행은 ' + esc(next[0].title) + '</h1><p>' + (diff(next[0].start, td) === 0 ? '오늘 출발!' : 'D-' + diff(next[0].start, td) + ' · ' + range(next[0]) + ' 출발') + '</p>';
+    else h.innerHTML = '<h1>다음 여행은 어디로 갈까</h1><p>아직 잡힌 여행이 없어 · 추가하면 여기에 포스터가 생겨</p>';
 
-    document.getElementById('feature').innerHTML = feat ? feature(feat, kind, td) :
-      '<div class="empty-card"><b>아직 잡힌 여행이 없어</b><span>여행을 추가하면 여기에 포스터가 생겨.</span></div>';
-    var rest = now.slice(1).concat(next.slice(feat && kind === 'next' ? 1 : 0));
-    document.getElementById('sec-next').hidden = !rest.length;
-    document.getElementById('cnt-next').textContent = rest.length || '';
-    document.getElementById('list-next').innerHTML = rest.map(function (t) { return mini(t, td, diff(t.start, td) > 0); }).join('');
-    // 하늘 높이 = 대표 카드 아래까지 (그 아래 목록은 종이 바탕 위에)
+    var up = now.concat(next);
+    document.getElementById('sec-next').hidden = !up.length;
+    document.getElementById('cnt-next').textContent = up.length || '';
+    document.getElementById('list-next').innerHTML = up.map(function (t) { return pano(t, td); }).join('');
+    // 하늘 높이 = 위쪽 그림(+인사말) 아래까지, 그 아래 카드는 종이 바탕 위에
     requestAnimationFrame(function () {
-      var f = document.getElementById('sec-feature').getBoundingClientRect();
-      document.getElementById('sky').style.height = Math.round(f.top + window.scrollY + Math.min(f.height, 220) + 60) + 'px';
+      var f = document.querySelector('.hub-art').getBoundingClientRect();
+      document.getElementById('sky').style.height = Math.round(f.bottom + window.scrollY + 70) + 'px';
     });
     document.getElementById('sec-past').hidden = !past.length;
     document.getElementById('cnt-past').textContent = past.length || '';

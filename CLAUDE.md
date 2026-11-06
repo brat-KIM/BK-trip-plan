@@ -9,7 +9,7 @@
 ## 폴더 구조
 
 ```
-/                       허브 홈 (index.html) — 위쪽 귀여운 여행 그림(인라인 SVG .hub-art) + trips.json 읽어서 진행중/다가오는/지난 여행 카드
+/                       허브 홈 (index.html) — 위쪽 귀여운 여행 그림(인라인 SVG .hub-art, 인사말이 그 위에 겹침) + 진행중·다가오는 여행은 가로 파노라마 포스터, 끝난 여행은 작은 포스터 2열
 /trips.json             여행 목록 (허브 카드용 요약)
 /trips/<slug>/trip.json 여행별 데이터 전부  ← 평소엔 여기만 고치면 됨
 /trips/<slug>/img/      여행별 사진 (선택)
@@ -75,7 +75,7 @@ check.cjs가 보는 것: 콘솔 에러, 깨진 앵커(#id)·`data-go` 대상·�
 
 - GitHub `brat-KIM/BK-trip-plan`이 Vercel 프로젝트 `bk-trip-plan`에 Git 연동돼 있다. **프로덕션 브랜치(main)에 푸시하면 자동 배포**, 다른 브랜치는 미리보기 배포(Vercel 로그인 필요할 수 있음).
 - 세션 규칙상 작업 브랜치가 따로 주어지면 거기에 푸시하고, main 반영은 형한테 물어보거나 PR로.
-- 앱 껍데기(`/app/*`, `index.html`, `sw.js`) 구조를 크게 바꾸면 `sw.js`의 `VERSION`을 올린다(지금 `bk-trip-v4` → 다음 `bk-trip-v5`). 새 파일을 추가했으면 `sw.js`의 `SHELL` 목록에도 넣는다. trip.json만 바꾸는 건 안 올려도 됨(네트워크 우선이라 바로 반영).
+- 앱 껍데기(`/app/*`, `index.html`, `sw.js`) 구조를 크게 바꾸면 `sw.js`의 `VERSION`을 올린다(지금 `bk-trip-v5` → 다음 `bk-trip-v6`). 새 파일을 추가했으면 `sw.js`의 `SHELL` 목록에도 넣는다. trip.json만 바꾸는 건 안 올려도 됨(네트워크 우선이라 바로 반영).
 - 지켜야 할 것: 전 페이지 noindex 유지(meta + `X-Robots-Tag` + robots.txt), 비밀번호/PIN 없음, 유료 기능·유료 API 금지, `_originals/` 수정 금지.
 
 ## 옛 주소
